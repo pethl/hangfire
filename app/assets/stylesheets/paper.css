@@ -1,4 +1,6 @@
 @import url("//fonts.googleapis.com/css?family=Roboto:300,400,500");
+@import "bootstrap-sprockets";
+@import "bootstrap";
 /*!
  * bootswatch v3.2.0
  * Homepage: http://bootswatch.com
@@ -6613,3 +6615,15 @@ select.form-control {
   -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 }
+/* mixins, variables, etc. */
+
+$grayMediumLight: #eaeaea;
+
+@mixin box_sizing {
+  	-moz-box-sizing: border-box; 
+  	-webkit-box-sizing: border-box; 
+  	box-sizing: border-box;
+}
+
+
+

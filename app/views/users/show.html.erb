@@ -1,0 +1,79 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @user.first_name %>
+</p>
+
+<p>
+  <strong>Lastname:</strong>
+  <%= @user.lastname %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @user.phone %>
+</p>
+
+<p>
+  <strong>Bill addr1:</strong>
+  <%= @user.bill_addr1 %>
+</p>
+
+<p>
+  <strong>Bill addr2:</strong>
+  <%= @user.bill_addr2 %>
+</p>
+
+<p>
+  <strong>Bill addr3:</strong>
+  <%= @user.bill_addr3 %>
+</p>
+
+<p>
+  <strong>Bill addr4:</strong>
+  <%= @user.bill_addr4 %>
+</p>
+
+<p>
+  <strong>Bill postcode:</strong>
+  <%= @user.bill_postcode %>
+</p>
+
+<p>
+  <strong>Delivery addr1:</strong>
+  <%= @user.delivery_addr1 %>
+</p>
+
+<p>
+  <strong>Delivery addr2:</strong>
+  <%= @user.delivery_addr2 %>
+</p>
+
+<p>
+  <strong>Delivery addr3:</strong>
+  <%= @user.delivery_addr3 %>
+</p>
+
+<p>
+  <strong>Delivery addr4:</strong>
+  <%= @user.delivery_addr4 %>
+</p>
+
+<p>
+  <strong>Delivery postcode:</strong>
+  <%= @user.delivery_postcode %>
+</p>
+
+<p>
+  <strong>Password digest:</strong>
+  <%= @user.password_digest %>
+</p>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
