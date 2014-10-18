@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_filter :signed_in_user, only: [ :show] 
    before_filter :correct_user,   only: [:edit, :update, :show]
-   before_filter :admin_user,     only: [:index]
+
   
 
   # GET /users
@@ -28,6 +28,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
+      log_in @user
       redirect_to @user, notice: 'User was successfully created.'
     else
       render :new
@@ -57,7 +58,7 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:first_name, :lastname, :email, :phone, :bill_addr1, :bill_addr2, :bill_addr3, :bill_addr4, :bill_postcode, :delivery_addr1, :delivery_addr2, :delivery_addr3, :delivery_addr4, :delivery_postcode, :password, :password_confirmation)
+      params.require(:user).permit(:first_name, :lastname, :email, :phone, :admin, :bill_addr1, :bill_addr2, :bill_addr3, :bill_addr4, :bill_postcode, :delivery_addr1, :delivery_addr2, :delivery_addr3, :delivery_addr4, :delivery_postcode, :password, :password_confirmation)
     end
     
     def signed_in_user
@@ -68,8 +69,10 @@ class UsersController < ApplicationController
             @user = User.find(params[:id])
             redirect_to(root_path) unless current_user?(@user) or current_user.admin?
      end
+     
+     def admin_user
+                redirect_to(root_path) unless current_user.admin?
+          end
+     
 
-    def admin_user
-               redirect_to(root_path) unless current_user.admin?
-       end
-end
+ end

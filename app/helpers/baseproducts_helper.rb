@@ -1,0 +1,2 @@
+module BaseproductsHelper
+end

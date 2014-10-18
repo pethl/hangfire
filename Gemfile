@@ -12,6 +12,14 @@ gem 'pg', '0.17.1'
 gem 'heroku'
 gem 'best_in_place'
 
+#for testing with rspec
+gem 'minitest'
+gem 'rspec-rails', '2.13.1'
+gem 'capybara', '2.1.0'
+gem 'factory_girl_rails', '1.4.0'
+gem 'selenium-webdriver', '2.35.1'
+# test end
+
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'sass-rails', '>= 3.2'
 gem 'autoprefixer-rails'

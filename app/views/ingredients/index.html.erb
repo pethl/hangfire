@@ -1,0 +1,28 @@
+<h1>Ingredients</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Category</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ingredients.each do |ingredient| %>
+      <tr>
+        <td><%= ingredient.name %></td>
+        <td><%= Category.where(:id => ingredient.category_id).first.name %></td>
+          
+        <td><%= link_to 'Show', ingredient %> | 
+        <%= link_to 'Edit', edit_ingredient_path(ingredient) %> | 
+        <%= link_to 'Destroy', ingredient, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Ingredient', new_ingredient_path %>

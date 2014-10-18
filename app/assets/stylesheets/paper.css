@@ -15,7 +15,9 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 body {
-  margin: 0;
+  margin: 20;
+  padding-top: 60px;
+
 }
 article,
 aside,
@@ -1073,27 +1075,27 @@ h6 .small,
 }
 h1,
 .h1 {
-  font-size: 56px;
+  font-size: 45px;
 }
 h2,
 .h2 {
-  font-size: 45px;
+  font-size: 34px;
 }
 h3,
 .h3 {
-  font-size: 34px;
+  font-size: 24px;
 }
 h4,
 .h4 {
-  font-size: 24px;
+  font-size: 20px;
 }
 h5,
 .h5 {
-  font-size: 20px;
+  font-size: 14px;
 }
 h6,
 .h6 {
-  font-size: 14px;
+  font-size: 8px;
 }
 p {
   margin: 0 0 11.5px;

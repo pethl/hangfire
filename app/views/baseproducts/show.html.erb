@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @baseproduct.name %>
+</p>
+
+<p>
+  <strong>Purchase date:</strong>
+  <%= @baseproduct.purchase_date %>
+</p>
+
+<p>
+  <strong>Unit weight:</strong>
+  <%= @baseproduct.unit_weight %>
+</p>
+
+<p>
+  <strong>Total weight:</strong>
+  <%= @baseproduct.total_weight %>
+</p>
+
+<p>
+  <strong>Unit count:</strong>
+  <%= @baseproduct.unit_count %>
+</p>
+
+<p>
+  <strong>Total price:</strong>
+  <%= @baseproduct.total_price %>
+</p>
+
+<p>
+  <strong>Unit price:</strong>
+  <%= @baseproduct.unit_price %>
+</p>
+
+<p>
+  <strong>Price per:</strong>
+  <%= @baseproduct.price_per %>
+</p>
+
+<%= link_to 'Edit', edit_baseproduct_path(@baseproduct) %> |
+<%= link_to 'Back', baseproducts_path %>

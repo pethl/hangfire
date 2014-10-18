@@ -11,10 +11,56 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141014171456) do
+ActiveRecord::Schema.define(version: 20141018105316) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "baseproducts", force: true do |t|
+    t.string   "name"
+    t.date     "purchase_date"
+    t.decimal  "unit_weight"
+    t.decimal  "total_weight"
+    t.decimal  "unit_count"
+    t.decimal  "total_price"
+    t.decimal  "unit_price"
+    t.decimal  "price_per"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "ingredient_id"
+    t.integer  "vendor_id"
+  end
+
+  create_table "categories", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "ingredients", force: true do |t|
+    t.string   "name"
+    t.integer  "category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "items", force: true do |t|
+    t.decimal  "price"
+    t.integer  "weight"
+    t.string   "size"
+    t.integer  "product_id"
+    t.integer  "quantity"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "products", force: true do |t|
+    t.string   "name"
+    t.string   "meat"
+    t.text     "desc"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "first_name"
@@ -35,8 +81,16 @@ ActiveRecord::Schema.define(version: 20141014171456) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "remember_token"
+    t.boolean  "admin"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
+
+  create_table "vendors", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

@@ -1,0 +1,53 @@
+<%= form_for(@baseproduct) do |f| %>
+  <% if @baseproduct.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@baseproduct.errors.count, "error") %> prohibited this baseproduct from being saved:</h2>
+
+      <ul>
+      <% @baseproduct.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :ingredient_id, "Ingredient" %><br>
+      <%= f.collection_select :ingredient_id, Ingredient.all, :id, :name %>
+  </div>
+  <div class="field">
+    <%= f.label :purchase_date %><br>
+    <%= f.date_select :purchase_date %>
+  </div>
+  <div class="field">
+    <%= f.label :vendor_id, "Vendor" %><br>
+      <%= f.collection_select :vendor_id, Vendor.all, :id, :name %>
+  </div>
+  <div class="field">
+    <%= f.label :unit_weight %><br>
+    <%= f.text_field :unit_weight %>
+  </div>
+  <div class="field">
+    <%= f.label :total_weight %><br>
+    <%= f.text_field :total_weight %>
+  </div>
+  <div class="field">
+    <%= f.label :unit_count %><br>
+    <%= f.text_field :unit_count %>
+  </div>
+  <div class="field">
+    <%= f.label :total_price %><br>
+    <%= f.text_field :total_price %>
+  </div>
+  <div class="field">
+    <%= f.label :unit_price %><br>
+    <%= f.text_field :unit_price %>
+  </div>
+  <div class="field">
+    <%= f.label :price_per %><br>
+    <%= f.text_field :price_per %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

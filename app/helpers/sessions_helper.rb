@@ -7,8 +7,10 @@ module SessionsHelper
       self.current_user = user
     end
   
+  
     def sign_in(user)
           cookies.permanent[:remember_token] = user.remember_token
+          session[:user_id] = user.id
           self.current_user = user
       end
 

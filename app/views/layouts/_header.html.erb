@@ -1,0 +1,58 @@
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <a href="../" class="navbar-brand">HANGFIRE</a>
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="navbar-collapse collapse" id="navbar-main">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Orders <span class="caret"></span></a>
+          <ul class="dropdown-menu" aria-labelledby="themes">
+            <li><a href="../default/">New Order</a></li>
+            <li class="divider"></li>
+            <li><a href="../cerulean/">All Orders</a></li>
+            <li><a href="../cosmo/">Open Orders</a></li>
+            
+          </ul>
+        </li>
+        <li>
+          <a href="/users ">Users</a>
+        </li>
+        <li>
+          <a href="/categories ">Categories</a>
+        </li>
+        <li>
+          <a href="/ingredients ">Ingredients</a>
+        </li>
+        <li>
+          <a href="/vendors">Vendors</a>
+        </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="download">Base Products <span class="caret"></span></a>
+          <ul class="dropdown-menu" aria-labelledby="download">
+            <li><a href="/baseproducts">All Base Products</a></li>
+            <li><a href="/baseproducts/new">Add Base Product</a></li>
+            <li class="divider"></li>
+            <li><a href="/items/new">Items</a></li>
+            <li><a href="./bootswatch.less">Spare</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+      <% if signed_in? %>
+ 
+    	  <li><a href="/users/<%= current_user.id %>/edit"></span> <%= current_user.full_name %> </a></li>
+    	  <li><a href='/signout' rel="nofollow" data-method="delete" data-confirm="Are you sure?">| Sign Out |</a></li>
+    	<% else %>
+        <li><a href="/signin"></span> Sign In</a></li>
+    	<% end %>
+
+    </div>
+  </div>
+</div>

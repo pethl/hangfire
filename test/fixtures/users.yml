@@ -33,3 +33,9 @@ two:
   delivery_addr4: MyString
   delivery_postcode: MyString
   password_digest: MyString
+
+michael:
+  first_name: Michael
+  lastname: Example
+  email: michael@example.com
+  password_digest: <%= User.digest('password') %>

@@ -5,3 +5,13 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+Vendor.create(name: 'Booker')
+Vendor.create(name: 'Tesco')
+Vendor.create(name: 'Asda')
+Vendor.create(name: 'Veg Man')
+Vendor.create(name: 'Butcher')
+Category.create(name: 'Fruit and Veg')
+Category.create(name: 'Meat')
+Category.create(name: 'Bread')
+Category.create(name: 'Dry Grocery')
+Category.create(name: 'Wet Grocery')
