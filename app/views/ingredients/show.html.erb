@@ -33,15 +33,21 @@
           <td><%= baseproduct.unit_count %></td>
           <td><%= baseproduct.total_price %></td>
           <td><%= baseproduct.unit_price %></td>
-          <td><%= baseproduct.price_per %></td>
-         
+          <td><%=  baseproduct.price_per  %></td>
         </tr>
       <% end %>
+      
     </tbody>
+     <tr>
+     <td colspan="7"></td>
+     <td> <%= @baseproducts.average('price_per') %></td>
+      <tr>
   </table>
 
     <% end %>
     <br><br>
 
 <%= link_to 'Edit', edit_ingredient_path(@ingredient) %> |
-<%= link_to 'Back', ingredients_path %>
+<%= link_to 'All ingredients', ingredients_path %> | 
+<%= link_to 'TEMP - Add New Baseproduct', new_baseproduct_path %>
+

@@ -1,14 +1,15 @@
 <h1>Ingredients</h1>
 
+<%= link_to 'Add New Ingredient', new_ingredient_path %>
 
 <% @ingredients_category.each do |category_id, ingredients| %>
-
 
 <table class="table  table-striped">
   <thead>
     <tr>
      <th><h3><%= Category.where(:id => category_id).first.name %></h3></th>
      <th>Pricing Data</th>
+      <th>Average p/g</th>
       <th colspan="1"></th>
     </tr>
   </thead>
@@ -16,8 +17,9 @@
   <tbody>
     <% ingredients.each do |ingredient| %>
       <tr>
-        <td><%= ingredient.name %></td>
+        <td><%= link_to ingredient.name, ingredient %></td>
         <td><%= ingredient.baseproducts.count %>
+                <td><%= ingredient.baseproducts.average('price_per') %>
 
           
         <td><%= link_to 'Show', ingredient %> | 
@@ -30,7 +32,6 @@
     <% end %>
 <br>
 
-<%= link_to 'New Ingredient', new_ingredient_path %>
 <button class="btn">	<%= form_tag import_ingredients_path, multipart: true do %>
 	                      <%= file_field_tag :file %>
 	                      <%= submit_tag "Import" %>

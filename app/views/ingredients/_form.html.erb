@@ -19,6 +19,7 @@
     <%= f.label :category_id %><br>
     <%= f.collection_select :category_id, Category.all, :id, :name %>
 
+<%= link_to 'Click to add a new Category', new_category_path %>
   
   </div>
   <div class="actions">

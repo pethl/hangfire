@@ -1,4 +1,6 @@
 <h2>Base Products</h2>
+<%= link_to 'Add New Baseproduct', new_baseproduct_path %>
+
 
 <table class="table  table-striped">
   <thead>
@@ -6,11 +8,11 @@
       <th>Name</th>
       <th>Purchase date</th>
       <th>Vendor </th>
+      <th>Unit count</th>
       <th>Unit weight</th>
       <th>Total weight</th>
-      <th>Unit count</th>
-      <th>Total price</th>
       <th>Unit price</th>
+      <th>Total price</th>
       <th>Price per</th>
       <th colspan="1"></th>
     </tr>
@@ -19,15 +21,14 @@
   <tbody>
     <% @baseproducts.each do |baseproduct| %>
       <tr>
-   
         <td><%= Ingredient.where(:id => baseproduct.ingredient_id ).first.name %></td>
         <td><%= Vendor.where(:id => baseproduct.vendor_id ).first.name %></td>
         <td><%= baseproduct.purchase_date %></td>
+        <td><%= baseproduct.unit_count %></td>
         <td><%= baseproduct.unit_weight %></td>
         <td><%= baseproduct.total_weight %></td>
-        <td><%= baseproduct.unit_count %></td>
-        <td><%= baseproduct.total_price %></td>
         <td><%= baseproduct.unit_price %></td>
+        <td><%= baseproduct.total_price %></td>
         <td><%= baseproduct.price_per %></td>
         <td><%= link_to 'Show', baseproduct %> | 
         <%= link_to 'Edit', edit_baseproduct_path(baseproduct) %> | 
@@ -39,4 +40,3 @@
 
 <br>
 
-<%= link_to 'New Baseproduct', new_baseproduct_path %>

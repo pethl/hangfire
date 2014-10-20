@@ -13,11 +13,11 @@
     <tr>  <td><strong>Name</strong></td><td><%= Ingredient.where(:id => @baseproduct.ingredient_id ).first.name %></td></tr>
     <tr>  <td><strong>Vendor</strong></td> <td><%= Vendor.where(:id => @baseproduct.vendor_id ).first.name %></td></tr>
     <tr>  <td><strong>Purchase date</strong></td><td><%= @baseproduct.purchase_date %></td></tr>
+     <tr>  <td><strong>Unit count</strong></td><td><%= @baseproduct.unit_count %></td></tr>
     <tr>  <td><strong>Unit weight (grams)</strong></td> <td><%= @baseproduct.unit_weight %></td></tr>
     <tr>  <td><strong>Total weight (grams)</strong></td><td><%= @baseproduct.total_weight %></td></tr>
-    <tr>  <td><strong>Unit count</strong></td><td><%= @baseproduct.unit_count %></td></tr>
+   <tr>  <td><strong>Unit price (pence)</strong></td> <td><%= @baseproduct.unit_price %></td></tr>
     <tr>  <td><strong>Total price (pence)</strong></td><td><%= @baseproduct.total_price %></td></tr>
-    <tr>  <td><strong>Unit price (pence)</strong></td> <td><%= @baseproduct.unit_price %></td></tr>
     <tr>  <td><strong>Price per (p/g)</strong></td><td><%= @baseproduct.price_per %></td></tr>
     <tr>  <td><%= link_to 'Show', @baseproduct %> | 
        <%= link_to 'Edit', edit_baseproduct_path(@baseproduct) %> | 
@@ -29,6 +29,9 @@
 
 
 <%= link_to 'Edit', edit_baseproduct_path(@baseproduct) %> |
-<%= link_to 'Back', baseproducts_path %>
+<%= link_to 'Back', baseproducts_path %> |
+<%= link_to 'See Ingredient', ingredient_path(@baseproduct.ingredient_id) %> |
+
+
 </div>
 </div>
