@@ -4,10 +4,12 @@ class IngredientsController < ApplicationController
   # GET /ingredients
   def index
     @ingredients = Ingredient.all
+     @ingredients_category = @ingredients.group_by { |t| t.category_id }  
   end
 
   # GET /ingredients/1
   def show
+    @baseproducts = Baseproduct.where(:ingredient_id => @ingredient.id)
   end
 
   # GET /ingredients/new
@@ -44,6 +46,12 @@ class IngredientsController < ApplicationController
     @ingredient.destroy
     redirect_to ingredients_url, notice: 'Ingredient was successfully destroyed.'
   end
+  
+  def import
+       Ingredient.import(params[:file])
+       redirect_to ingredients_path, notice: "Ingredients imported."
+     end
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.

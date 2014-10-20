@@ -1,19 +1,24 @@
 <h1>Ingredients</h1>
 
-<table class="table">
+
+<% @ingredients_category.each do |category_id, ingredients| %>
+
+
+<table class="table  table-striped">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Category</th>
+     <th><h3><%= Category.where(:id => category_id).first.name %></h3></th>
+     <th>Pricing Data</th>
       <th colspan="1"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @ingredients.each do |ingredient| %>
+    <% ingredients.each do |ingredient| %>
       <tr>
         <td><%= ingredient.name %></td>
-        <td><%= Category.where(:id => ingredient.category_id).first.name %></td>
+        <td><%= ingredient.baseproducts.count %>
+
           
         <td><%= link_to 'Show', ingredient %> | 
         <%= link_to 'Edit', edit_ingredient_path(ingredient) %> | 
@@ -22,7 +27,12 @@
     <% end %>
   </tbody>
 </table>
-
+    <% end %>
 <br>
 
 <%= link_to 'New Ingredient', new_ingredient_path %>
+<button class="btn">	<%= form_tag import_ingredients_path, multipart: true do %>
+	                      <%= file_field_tag :file %>
+	                      <%= submit_tag "Import" %>
+                        <% end %>
+  </button>
