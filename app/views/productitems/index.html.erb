@@ -1,0 +1,31 @@
+<h1>Product items</h1>
+<%= link_to '+ add new productitem', new_productitem_path %>
+<br><br>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Ingredient</th>
+      <th>Volume</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @productitems.each do |productitem| %>
+      <tr>
+        <td><%= productitem.product_id %></td>
+        <td><%= productitem.ingredient_id %></td>
+        <td><%= productitem.volume %></td>
+        <td><%= link_to 'Show', productitem %></td>
+        <td><%= link_to 'Edit', edit_productitem_path(productitem) %></td>
+        <td><%= link_to 'Destroy', productitem, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+

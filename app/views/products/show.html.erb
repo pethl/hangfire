@@ -1,19 +1,42 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @product.name %>
-</p>
 
-<p>
-  <strong>Meat:</strong>
-  <%= @product.meat %>
-</p>
-
-<p>
-  <strong>Desc:</strong>
+<h3>
+  <strong><%= @product.name %></strong></h3>
   <%= @product.desc %>
-</p>
+  
+
+<% if @product.productitems.any? %>
+
+  <table class="table  table-striped">
+    <thead>
+      <tr>
+        <th>Ingredient </th>
+        <th>Volume </th>
+        <th>Price per (p/g)</th>
+        <th>Total cost</th>
+      </tr>
+    </thead>
+    <tbody>
+       <% @product.productitems.each do |item| %>
+        <tr>
+          <td><%= Ingredient.where(:id => item.ingredient_id).first.name %></td>
+          <td><%= item.volume %></td>
+          <td><%= Productitem.average_price(item.ingredient_id) %></td>
+          <td><%= Productitem.total_price(item) %></td>
+          </tr>      
+      <% end %>
+    </tbody>
+     <tr>
+     <td colspan="3"></td>
+     <td>    TOTAL HERE
+       </td>
+      <tr>
+  </table>  
+    <% end %>
+    <br><br>
+
+
 
 <%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+<%= link_to 'All Products', products_path %>

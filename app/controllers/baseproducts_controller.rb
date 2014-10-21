@@ -44,6 +44,11 @@ class BaseproductsController < ApplicationController
     @baseproduct.destroy
     redirect_to baseproducts_url, notice: 'Baseproduct was successfully destroyed.'
   end
+  
+  def import
+       Baseproduct.import(params[:file])
+       redirect_to baseproducts_path, notice: "Baseproduct imported."
+     end
 
   private
     # Use callbacks to share common setup or constraints between actions.

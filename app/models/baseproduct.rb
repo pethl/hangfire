@@ -2,6 +2,12 @@ class Baseproduct < ActiveRecord::Base
   belongs_to :ingredient
   before_save :calc_prices
   
+  def self.import(file)
+      	 CSV.foreach(file.path, headers: true) do |row|
+         		 Baseproduct.create! row.to_hash
+      	end
+    	end
+  
   def price_per
     if self.total_price.blank? || self.total_weight.blank?
       return "unavailable"

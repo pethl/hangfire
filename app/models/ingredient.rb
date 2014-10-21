@@ -7,5 +7,9 @@ class Ingredient < ActiveRecord::Base
       	end
     	end
     	
+  def self.average_price(id)
+    a = Baseproduct.where(:ingredient_id => id)
+    a.average('price_per')
+  end
     
 end

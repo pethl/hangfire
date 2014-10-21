@@ -1,6 +1,6 @@
 <h1>Ingredients</h1>
 
-<%= link_to 'Add New Ingredient', new_ingredient_path %>
+<%= link_to '+ add new ingredient', new_ingredient_path %>
 
 <% @ingredients_category.each do |category_id, ingredients| %>
 
@@ -19,7 +19,7 @@
       <tr>
         <td><%= link_to ingredient.name, ingredient %></td>
         <td><%= ingredient.baseproducts.count %>
-                <td><%= ingredient.baseproducts.average('price_per') %>
+        <td><%= Ingredient.average_price(ingredient.id) %>
 
           
         <td><%= link_to 'Show', ingredient %> | 

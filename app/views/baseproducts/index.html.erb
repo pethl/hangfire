@@ -1,5 +1,5 @@
-<h2>Base Products</h2>
-<%= link_to 'Add New Baseproduct', new_baseproduct_path %>
+<h1>Base Products</h1>
+<%= link_to '+ add new baseproduct', new_baseproduct_path %>
 
 
 <table class="table  table-striped">
@@ -37,6 +37,10 @@
     <% end %>
   </tbody>
 </table>
-
 <br>
+<button class="btn">	<%= form_tag import_baseproducts_path, multipart: true do %>
+	                      <%= file_field_tag :file %>
+	                      <%= submit_tag "Import" %>
+                        <% end %>
+  </button>
 

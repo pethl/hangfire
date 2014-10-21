@@ -12,6 +12,7 @@ class ProductsController < ApplicationController
 
   # GET /products/1
   def show
+   @productitems = Productitem.where(:product_id => @product.id)
   end
 
   # GET /products/new
@@ -59,4 +60,5 @@ class ProductsController < ApplicationController
     def product_params
       params.require(:product).permit(:name, :meat, :desc)
     end
+    
 end

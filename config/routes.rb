@@ -1,14 +1,17 @@
 Hangfire::Application.routes.draw do
+  resources :productitems
+
   resources :categories
 
   resources :ingredients do
     		 collection { post :import }
    	end
   
-
   resources :vendors
 
-  resources :baseproducts
+  resources :baseproducts do
+    		 collection { post :import }
+   	end
 
   resources :items
 

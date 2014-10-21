@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Product:</strong>
+  <%= Product.where(:id => @productitem.product_id).first.name %>
+</p>
+
+<p>
+  <strong>Ingredient:</strong>
+    <%= Ingredient.where(:id => @productitem.ingredient_id).first.name %>
+</p>
+
+<p>
+  <strong>Volume:</strong>
+  <%= @productitem.volume %>
+</p>
+
+<%= link_to 'Edit', edit_productitem_path(@productitem) %> |
+<%= link_to 'Back', productitems_path %>
