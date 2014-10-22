@@ -1,0 +1,45 @@
+<br>
+<div class="container-fluid">
+<div class="row">
+  <div class="col-md-4">
+  
+  <table class="table table-bordered">
+  <tr>
+  <th>Products</th>
+  <th># <%= @products.count %></th>
+  </tr>
+  <tbody>
+  
+    <% @products.each do |product| %>
+  <tr>
+    <td><%= link_to product.name, product %></td>
+    <td><%= product.productitems.count %></td>
+  </tr>
+  <% end %>
+  </tbody>
+  </table>
+   <a href="/product/new">+ add new HF product</a>
+  </div>
+
+  <div class="col-md-4">
+  <table class="table table-bordered">
+   <tr>
+   <th>Ingredients</th>
+   <th># <%= @ingredients.count %></th>
+
+   </tr>
+   <tbody>
+
+     <% @ingredients_category.each do |category_id, ingredients| %>
+   <tr>
+     <td><%= Category.where(:id => category_id).first.name %></td>
+     <td><%=  Ingredient.where(:category_id =>category_id).count %></td>
+   </tr>
+   <% end %>
+   </tbody>
+   </table>
+   <a href="/ingredient/new">+ add new ingredient</a>
+   </div>
+  </div>
+</div>
+</div>

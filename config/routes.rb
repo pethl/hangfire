@@ -22,6 +22,8 @@ Hangfire::Application.routes.draw do
   resources :users
   
    get '/home' => 'static_pages#home'
+   get '/help' => 'static_pages#help'
+   get '/dashboard' => 'static_pages#dashboard'
   
   resources :sessions, only: [:new, :create, :destroy]
 
@@ -34,6 +36,8 @@ Hangfire::Application.routes.draw do
      delete 'logout'  => 'sessions#destroy'
      
      get "static_pages/home"
+     get "static_pages/help"
+     get "static_pages/dashboard"
 
 
   
