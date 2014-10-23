@@ -40,7 +40,7 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-      <% if signed_in? %>
+      <% if logged_in? %>
  
     	  <li><a href="/users/<%= current_user.id %>/edit"></span> <%= current_user.full_name %> </a></li>
     	  <li><a href='/signout' rel="nofollow" data-method="delete" data-confirm="Are you sure?">| Sign Out |</a></li>

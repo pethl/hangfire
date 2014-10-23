@@ -1,6 +1,9 @@
 class Ingredient < ActiveRecord::Base
   has_many :baseproducts
   accepts_nested_attributes_for :baseproducts, allow_destroy: true
+  
+    validates :name, presence: true, uniqueness: true
+      validates :category_id, presence: true
 
   
   def self.import(file)

@@ -10,7 +10,12 @@
       </ul>
     </div>
   <% end %>
-
+  
+  <div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4">
+ 
+     
   <div class="field">
     <%= f.label :first_name %><br>
     <%= f.text_field :first_name %>
@@ -37,53 +42,57 @@
   <%= f.label :password_confirmation, "Confirmation" %><br>
   <%= f.password_field :password_confirmation %>
     </div>
-  
+    </div>
+      <div class="col-md-4">
+     <h2> Billing Address </h2>
   
   <div class="field">
-    <%= f.label :bill_addr1 %><br>
+    <%= f.label :bill_addr1, "Line 1:" %><br>
     <%= f.text_field :bill_addr1 %>
   </div>
   <div class="field">
-    <%= f.label :bill_addr2 %><br>
+    <%= f.label :bill_addr2, "Line 2:" %><br>
     <%= f.text_field :bill_addr2 %>
   </div>
   <div class="field">
-    <%= f.label :bill_addr3 %><br>
+    <%= f.label :bill_addr3, "Town:" %><br>
     <%= f.text_field :bill_addr3 %>
   </div>
   <div class="field">
-    <%= f.label :bill_addr4 %><br>
+    <%= f.label :bill_addr4, "County:" %><br>
     <%= f.text_field :bill_addr4 %>
   </div>
   <div class="field">
-    <%= f.label :bill_postcode %><br>
+    <%= f.label :bill_postcode, "Postcode" %><br>
     <%= f.text_field :bill_postcode %>
   </div>
+  
+  </div>
+    <div class="col-md-4">
+     <h2> Delivery Address </h2>
   <div class="field">
-    <%= f.label :delivery_addr1 %><br>
+    <%= f.label :delivery_addr1, "Line 1:" %><br>
     <%= f.text_field :delivery_addr1 %>
   </div>
   <div class="field">
-    <%= f.label :delivery_addr2 %><br>
+    <%= f.label :delivery_addr2, "Line 2: "%><br>
     <%= f.text_field :delivery_addr2 %>
   </div>
   <div class="field">
-    <%= f.label :delivery_addr3 %><br>
+    <%= f.label :delivery_addr3, "Town:" %><br>
     <%= f.text_field :delivery_addr3 %>
   </div>
   <div class="field">
-    <%= f.label :delivery_addr4 %><br>
+    <%= f.label :delivery_addr4, "County:" %><br>
     <%= f.text_field :delivery_addr4 %>
   </div>
   <div class="field">
-    <%= f.label :delivery_postcode %><br>
+    <%= f.label :delivery_postcode, "Postcode:" %><br>
     <%= f.text_field :delivery_postcode %>
   </div>
-  <div class="field">
-    <%= f.label :password_digest %><br>
-    <%= f.text_field :password_digest %>
-  </div>
+</div>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+</div></div>
