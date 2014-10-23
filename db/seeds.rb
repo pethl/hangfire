@@ -6,6 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 Vendor.create(name: 'Asda')
+Vendor.create(name: 'Baker')
 Vendor.create(name: 'Booker')
 Vendor.create(name: 'Butcher')
 Vendor.create(name: 'Tesco')

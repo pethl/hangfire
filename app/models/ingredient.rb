@@ -1,5 +1,7 @@
 class Ingredient < ActiveRecord::Base
   has_many :baseproducts
+  accepts_nested_attributes_for :baseproducts, allow_destroy: true
+
   
   def self.import(file)
       	 CSV.foreach(file.path, headers: true) do |row|

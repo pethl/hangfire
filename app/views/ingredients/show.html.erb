@@ -14,11 +14,11 @@
       <tr>
         <th>Purchase date</th>
         <th>Vendor </th>
+        <th>Unit count</th>
         <th>Unit weight(g)</th>
         <th>Total weight(g)</th>
-        <th>Unit count</th>
-        <th>Total price(p)</th>
         <th>Unit price(p)</th>
+        <th>Total price(p)</th>
         <th>Price per (p/g)</th>
       </tr>
     </thead>
@@ -28,26 +28,27 @@
         <tr>
           <td><%= baseproduct.purchase_date %></td>
           <td><%= Vendor.where(:id => baseproduct.vendor_id ).first.name %></td>
+          <td><%= baseproduct.unit_count %></td>
           <td><%= baseproduct.unit_weight %></td>
           <td><%= baseproduct.total_weight %></td>
-          <td><%= baseproduct.unit_count %></td>
-          <td><%= baseproduct.total_price %></td>
           <td><%= baseproduct.unit_price %></td>
+          <td><%= baseproduct.total_price %></td>
           <td><%=  baseproduct.price_per  %></td>
         </tr>
       <% end %>
       
     </tbody>
-     <tr>
-     <td colspan="7"></td>
-     <td> <%= @baseproducts.average('price_per') %></td>
-      <tr>
+     
   </table>
+  <% else %>
+  
+  There are no purchase records or pricing data for this ingredient.<br>
+  To add a purchase record go to edit.
 
     <% end %>
     <br><br>
 
 <%= link_to 'Edit', edit_ingredient_path(@ingredient) %> |
 <%= link_to 'All ingredients', ingredients_path %> | 
-<%= link_to 'TEMP - Add New Baseproduct', new_baseproduct_path %>
+
 

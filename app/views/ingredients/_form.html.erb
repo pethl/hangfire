@@ -12,14 +12,19 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br>
+    <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :category_id %><br>
-    <%= f.collection_select :category_id, Category.all, :id, :name %>
+    <%= f.label :category_id %>
+    <%= f.collection_select :category_id, Category.all, :id, :name, :prompt => true %><br>
+    <i>Category missing? </i><%= link_to '+ add new Category', new_category_path %>
+<br>
 
-<%= link_to 'Click to add a new Category', new_category_path %>
+    <%= f.fields_for :baseproducts do |builder| %>
+      <%= render 'baseproduct_fields', f: builder %>
+    <% end %><br>
+    <%= link_to_add_fields "+ add purchase record", f, :baseproducts %>
   
   </div>
   <div class="actions">

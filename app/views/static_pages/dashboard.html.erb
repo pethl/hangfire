@@ -5,7 +5,7 @@
   
   <table class="table table-bordered">
   <tr>
-  <th>Products</th>
+  <th><%= link_to "Products", products_path %></th>
   <th># <%= @products.count %></th>
   </tr>
   <tbody>
@@ -18,13 +18,14 @@
   <% end %>
   </tbody>
   </table>
-   <a href="/product/new">+ add new HF product</a>
+
+   <%= link_to "+ add new HF product", new_product_path %>
   </div>
 
   <div class="col-md-4">
   <table class="table table-bordered">
    <tr>
-   <th>Ingredients</th>
+  <th><%= link_to "Ingredients", ingredients_path %></th>
    <th># <%= @ingredients.count %></th>
 
    </tr>
@@ -38,7 +39,7 @@
    <% end %>
    </tbody>
    </table>
-   <a href="/ingredient/new">+ add new ingredient</a>
+   <%= link_to "+ add new ingredient", new_ingredient_path %>
    </div>
   </div>
 </div>

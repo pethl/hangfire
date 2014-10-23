@@ -3,7 +3,7 @@ class VendorsController < ApplicationController
 
   # GET /vendors
   def index
-    @vendors = Vendor.all
+    @vendors = Vendor.all.sort_by { |h| h[:name] }
   end
 
   # GET /vendors/1
@@ -24,7 +24,7 @@ class VendorsController < ApplicationController
     @vendor = Vendor.new(vendor_params)
 
     if @vendor.save
-      redirect_to @vendor, notice: 'Vendor was successfully created.'
+      redirect_to vendors_path, notice: 'Vendor was successfully created.'
     else
       render :new
     end
@@ -33,7 +33,7 @@ class VendorsController < ApplicationController
   # PATCH/PUT /vendors/1
   def update
     if @vendor.update(vendor_params)
-      redirect_to @vendor, notice: 'Vendor was successfully updated.'
+      redirect_to vendors_path, notice: 'Vendor was successfully updated.'
     else
       render :edit
     end

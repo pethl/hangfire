@@ -1,5 +1,6 @@
 class Product < ActiveRecord::Base
   has_many :productitems
+   accepts_nested_attributes_for :productitems, allow_destroy: true
   
     
     def self.get_name(id)

@@ -1,0 +1,15 @@
+<fieldset>
+
+ <table>
+
+  <tbody>
+  <tr>
+      <td><%= f.collection_select :ingredient_id, (Ingredient.all.sort_by { |h| h[:name] }), :id, :name,  :prompt => true %></td>
+      <td align="right"><%= f.text_field :volume, :placeholder => "Volume (g)" %></td>
+    <td> <%= f.check_box :_destroy %><%= f.label :_destroy, "Remove ingredient" %></td>
+  </tr>
+  </tbody>
+</table>
+<br>
+  
+  </fieldset>
