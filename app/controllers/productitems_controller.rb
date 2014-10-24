@@ -50,6 +50,6 @@ class ProductitemsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def productitem_params
-      params.require(:productitem).permit(:product_id, :ingredient_id, :volume)
+      params.require(:productitem).permit(:product_id, :ingredient_id, :volume, :price_selector)
     end
 end

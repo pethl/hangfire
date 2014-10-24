@@ -1,4 +1,6 @@
 class Ingredient < ActiveRecord::Base
+  include ActionView::Helpers::NumberHelper
+  
   has_many :baseproducts
   accepts_nested_attributes_for :baseproducts, allow_destroy: true
   
@@ -12,9 +14,56 @@ class Ingredient < ActiveRecord::Base
       	end
     	end
     	
-  def self.average_price(id)
-    a = Baseproduct.where(:ingredient_id => id)
-    a.average('price_per')
-  end
-    
+    	
+       def self.get_price(id,selector)
+         case selector
+             when "average"
+               self.average_price(id)
+             when "latest"
+                self.latest_price(id)
+             when "least"
+                self.least_price(id)
+             when "most"
+                self.most_price(id)
+             else
+               puts "No price selector given"
+             end
+          end
+
+
+        def self.average_price(id)
+            a = Baseproduct.where(:ingredient_id => id)
+            if a.any?
+            a.average('price_per') 
+          else
+            "no data"
+          end
+        end
+
+        def self.latest_price(id)
+          a = Baseproduct.where(:ingredient_id => id).sort_by { |h| h[:purchase_date]}.reverse
+          if a.any?
+          a.first.price_per
+           else
+              "no data"
+            end
+        end  
+        
+       def self.least_price(id)
+          a = Baseproduct.where(:ingredient_id => id).sort_by { |h| h[:price_per]}
+          if a.any?
+          a.first.price_per
+           else
+              "no data"
+            end
+        end
+          
+       def self.most_price(id)
+          a = Baseproduct.where(:ingredient_id => id).sort_by { |h| h[:price_per]}.reverse
+          if a.any?
+          a.first.price_per
+           else
+              "no data"
+            end
+        end
 end

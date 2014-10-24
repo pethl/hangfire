@@ -10,17 +10,27 @@
      <th><h3><%= Category.where(:id => category_id).first.name %></h3></th>
      <th>Pricing Data</th>
       <th>Average p/g</th>
+      <th>Latest p/g</th>
+      <th>Price change p/g</th>
       <th colspan="1"></th>
     </tr>
   </thead>
 
   <tbody>
+  <% ingredients= ingredients.sort_by { |h| h[:name]} %>
     <% ingredients.each do |ingredient| %>
       <tr>
         <td><%= link_to ingredient.name, ingredient %></td>
         <td><%= ingredient.baseproducts.count %>
-        <td><%= Ingredient.average_price(ingredient.id) %>
-
+        <td><%= average = number_with_precision(Ingredient.get_price(ingredient.id, 'average'), :precision => 4) %>
+       
+        <td><%= latest = number_with_precision(Ingredient.get_price(ingredient.id, 'latest'), :precision => 4) %>
+        <td><% if (latest.to_f-average.to_f).ceil.is_a? Numeric%>
+        <% if (latest.to_f-average.to_f).ceil > 0 %>
+         <font color="red"> UP</font>
+          <% end %>
+          <% end %>
+         </td>
           
         <td><%= link_to 'Show', ingredient %> | 
         <%= link_to 'Edit', edit_ingredient_path(ingredient) %> | 

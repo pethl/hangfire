@@ -8,6 +8,8 @@ class Baseproduct < ActiveRecord::Base
       	end
     	end
   
+  
+  
   def price_per
     if self.total_price.blank? || self.total_weight.blank?
       return "unavailable"

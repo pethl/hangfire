@@ -1,18 +1,18 @@
 class Productitem < ActiveRecord::Base
     belongs_to :product
     
-    def self.average_price(id)
-      a = Baseproduct.where(:ingredient_id => id)
-      a.average('price_per')
-     
-    end
+    
+    PRICE_SELECTOR_TYPES = ["--", "average", "latest", "least", "most"]
+    
+   
     
     def self.total_price(productitem)
-      if self.average_price(productitem.ingredient_id).blank?
-        return "zero"
+      if Ingredient.get_price(productitem.ingredient_id, productitem.price_selector).blank?
+        return "no data"
       else  
-      productitem.volume * self.average_price(productitem.ingredient_id)
+      productitem.volume * Ingredient.get_price(productitem.ingredient_id, productitem.price_selector)
     end
     end
+    
     
 end
