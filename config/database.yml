@@ -16,4 +16,10 @@ test:
     database: hangfire_test
     host: localhost
 
+
+debug:
+  adapter: postgresql
+  database: hangfire_debug
+  host: localhost
+
 #production db uses pg automatically, heroku standard

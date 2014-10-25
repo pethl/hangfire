@@ -1,18 +1,17 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
+  
 
   # GET /products
   def index
-    @products = Product.all
+    @products = Product.all.sort_by { |h| h[:name] }
     # @product_groups = @products.group_by { |t| t.meat }
-
-
-    
   end
 
   # GET /products/1
   def show
    @productitems = Productitem.where(:product_id => @product.id)
+      @friendships = Friendship.where(:product_id => @product.id)
   end
 
   # GET /products/new
@@ -22,6 +21,14 @@ class ProductsController < ApplicationController
 
   # GET /products/1/edit
   def edit
+    if @product.productitems.any?
+      else
+        1.times { @product.productitems.build }
+    end
+     if @product.friendships.any?
+        else
+          1.times { @product.friendships.build(:product_id => @product) }
+      end
   end
 
   # POST /products
@@ -58,7 +65,7 @@ class ProductsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def product_params
-      params.require(:product).permit(:name, :meat, :desc, productitems_attributes:[:_destroy, :id, :product_id, :ingredient_id, :volume, :price_selector])
+      params.require(:product).permit(:id, :name, :desc, productitems_attributes:[:_destroy, :id, :product_id, :ingredient_id, :volume, :price_selector], friendships_attributes:[:_destroy, :friend_id, :product_id, :prodvolume])
     end
     
 end

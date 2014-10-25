@@ -38,7 +38,9 @@
   </tbody>
 </table>
 <br>
-<button class="btn">	<%= form_tag import_baseproducts_path, multipart: true do %>
+
+<button class="btn">	
+<%= form_tag import_baseproducts_path, multipart: true do %>
 	                      <%= file_field_tag :file %>
 	                      <%= submit_tag "Import" %>
                         <% end %>

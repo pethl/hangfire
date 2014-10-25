@@ -1,8 +1,12 @@
 class Product < ActiveRecord::Base
   has_many :productitems
-   accepts_nested_attributes_for :productitems, allow_destroy: true
   
-    
+  has_many :friendships
+  has_many :friends, :through => :friendships
+  
+  accepts_nested_attributes_for :productitems, allow_destroy: true
+    accepts_nested_attributes_for :friendships, allow_destroy: true
+  
     def self.get_name(id)
       name = Product.where(:id => id)[0].name
       return name
@@ -14,5 +18,22 @@ class Product < ActiveRecord::Base
          line_item.volume*Ingredient.get_price(line_item.ingredient_id, line_item.price_selector)
          end
     end
+    
+    def self.get_total_test_price(id) ##this is counting total cost of other product needs the %volume calculation added
+      # get all product_ids associated with this product, they are in Friendship model under friend_id linked b product_id
+      @product_ids = Friendship.where(:product_id => id).map {|x| x.friend_id}
+      # get all product items records that have product ids in the @product_ids array
+      @productitems = Productitem.where(:product_id => @product_ids)
+      test_total = @productitems.to_a.sum do |line_item|
+         line_item.volume*Ingredient.get_price(line_item.ingredient_id, line_item.price_selector)
+         end
+    end
+    
+    def self.get_total_weight(id)
+      @productitems = Productitem.where(:product_id => id)
+      weight = @productitems.to_a.sum do |line_item|
+         line_item.volume
+         end
+    end    
   
 end

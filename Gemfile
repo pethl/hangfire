@@ -3,6 +3,9 @@ ruby "1.9.3"
 gem 'rails', '4.1.6'
 gem 'bcrypt-ruby', '~> 3.1.5'
 
+gem 'capistrano-rvm',   group: :development
+gem 'capistrano-rails', group: :development
+
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -10,7 +13,7 @@ gem 'bcrypt-ruby', '~> 3.1.5'
 gem 'pg', '0.17.1'
 
 gem 'heroku'
-gem 'best_in_place'
+gem 'best_in_place', github: 'aaronchi/best_in_place'
 
 #for testing with rspec
 gem 'minitest'

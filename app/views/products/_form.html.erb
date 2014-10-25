@@ -20,11 +20,18 @@
     <%= f.label :desc %><br>
     <%= f.text_area :desc %>
   </div>
-  <br>
+  
+  <h3>Use quantity of existing product</h3>  
+  <%= f.fields_for :friendships do |builder| %>
+     <%= render 'friendship_fields', f: builder %>
+   <% end %> 
+ <%= link_to "+ add new product", friendships_path(:product_id => @product), :method => :post %>
+
+  <h3>Ingredients</h3>
    <%= f.fields_for :productitems do |builder| %>
       <%= render 'productitem_fields', f: builder %>
     <% end %>
-    <%= link_to_add_fields "+ add ingredient", f, :productitems %>
+    <%= link_to_add_fields "+ add new ingredient", f, :productitems %>
   
   <div class="actions">
     <%= f.submit %>

@@ -1,0 +1,2 @@
+module ProductlinksHelper
+end

@@ -1,5 +1,9 @@
 Hangfire::Application.routes.draw do
-  resources :productitems
+  resources :productitems do
+    		 collection { post :import }
+  		 end
+  		 
+  resources :friendships
 
   resources :categories
 
@@ -16,9 +20,10 @@ Hangfire::Application.routes.draw do
   resources :items
 
   resources :products do
-     		resources :items
+     		resources :items;
+     		resources :friendships
    		end
-
+  
   resources :users
   
    get '/home' => 'static_pages#home'

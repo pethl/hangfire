@@ -41,6 +41,11 @@ class ProductitemsController < ApplicationController
     @productitem.destroy
     redirect_to productitems_url, notice: 'Productitem was successfully destroyed.'
   end
+  
+  def import
+       Productitem.import(params[:file])
+       redirect_to products_path, notice: "Productitems imported."
+     end
 
   private
     # Use callbacks to share common setup or constraints between actions.
