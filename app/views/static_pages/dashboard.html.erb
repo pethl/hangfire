@@ -9,25 +9,22 @@
   <th># <%= @products.count %></th>
   </tr>
   <tbody>
-  
     <% @products.each do |product| %>
   <tr>
     <td><%= link_to product.name, product %></td>
     <td><%= product.productitems.count %></td>
   </tr>
   <% end %>
-  </tbody>
-  </table>
-
-   <%= link_to "+ add new HF product", new_product_path %>
+    </tbody>
+    </table>
+    <%= link_to "+ add new HF product", new_product_path %>
   </div>
 
   <div class="col-md-4">
   <table class="table table-bordered">
    <tr>
-  <th><%= link_to "Ingredients", ingredients_path %></th>
-   <th># <%= @ingredients.count %></th>
-
+    <th><%= link_to "Ingredients", ingredients_path %></th>
+    <th># <%= @ingredients.count %></th>
    </tr>
    <tbody>
 
@@ -40,7 +37,24 @@
    </tbody>
    </table>
    <%= link_to "+ add new ingredient", new_ingredient_path %>
-   </div>
+   <br><br>
+   <table class="table table-bordered">
+    <tr>
+   <th><%= link_to "Vendors", vendors_path %></th>
+   <th># <%= @vendors.count %></th>
+    </tr>
+    <tbody>
+    
+      <% @vendors.each do |vendor| %>
+    <tr>
+       <td><%= link_to vendor.name, vendor %></td>
+        <td><%= Baseproduct.where(:vendor_id => vendor.id).distinct.count(:ingredient_id) %></td>
+    </tr>
+    <% end %>
+    </tbody>
+    </table>
+    <%= link_to "+ add new vendor", new_vendor_path %>
+    </div>
   </div>
 </div>
 </div>

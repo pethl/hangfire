@@ -8,6 +8,7 @@ class VendorsController < ApplicationController
 
   # GET /vendors/1
   def show
+  
   end
 
   # GET /vendors/new

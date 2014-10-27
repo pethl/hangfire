@@ -17,5 +17,13 @@ class Productitem < ActiveRecord::Base
     end
     end
     
+    def self.weight_ratio(productitem)
+      if productitem.volume.blank?
+        return "no data"
+      else  
+      productitem.volume / Product.get_total_weight(productitem.product_id)
+    end
+    end
+    
     
 end

@@ -1,9 +1,25 @@
 <p id="notice"><%= notice %></p>
+<div class="row">
+<div class="col-xs-6 col-md-5  col-md-offset-1">
 
 <p>
-  <strong>Name:</strong>
+  <strong>Vendor:</strong>
   <%= @vendor.name %>
 </p>
+<% @products = Baseproduct.get_unique_products(@vendor.id) %>
+
+<% if @products.any?  %>
+  <ul>
+  <% @products.each do |product| %>
+     <li> <%= link_to (Ingredient.get_name(product.ingredient_id)), ingredient_path(product.ingredient_id) %> </li> <br>
+      <% end %>  
+      </ul>
+  <% else %>
+  <br>
+  No products as yet!
+  <br><br>
+<% end %>
+
 
 <%= link_to 'Edit', edit_vendor_path(@vendor) %> |
 <%= link_to 'All vendors', vendors_path %>

@@ -8,7 +8,10 @@ class Baseproduct < ActiveRecord::Base
       	end
     	end
   
-  
+  def self.get_unique_products(vendor_id)
+      @products = Baseproduct.where(:vendor_id => vendor_id).distinct(:ingredient_id)
+      return @products
+  end
   
   def price_per
     if self.total_price.blank? || self.total_weight.blank?

@@ -7,13 +7,17 @@ class Ingredient < ActiveRecord::Base
     validates :name, presence: true, uniqueness: true
       validates :category_id, presence: true
 
+  def self.get_name(id)
+    name = Ingredient.where(:id => id)[0].name
+    return name
+  end
   
   def self.import(file)
       	 CSV.foreach(file.path, headers: true) do |row|
          		 Ingredient.create! row.to_hash
       	end
     	end
-    	
+   	
     	
        def self.get_price(id,selector)
          case selector

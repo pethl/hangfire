@@ -3,7 +3,7 @@ class CategoriesController < ApplicationController
 
   # GET /categories
   def index
-    @categories = Category.all
+    @categories_by_reference = Category.all.group_by { |t| t.reference }
   end
 
   # GET /categories/1
@@ -53,6 +53,6 @@ class CategoriesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def category_params
-      params.require(:category).permit(:name)
+      params.require(:category).permit(:name, :reference)
     end
 end

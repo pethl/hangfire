@@ -1,27 +1,33 @@
 <h1>Categories</h1>
 <%= link_to '+ add new category', new_category_path %>
-<br><br>
+<br>
+<div class="row">
+<div class="col-xs-6 col-md-5  col-md-offset-1">
+<% @categories_by_reference.each do |reference, categories| %>
+<h3><%= reference %>
 
-<table class="table">
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Name</th>
+      <th></h3></th>
       <th colspan="1"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @categories.each do |category| %>
+    <% categories.each do |category| %>
       <tr>
         <td><%= category.name %></td>
+      
        <td><%= link_to 'Show', category %> | 
        <%= link_to 'Edit', edit_category_path(category) %> | 
         <%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
+  
 </table>
-
+ <% end %>
 <br>
-
+</div></div>
 

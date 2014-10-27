@@ -1,11 +1,14 @@
 <h1>Vendors</h1>
 <%= link_to '+ add new vendor', new_vendor_path %>
-<br><br>
+<br>
+<div class="row">
+<div class="col-xs-6 col-md-5  col-md-offset-1">
 
 <table class="table">
   <thead>
     <tr>
       <th>Name</th>
+      <th>Products #</th>
       <th colspan="1"></th>
     </tr>
   </thead>
@@ -13,7 +16,8 @@
   <tbody>
     <% @vendors.each do |vendor| %>
       <tr>
-        <td><%= vendor.name %></td>
+        <td><%= link_to vendor.name, vendor %></td>
+        <td><%= Baseproduct.where(:vendor_id => vendor.id).distinct.count(:ingredient_id) %></td>
         <td><%= link_to 'Show', vendor %> | 
         <%= link_to 'Edit', edit_vendor_path(vendor) %> | 
         <%= link_to 'Destroy', vendor, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -4,8 +4,8 @@ class ProductsController < ApplicationController
 
   # GET /products
   def index
-    @products = Product.all.sort_by { |h| h[:name] }
     # @product_groups = @products.group_by { |t| t.meat }
+    @products_by_category = Product.all.group_by { |t| t.category_id }
   end
 
   # GET /products/1
@@ -21,15 +21,16 @@ class ProductsController < ApplicationController
 
   # GET /products/1/edit
   def edit
-    if @product.productitems.any?
-      else
-        1.times { @product.productitems.build }
-    end
-     if @product.friendships.any?
-        else
-          1.times { @product.friendships.build(:product_id => @product) }
-      end
   end
+  #  if @product.productitems.any?
+  #    else
+  #      1.times { @product.productitems.build }
+  #  end
+  #   if @product.friendships.any?
+  #      else
+  #        1.times { @product.friendships.build(:product_id => @product) }
+  #    end
+  
 
   # POST /products
   def create
@@ -65,7 +66,7 @@ class ProductsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def product_params
-      params.require(:product).permit(:id, :name, :desc, productitems_attributes:[:_destroy, :id, :product_id, :ingredient_id, :volume, :price_selector], friendships_attributes:[:_destroy, :friend_id, :product_id, :prodvolume])
+      params.require(:product).permit(:id, :name, :desc, productitems_attributes:[:_destroy, :id, :product_id, :category_id, :ingredient_id, :volume, :price_selector], friendships_attributes:[:_destroy, :id, :friend_id, :product_id, :prodvolume])
     end
     
 end
