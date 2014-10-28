@@ -7,10 +7,11 @@
 <thead>
   <tr>
     <th colspan="1"></th>
-    <th></th>
+    <th>Ingredient #</th>
     <th>Ingredient Cost (p)</th>
     <th>linked Products #</th>
     <th>linked product Cost (p)</th>
+    <th>Total Cost (p)</th>    
     <th colspan="3"></th>
   </tr>
 </thead>
@@ -23,9 +24,15 @@
         <td><strong><%= link_to product.name, product  %></strong></td>
         <td><%= product.productitems.count %></td>
         <td><%= number_with_precision(Product.get_total_price(product.id), :precision =>2) %></td>        
-        <td><%= Friendship.where(:product_id => product.id).count %></td>
-        <td><%= Product.get_total_ratios_price(product.id) %></td>        
-
+        <td><%= count = Friendship.where(:product_id => product.id).count %></td>
+        <% if count > 0 %>
+<%        friend_id = Friendship.where(:product_id => product.id).first.friend_id %>
+        <% vol = Friendship.where(:product_id => product.id).first.prodvolume %>
+        <td><%= number_with_precision(Product.get_ratios_price(friend_id,vol), :precision =>3) %></td>       
+        <% else %> 
+        <td></td>
+        <% end %> 
+        <td>Total cost calc here</td>
         <td>[<%= link_to 'Show', product %> | 
         <%= link_to 'Edit', edit_product_path(product) %> | 
         <%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %>]</td>

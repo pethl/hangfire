@@ -45,14 +45,22 @@ class Product < ActiveRecord::Base
         end
       end
       
-        def self.get_ratios_price(id)
+        def self.get_ratios_price(friend_id,prodvolume)
          # @products = Friendship.where(:product_id => id).map {|x| [x.friend_id, x.prodvolume]}
-          friend = Friendship.where(:product_id => id).first
+         # friend = Friendship.where(:friend_id => id).first
 
-            @productitems = Productitem.where(:product_id => friend.product_id)
-              product_total = @productitems.to_a.sum do |line_item|
-                ((friend.prodvolume)*(Productitem.weight_ratio(line_item)).to_f) * (Ingredient.get_price(line_item.ingredient_id, line_item.price_selector)).to_f
-              end
+            @productitems = Productitem.where(:product_id => friend_id)
+              @final_total =[]
+              product_total = @productitems.each do |line_item|
+                prodratio = Productitem.weight_ratio(line_item)
+                new_weight = ((prodvolume)*(Productitem.weight_ratio(line_item)).to_f)
+                price_per = Ingredient.get_price(line_item.ingredient_id, line_item.price_selector)
+                @final_total << (new_weight.to_f)*(price_per)
+                Rails.logger.debug("@final_total: #{@final_total.inspect}")
+              
+            end
+            @final_total = @final_total.inject 0, :+
+            return @final_total
     end    
     
     def self.get_total_weight(id)

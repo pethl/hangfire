@@ -19,13 +19,12 @@
     <tbody>
        <% @product.productitems.each do |item| %>
         <tr>
-          <td><%= Ingredient.get_name(item.ingredient_id) %></td>
+          <td><%= link_to (Ingredient.get_name(item.ingredient_id)), ingredient_path(item.ingredient_id) %></td>
           <td><%= item.volume %></td>
           <td><%= item.price_selector %></td>
           <td><%= number_with_precision(Ingredient.get_price(item.ingredient_id,item.price_selector), :precision => 4) %></td>
-          <td><%= (Productitem.weight_ratio(item))*100%>%</td>
+          <td><%= number_with_precision((Productitem.weight_ratio(item))*100, :precision => 1) %>%</td>
           <td><%= number_with_precision(Productitem.total_price(item), :precision => 4) %></td>
-          
           </tr>      
       <% end %>
     </tbody>
@@ -34,10 +33,11 @@
           <td><strong><%= Product.get_total_weight(@product.id) %><strong></td>
         <td colspan="2"></td>
       <td><strong>Total Price</strong></td>
-      <td><strong><%= itot = number_to_currency(Product.get_total_price(@product.id).to_f/100, :locale => :en) %><strong></td>
-      
+      <td><strong><%= number_to_currency(Product.get_total_price(@product.id).to_f/100, :locale => :en) %><strong></td>    
     <tr>
   </table>  
+  <% end %>
+  
   <% if @friendships.any? %>
   <% @friendships.each do |friend| %>
     <%= Product.where(:id => friend.friend_id).first.name %>
@@ -51,38 +51,38 @@
     <thead>
       <tr>
         <th>Ingredient </th>
-        <th>Volume </th>
+        <th>Volume (g)</th>
         <th>Pricing Type </th>
         <th>Price per (p/g)</th>
         <th>Ratio</th>
-        <th>Total cost</th>
+        <th>Total cost (p)</th>
       </tr>
     </thead>
     <tbody>
        <% @friendproductitems.each do |frienditem| %>
         <tr>
           <td><%= Ingredient.get_name(frienditem.ingredient_id) %></td>
-          <td><%= number_with_precision(((frienditem.volume.to_f)/tweight.to_f)*friend.prodvolume, :precision => 4) %></td>
+          <td><%= vol = number_with_precision(((frienditem.volume.to_f)/tweight.to_f)*friend.prodvolume, :precision => 4) %></td>
           <td><%= frienditem.price_selector %></td>
-          <td><%= number_with_precision(Ingredient.get_price(frienditem.ingredient_id,frienditem.price_selector), :precision => 4) %></td>
+          <td><%= price = number_with_precision(Ingredient.get_price(frienditem.ingredient_id,frienditem.price_selector), :precision => 4) %></td>
           <td><%= number_with_precision(((Productitem.weight_ratio(frienditem))*100), :precision => 2) %>%</td> 
-          <td><%= number_with_precision(Productitem.total_price(frienditem), :precision => 4) %></td>
+          <td><%= number_with_precision(vol.to_f*price.to_f, :precision => 2) %></td>
           </tr>      
       <% end %>
     </tbody>
      <tr>
      <td><strong>Total Volume</strong></td>
      <td><strong><%= friend.prodvolume %><strong></td>
-      <td colspan="1"></td>
+      <td colspan="2"></td>
       <td><strong>Total Price</strong></td>
-      <td><strong><%= ptot = number_to_currency(Product.get_total_price(friend.friend_id).to_f/100, :locale => :en) %><strong></td>
+      <td><strong><%= number_with_precision((Product.get_ratios_price(friend.friend_id,friend.prodvolume)), :precision => 2) %><strong></td>
     <tr>
   </table>
 
   <% end %>
   <% else %>
     <% end %>
-        <% end %>
+        
      <br>
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'All HF products', products_path %>

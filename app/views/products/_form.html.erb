@@ -17,25 +17,25 @@
   </div>
     <div class="field">
       <%= f.label :category_id %>
-      <%= f.collection_select :category_id, Category.all, :id, :name, :prompt => true %><br>
+      <%= f.collection_select :category_id, (Category.where(:reference => 'product')), :id, :name, :prompt => true %><br>
       <i>Category missing? </i><%= link_to '+ add new Category', new_category_path %>
   <br>
   <div class="field">
     <%= f.label :desc %><br>
     <%= f.text_area :desc %>
   </div>
-  
-  <h3>Use quantity of existing product</h3>  
-  <%= f.fields_for :friendships do |builder| %>
-     <%= render 'friendship_fields', f: builder %>
-   <% end %> 
- <%= link_to "+ add new product", friendships_path(:product_id => @product), :method => :post %>
 
   <h3>Ingredients</h3>
    <%= f.fields_for :productitems do |builder| %>
       <%= render 'productitem_fields', f: builder %>
     <% end %>
     <%= link_to_add_fields "+ add new ingredient", f, :productitems %>
+    
+    <h3>Use quantity of existing product</h3>  
+     <%= f.fields_for :friendships do |builder| %>
+        <%= render 'friendship_fields', f: builder %>
+      <% end %> 
+    <%= link_to "+ add new product", friendships_path(:product_id => @product), :method => :post %>
   
   <div class="actions">
     <%= f.submit %>
