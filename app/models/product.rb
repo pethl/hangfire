@@ -15,8 +15,14 @@ class Product < ActiveRecord::Base
     def self.get_total_price(id)
       @productitems = Productitem.where(:product_id => id)
       total = @productitems.to_a.sum do |line_item|
+        price = Ingredient.get_price(line_item.ingredient_id, line_item.price_selector)
+        if price == "no data"
+          "missing data"
+          return 0
+        else
          line_item.volume*Ingredient.get_price(line_item.ingredient_id, line_item.price_selector)
          end
+       end
     end
 
     
@@ -56,8 +62,6 @@ class Product < ActiveRecord::Base
                 new_weight = ((prodvolume)*(Productitem.weight_ratio(line_item)).to_f)
                 price_per = Ingredient.get_price(line_item.ingredient_id, line_item.price_selector)
                 @final_total << (new_weight.to_f)*(price_per)
-                Rails.logger.debug("@final_total: #{@final_total.inspect}")
-              
             end
             @final_total = @final_total.inject 0, :+
             return @final_total

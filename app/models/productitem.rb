@@ -10,7 +10,7 @@ class Productitem < ActiveRecord::Base
     PRICE_SELECTOR_TYPES = ["--", "average", "latest", "least", "most"]
     
     def self.total_price(productitem)
-      if Ingredient.get_price(productitem.ingredient_id, productitem.price_selector).blank?
+      if Ingredient.get_price(productitem.ingredient_id, productitem.price_selector) == "no data"
         return "no data"
       else  
       productitem.volume * Ingredient.get_price(productitem.ingredient_id, productitem.price_selector)

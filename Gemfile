@@ -13,14 +13,15 @@ gem 'capistrano-rails', group: :development
 gem 'pg', '0.17.1'
 
 gem 'heroku'
+gem 'rails_12factor', group: :production
 gem 'best_in_place', github: 'aaronchi/best_in_place'
 
 #for testing with rspec
-gem 'minitest'
-gem 'rspec-rails', '2.13.1'
+gem 'minitest',   group: :development
+gem 'rspec-rails', '2.13.1',   group: :development
 gem 'capybara', '2.1.0'
-gem 'factory_girl_rails', '1.4.0'
-gem 'selenium-webdriver', '2.35.1'
+gem 'factory_girl_rails', '1.4.0',   group: :development
+gem 'selenium-webdriver', '2.35.1',   group: :development
 # test end
 
 gem 'bootstrap-sass', '~> 3.2.0'

@@ -23,16 +23,21 @@
       <tr>  
         <td><strong><%= link_to product.name, product  %></strong></td>
         <td><%= product.productitems.count %></td>
-        <td><%= number_with_precision(Product.get_total_price(product.id), :precision =>2) %></td>        
+        <td><%= itotal = number_with_precision(Product.get_total_price(product.id), :precision =>2) %></td>        
         <td><%= count = Friendship.where(:product_id => product.id).count %></td>
         <% if count > 0 %>
-<%        friend_id = Friendship.where(:product_id => product.id).first.friend_id %>
-        <% vol = Friendship.where(:product_id => product.id).first.prodvolume %>
-        <td><%= number_with_precision(Product.get_ratios_price(friend_id,vol), :precision =>3) %></td>       
+          <% friend_id = Friendship.where(:product_id => product.id).first.friend_id %>
+          <% vol = Friendship.where(:product_id => product.id).first.prodvolume %>
+        <td><%= ptotal = number_with_precision(Product.get_ratios_price(friend_id,vol), :precision =>3) %></td>       
         <% else %> 
         <td></td>
         <% end %> 
-        <td>Total cost calc here</td>
+        <td><% if ptotal.blank? %>
+          <%= itotal %>
+          <% else %>
+          <%= itotal.to_f + ptotal.to_f %>
+          <% end %>
+          </td>
         <td>[<%= link_to 'Show', product %> | 
         <%= link_to 'Edit', edit_product_path(product) %> | 
         <%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %>]</td>

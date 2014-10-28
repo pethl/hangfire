@@ -17,9 +17,10 @@ test:
     host: localhost
 
 
-debug:
+default: &default
   adapter: postgresql
-  database: hangfire_debug
-  host: localhost
-
+  encoding: unicode
+  # For details on connection pooling, see rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: 5
 #production db uses pg automatically, heroku standard

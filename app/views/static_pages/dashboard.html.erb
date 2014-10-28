@@ -9,13 +9,17 @@
   <th># <%= @products.count %></th>
   </tr>
   <tbody>
-    <% @products.each do |product| %>
+    <% @products_by_category.each do |category_id, products| %>
+      <tr><td><h4><%= Category.where(:id => category_id).first.name %></h4></td>
+      <td>(<%= products.count %>)</td></tr>
+      <% products.each do |product| %>
   <tr>
     <td><%= link_to product.name, product %></td>
     <td><%= product.productitems.count %></td>
   </tr>
   <% end %>
     </tbody>
+      <% end %>
     </table>
     <%= link_to "+ add new HF product", new_product_path %>
   </div>

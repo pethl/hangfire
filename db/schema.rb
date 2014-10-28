@@ -46,21 +46,6 @@ ActiveRecord::Schema.define(version: 20141027155856) do
     t.decimal  "prodvolume"
   end
 
-  create_table "hf_product_items", force: true do |t|
-    t.integer  "hf_product_id"
-    t.integer  "ingredient_id"
-    t.decimal  "vol"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "hf_products", force: true do |t|
-    t.string   "name"
-    t.text     "desc"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "hfproductitems", force: true do |t|
     t.integer  "hfproduct_id"
     t.integer  "ingredient_id"

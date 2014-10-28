@@ -12,18 +12,18 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br>
+    <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
     <div class="field">
       <%= f.label :category_id %>
       <%= f.collection_select :category_id, (Category.where(:reference => 'product')), :id, :name, :prompt => true %><br>
-      <i>Category missing? </i><%= link_to '+ add new Category', new_category_path %>
   <br>
   <div class="field">
-    <%= f.label :desc %><br>
+    <%= f.label :desc %>
     <%= f.text_area :desc %>
   </div>
+
 
   <h3>Ingredients</h3>
    <%= f.fields_for :productitems do |builder| %>
