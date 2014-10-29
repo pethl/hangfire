@@ -1,15 +1,8 @@
+<h2> <%= @user.first_name+ " "+ @user.lastname%> </h2>
 
-
-<div class="container-fluid">
 <div class="row">
-  <div class="col-md-4">
-   <h2> Profile </h2>
-<p>
-  <strong>Name:</strong>
-  <%= @user.first_name+ " "+ @user.lastname%> 
-</p>
-
-
+<div class="col-xs-6 col-md-4  col-md-offset-1">
+<br>
 <p>
   <strong>Email:</strong>
   <%= @user.email %>
@@ -19,66 +12,12 @@
   <strong>Phone:</strong>
   <%= @user.phone %>
 </p>
-</div>
-  <div class="col-md-4">
- <h2> Billing Address </h2>
-  <table>
-  
-  
-<p>
-  <strong>Line 1:</strong>
-  <%= @user.bill_addr1 %>
-</p>
 
-<p>
-  <strong>Line 2:</strong>
-  <%= @user.bill_addr2 %>
-</p>
 
-<p>
-  <strong>Town:</strong>
-  <%= @user.bill_addr3 %>
-</p>
-
-<p>
-  <strong>County:</strong>
-  <%= @user.bill_addr4 %>
-</p>
-
-<p>
-  <strong>Postcode:</strong>
-  <%= @user.bill_postcode %>
-</p>
-</table>
-</div>
-  <div class="col-md-4">
-   <h2> Delivery Address </h2>
-<p>
-  <strong>Line 1:</strong>
-  <%= @user.delivery_addr1 %>
-</p>
-
-<p>
-  <strong>Line 2:</strong>
-  <%= @user.delivery_addr2 %>
-</p>
-
-<p>
-  <strong>Town:</strong>
-  <%= @user.delivery_addr3 %>
-</p>
-
-<p>
-  <strong>County:</strong>
-  <%= @user.delivery_addr4 %>
-</p>
-
-<p>
-  <strong>Postcode:</strong>
-  <%= @user.delivery_postcode %>
-</p>
-</div></div></div>
+<br>
 
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
+</div>
+</div>

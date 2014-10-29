@@ -1,7 +1,4 @@
 
-
-<div class="row">
-  <div class="span4">
   <div class="well well-small">
   <%= form_for(:session, url: login_path) do |f| %>
     
@@ -11,11 +8,7 @@
      <%= f.label :password %>
      <%= f.password_field :password %>
 
-     <%= f.submit "Log in", class: "btn btn-large btn-success" %>
+     <%= f.submit "Sign in", class: "btn btn-large btn-success" %>
    <% end %>
 
-   <p><font color="black">Don't have an account? <%= link_to "Sign up here!", signup_path %></p>
-
-</div>
-</div>
 </div>

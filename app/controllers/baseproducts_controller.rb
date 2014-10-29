@@ -1,6 +1,6 @@
 class BaseproductsController < ApplicationController
   before_action :set_baseproduct, only: [:show, :edit, :update, :destroy]
-    before_action :signed_in_user, only: [:edit, :update, :destroy, :index, :show]
+    before_action :signed_in_user, only: [:edit, :update, :destroy, :index, :show, :new]
 
   # GET /baseproducts
   def index
@@ -25,7 +25,7 @@ class BaseproductsController < ApplicationController
     @baseproduct = Baseproduct.new(baseproduct_params)
 
     if @baseproduct.save
-      redirect_to @baseproduct, notice: 'Baseproduct was successfully created.'
+      redirect_to @baseproduct, notice: 'Purchase record was successfully created.'
     else
       render :new
     end
@@ -34,7 +34,7 @@ class BaseproductsController < ApplicationController
   # PATCH/PUT /baseproducts/1
   def update
     if @baseproduct.update(baseproduct_params)
-      redirect_to @baseproduct, notice: 'Baseproduct was successfully updated.'
+      redirect_to @baseproduct, notice: 'Purchase record was successfully updated.'
     else
       render :edit
     end
@@ -43,12 +43,12 @@ class BaseproductsController < ApplicationController
   # DELETE /baseproducts/1
   def destroy
     @baseproduct.destroy
-    redirect_to baseproducts_url, notice: 'Baseproduct was successfully destroyed.'
+    redirect_to baseproducts_url, notice: 'Purchase record was successfully destroyed.'
   end
   
   def import
        Baseproduct.import(params[:file])
-       redirect_to baseproducts_path, notice: "Baseproduct imported."
+       redirect_to baseproducts_path, notice: "Purchase records imported."
      end
 
   private
