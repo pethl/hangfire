@@ -1,5 +1,6 @@
 class IngredientsController < ApplicationController
   before_action :set_ingredient, only: [:show, :edit, :update, :destroy]
+  before_action :signed_in_user, only: [:edit, :update, :destroy, :index, :show]
 
   # GET /ingredients
   def index

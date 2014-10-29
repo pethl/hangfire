@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_filter :signed_in_user, only: [ :show] 
+  before_filter :signed_in_user, only: [ :show, :index] 
    before_filter :correct_user,   only: [:edit, :update, :show]
 
   # GET /users

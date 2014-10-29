@@ -34,7 +34,21 @@ class Ingredient < ActiveRecord::Base
              end
           end
 
-
+          def self.record_age(id)
+            a = Baseproduct.where(:ingredient_id => id).sort_by { |h| h[:purchase_date]}.reverse
+            if a.any?
+              if (Date.today - a.first.purchase_date).to_i < 30
+                "green"
+              elsif (Date.today - a.first.purchase_date).to_i < 60
+                "amber"
+              else
+                "red"
+              end
+             else
+                "-"
+              end
+          end
+          
         def self.average_price(id)
             a = Baseproduct.where(:ingredient_id => id)
             if a.any?

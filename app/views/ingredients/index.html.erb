@@ -11,7 +11,7 @@
      <th>Pricing Data</th>
       <th>Average p/g</th>
       <th>Latest p/g</th>
-      <th>Price change p/g</th>
+      <th>Purchase Records p/g</th>
       <th colspan="1"></th>
     </tr>
   </thead>
@@ -22,12 +22,21 @@
       <tr>
         <td><%= link_to ingredient.name, ingredient %></td>
         <td><%= ingredient.baseproducts.count %>
-        <td><%= average = number_with_precision(Ingredient.get_price(ingredient.id, 'average'), :precision => 4) %>
-       
-        <td><%= latest = number_with_precision(Ingredient.get_price(ingredient.id, 'latest'), :precision => 4) %>
+        <% age = Ingredient.record_age(ingredient.id) %>
+        <% if age == "green" %><font color="green"> = </font>
+          <% elsif age == "amber" %><font color="orange"> = </font>
+            <% else age == "red" %><font color="red"> = </font> 
+            <% end %>
+        </td>
+        <td><%= average = number_with_precision(Ingredient.get_price(ingredient.id, 'average'), :precision => 4) %> </td>  
+        <td><%= latest = number_with_precision(Ingredient.get_price(ingredient.id, 'latest'), :precision => 4) %></td>
+        
         <td><% if (latest.to_f-average.to_f).ceil.is_a? Numeric%>
-        <% if (latest.to_f-average.to_f).ceil > 0 %>
-         <font color="red"> UP</font>
+          <% if (latest.to_f-average.to_f).ceil > 0 %>
+              <font color="red"> UP</font>
+          <% elsif (latest.to_f-average.to_f) < 0 %>
+              <font color="green"><strong> DOWN!</strong></font>
+          <% else %>
           <% end %>
           <% end %>
          </td>

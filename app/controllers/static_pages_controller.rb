@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
-  
+    before_action :signed_in_user, only: [:dashboard, :help, :admin]
   def home
   end
   

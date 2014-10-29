@@ -1,5 +1,6 @@
 class VendorsController < ApplicationController
   before_action :set_vendor, only: [:show, :edit, :update, :destroy]
+    before_action :signed_in_user, only: [:edit, :update, :destroy, :index, :show]
 
   # GET /vendors
   def index

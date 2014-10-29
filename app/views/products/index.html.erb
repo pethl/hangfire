@@ -1,12 +1,12 @@
 <h1>HF Products</h1>
 <%= link_to '+ add new product', new_product_path %>
-<br>
+
 <% @products_by_category.each do |category_id, products| %>
- <h3><%= Category.where(:id => category_id).first.name %> </h3>
+ 
 <table class="table">
 <thead>
   <tr>
-    <th colspan="1"></th>
+    <th><h3><%= Category.where(:id => category_id).first.name %> </h3></th>
     <th>Ingredient #</th>
     <th>Ingredient Cost (p)</th>
     <th>linked Products #</th>
