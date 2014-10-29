@@ -26,9 +26,7 @@
         <td><%= itotal = number_with_precision(Product.get_total_price(product.id), :precision =>2) %></td>        
         <td><%= count = Friendship.where(:product_id => product.id).count %></td>
         <% if count > 0 %>
-          <% friend_id = Friendship.where(:product_id => product.id).first.friend_id %>
-          <% vol = Friendship.where(:product_id => product.id).first.prodvolume %>
-        <td><%= ptotal = number_with_precision(Product.get_ratios_price(friend_id,vol), :precision =>3) %></td>       
+        <td><%= ptotal = number_with_precision(Product.get_total_ratios_price(product.id), :precision =>3) %></td>       
         <% else %> 
         <td></td>
         <% end %> 
