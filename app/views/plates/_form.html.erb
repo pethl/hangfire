@@ -1,0 +1,38 @@
+<%= form_for(@plate) do |f| %>
+  <% if @plate.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@plate.errors.count, "error") %> prohibited this plate from being saved:</h2>
+
+      <ul>
+      <% @plate.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :category_id %><br>
+    <%= f.collection_select :category_id, (Category.where(:reference => 'plate')), :id, :name, :prompt => true %><br>
+  </div>
+  <div class="field">
+    <%= f.label :price %><br>
+    <%= f.text_field :price %>
+  </div>
+  
+  <h3>Select from existing products</h3>  
+   <%= f.fields_for :productlinks do |builder| %>
+      <%= render 'productlink_fields', f: builder %>
+    <% end %> 
+  <%= link_to "+ add new product", productlinks_path(:plate_id => @plate), :method => :post %>
+  
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

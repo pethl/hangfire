@@ -1,0 +1,28 @@
+<h3>
+  <%= Category.where(id: @plate.category_id).first.name %> / <strong><%= @plate.name %></strong></h3>
+
+<p>
+  <strong>Price:</strong>
+  <%= @plate.price %>
+</p>
+<div class="row">
+<div class="col-xs-6 col-md-5  col-md-offset-1">
+
+<% if @productlinks.any? %>
+  
+  <table class="table">
+  <tbody>
+    <% @productlinks.each do |productlink| %>
+      <tr>
+      <td><%= Product.where(:id => productlink.product_id).first.name %>: </td>
+      <td><%= number_with_precision(Product.get_total_price(productlink.product_id), :precision => 2) %> pence</td><br>
+     </tr>
+      <% end %>
+</tbody>
+</table>
+<% else %>
+  <% end %>
+
+
+<%= link_to 'Edit', edit_plate_path(@plate) %> |
+<%= link_to 'Back', plates_path %>

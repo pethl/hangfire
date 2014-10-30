@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141027155856) do
+ActiveRecord::Schema.define(version: 20141029162149) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,21 @@ ActiveRecord::Schema.define(version: 20141027155856) do
     t.decimal  "prodvolume"
   end
 
+  create_table "hf_product_items", force: true do |t|
+    t.integer  "hf_product_id"
+    t.integer  "ingredient_id"
+    t.decimal  "vol"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "hf_products", force: true do |t|
+    t.string   "name"
+    t.text     "desc"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "hfproductitems", force: true do |t|
     t.integer  "hfproduct_id"
     t.integer  "ingredient_id"
@@ -78,6 +93,14 @@ ActiveRecord::Schema.define(version: 20141027155856) do
     t.datetime "updated_at"
   end
 
+  create_table "plates", force: true do |t|
+    t.decimal  "price"
+    t.string   "name"
+    t.integer  "category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "productitems", force: true do |t|
     t.integer  "product_id"
     t.integer  "ingredient_id"
@@ -92,6 +115,7 @@ ActiveRecord::Schema.define(version: 20141027155856) do
     t.integer  "productlink_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "plate_id"
   end
 
   create_table "products", force: true do |t|

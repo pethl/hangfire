@@ -1,0 +1,14 @@
+<fieldset>
+
+ <table>
+
+  <tbody>
+  <tr>
+      <td><%= f.collection_select :product_id, (Product.all.sort_by { |h| h[:name] }), :id, :name,  :prompt => true %></td>
+       <td> <%= f.check_box :_destroy %><%= f.label :_destroy, "Remove ingredient" %></td>
+  </tr>
+  </tbody>
+</table>
+<br>
+  
+  </fieldset>

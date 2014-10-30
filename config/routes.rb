@@ -1,9 +1,14 @@
 Hangfire::Application.routes.draw do
+  resources :plates do
+    	resources :productlinks
+  	end
+
   resources :productitems do
     		 collection { post :import }
   		 end
   		 
   resources :friendships
+  resources :productlinks
 
   resources :categories
 

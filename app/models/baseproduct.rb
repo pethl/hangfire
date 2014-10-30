@@ -1,6 +1,7 @@
 class Baseproduct < ActiveRecord::Base
   belongs_to :ingredient
   before_save :calc_prices
+  validates :vendor_id, presence: true
   
   def self.import(file)
       	 CSV.foreach(file.path, headers: true) do |row|

@@ -3,7 +3,7 @@
     <table>
     <tbody>
     <tr><td><%= f.label :purchase_date %></td><td><%= f.date_select :purchase_date %></td></tr>
-    <tr><td><%= f.label :vendor_id %></td><td><%= f.collection_select :vendor_id, Vendor.all, :id, :name %></td><tr />
+    <tr><td><%= f.label :vendor_id %></td><td><%= f.collection_select :vendor_id, (Vendor.all.sort_by { |h| h[:name] }), :id, :name, :prompt => true %></td><tr />
     <tr><td><%= f.label :unit_count %></td><td><%= f.text_field :unit_count %></td><tr />
     <tr><td><%= f.label :unit_weight, "Unit weight(g)" %></td><td><%= f.text_field :unit_weight %></td><tr />
     <tr><td><%= f.label :total_weight, "Total weight(g)" %></td><td><%= f.text_field :total_weight %></td><tr />
