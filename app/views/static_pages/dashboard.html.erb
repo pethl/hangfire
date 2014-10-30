@@ -29,7 +29,10 @@
    <tr>
     <th><%= link_to "Ingredients", ingredients_path %></th>
     <th># <%= @ingredients.count %></th>
-    <th># <%= Baseproduct.all.distinct(:product_id).count %></th>
+      </tr>
+      <tr>
+      <th>No. of ingredients with pricing data?</th>
+    <th># <%= Baseproduct.distinct.count('ingredient_id') %></th>
    </tr>
    <tbody>
 
