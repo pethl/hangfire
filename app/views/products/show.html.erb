@@ -3,6 +3,7 @@
   <%= Category.where(id: @product.category_id).first.name %> / <strong><%= @product.name %></strong></h3>
   <code><%= @product.desc %></code>
 
+ <% if @product.productitems.any? || @friendships.any? %>
 <div class="row">
 <div class="col-xs-6 col-md-5">
   
@@ -29,7 +30,7 @@
       <% end %>
       
     <% if @friendships.any? %>    
-    <% @total_product = []%>
+    <% @total_product = [] %>
       <% @friendships.each do |friend| %>
         <tr>
         <td><%= Product.get_name(friend.friend_id) %></td>
@@ -40,7 +41,7 @@
         </tr>
         <% end %>   
     <% end %>  
-
+    <% if @product.productitems.any? && @friendships.any? %>
       <tr>
       <td colspan="3"></td>
         <td>
@@ -48,8 +49,10 @@
         <strong><%= number_to_currency((ans).to_f/100, :locale => :en) %></strong>
         </td>
       </tr>     
+    <% end %>
     </table>
-</div></div>    
+</div></div>       
+<% end %> 
   
   <h4>Product Details</h4>
 

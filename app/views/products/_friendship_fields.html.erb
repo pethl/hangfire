@@ -5,12 +5,13 @@
   <tbody>
   <tr>
       <td><%= f.collection_select :friend_id, (Product.all.sort_by { |h| h[:name] }), :id, :name,  :prompt => true %></td>
-      <td> <%= f.hidden_field :product_id %> </td>
-      <td> <%= f.text_field :prodvolume, :placeholder => "Volume (g)", :style => "text-align: Right"  %> grams </td>
-    <td> <%= f.check_box :_destroy %><%= f.label :_destroy, "Remove product" %></td>
+      <td><%= f.hidden_field :product_id %> </td>
+      <td><%= f.text_field :prodvolume, :placeholder => "Volume (g)", :style => "text-align: Right"  %> grams </td>
+      <td><%= f.check_box :_destroy %><%= f.label :_destroy, "Remove product" %></td>
+ 
   </tr>
   </tbody>
 </table>
 <br>
   
-  </fieldset>
+</fieldset>
