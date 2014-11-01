@@ -42,8 +42,9 @@
         <%= render 'friendship_fields', f: builder %>
       <% end %> 
     <%= link_to "+ add new product", friendships_path(:product_id => @product), :method => :post %>
-  
+  <br><br>
   <div class="actions">
     <%= f.submit %>
   </div>
+    <br>
 <% end %>

@@ -3,8 +3,8 @@
 <div class="col-xs-6 col-md-5  col-md-offset-1">
 
 <p>
-  <strong>Vendor:</strong>
-  <%= @vendor.name %>
+  <h2><%= @vendor.name %></h2>
+  
 </p>
 <% @products = Baseproduct.get_unique_products(@vendor.id) %>
 

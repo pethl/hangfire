@@ -8,7 +8,7 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Products #</th>
+      <th>No. of<br>Products</th>
       <th colspan="1"></th>
     </tr>
   </thead>
@@ -18,8 +18,7 @@
       <tr>
         <td><%= link_to vendor.name, vendor %></td>
         <td><%= Baseproduct.where(:vendor_id => vendor.id).distinct.count(:ingredient_id) %></td>
-        <td><%= link_to 'Show', vendor %> | 
-        <%= link_to 'Edit', edit_vendor_path(vendor) %> | 
+        <td><%= link_to 'Edit', edit_vendor_path(vendor) %> | 
         <%= link_to 'Destroy', vendor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

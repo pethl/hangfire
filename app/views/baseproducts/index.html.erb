@@ -23,16 +23,15 @@
       <tr>
         <td><%= Ingredient.where(:id => baseproduct.ingredient_id ).first.name %></td>
         <td><%= Vendor.where(:id => baseproduct.vendor_id ).first.name %></td>
-        <td><%= baseproduct.purchase_date %></td>
+        <td><%= link_to baseproduct.purchase_date, baseproduct %></td>
         <td><%= baseproduct.unit_count %></td>
         <td><%= baseproduct.unit_weight %></td>
         <td><%= baseproduct.total_weight %></td>
         <td><%= number_with_precision(baseproduct.unit_price, :precision => 2) %></td>
         <td><%= baseproduct.total_price %></td>
         <td><%= number_with_precision(baseproduct.price_per, :precision => 2) %></td>
-        <td><%= link_to 'Show', baseproduct %> | 
-        <%= link_to 'Edit', edit_baseproduct_path(baseproduct) %> | 
-        <%= link_to 'Destroy', baseproduct, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', edit_baseproduct_path(baseproduct) %> | 
+        <%= link_to 'Delete', baseproduct, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
