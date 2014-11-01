@@ -6,6 +6,7 @@ class Product < ActiveRecord::Base
   accepts_nested_attributes_for :productitems, allow_destroy: true
     accepts_nested_attributes_for :friendships, allow_destroy: true
   
+    
     def self.get_name(id)
       name = Product.where(:id => id)[0].name
       return name
@@ -60,8 +61,12 @@ class Product < ActiveRecord::Base
     def self.get_total_weight(id)
       @productitems = Productitem.where(:product_id => id)
       weight = @productitems.to_a.sum do |line_item|
-         line_item.volume
+         if !line_item.volume.blank?
+           line_item.volume
+         else
+           line_item.unit_count * (Ingredient.get_unit_weight(line_item.ingredient_id))
          end
+       end
     end    
   
 end

@@ -19,6 +19,11 @@ class Ingredient < ActiveRecord::Base
     	end
    	
     	
+    	def self.get_unit_weight(id)
+    	  a = Baseproduct.where(:ingredient_id => id).sort_by { |h| h[:purchase_date]}.reverse
+    	  a.first.unit_weight
+  	  end
+    	
        def self.get_price(id,selector)
          case selector
              when "average"

@@ -12,6 +12,12 @@ class ProductsController < ApplicationController
   # GET /products/1
   def show
    @productitems = Productitem.where(:product_id => @product.id)
+   #for @productitems.each do |productitem|
+    # if productitem.volume.blank?
+    #   a = Baseproduct.where(:ingredient_id => productitem.ingredient_id).sort_by { |h| h[:purchase_date]}.reverse
+   	#  productitem.update(:volume => (a.first.unit_weight*productitem.unit_count))
+    #  end
+ 	  #end 
       @friendships = Friendship.where(:product_id => @product.id)
   end
 
@@ -47,6 +53,7 @@ class ProductsController < ApplicationController
   # PATCH/PUT /products/1
   def update
     if @product.update(product_params)
+
       redirect_to @product, notice: 'Product was successfully updated.'
     else
       render :edit
@@ -67,7 +74,7 @@ class ProductsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def product_params
-      params.require(:product).permit(:id, :name, :desc, :category_id, productitems_attributes:[:_destroy, :id, :product_id, :category_id, :ingredient_id, :volume, :price_selector], friendships_attributes:[:_destroy, :id, :friend_id, :product_id, :prodvolume])
+      params.require(:product).permit(:id, :name, :desc, :category_id, productitems_attributes:[:_destroy, :id, :product_id, :category_id, :ingredient_id, :volume, :unit_count, :price_selector], friendships_attributes:[:_destroy, :id, :friend_id, :product_id, :prodvolume])
     end
     
 end

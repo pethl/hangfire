@@ -1,5 +1,6 @@
 <h1>Ingredients</h1>
 
+
 <%= link_to '+ add new ingredient', new_ingredient_path %>
 
 <% @ingredients_category.each do |category_id, ingredients| %>
@@ -10,8 +11,8 @@
      <th><h3><%= Category.where(:id => category_id).first.name %></h3></th>
      <th colspan="1"></th>
      <th>Pricing Data</th>
-      <th>Average p/g</th>
-      <th>Latest p/g</th>
+      <th>Unit Weight (g)</th>
+      <th>Latest Price p/g</th>
       <th>Price Change</th>
       <th colspan="1"></th>
     </tr>
@@ -30,8 +31,10 @@
             <% else age == "red" %><font color="red"> = </font> 
             <% end %>
         </td>
-        <td><%= average = number_with_precision(Ingredient.get_price(ingredient.id, 'average'), :precision => 4) %> </td>  
-        <td><%= latest = number_with_precision(Ingredient.get_price(ingredient.id, 'latest'), :precision => 4) %></td>
+        <td><%= number_with_precision(Ingredient.get_unit_weight(ingredient.id), :precision => 2) %> </td>  
+        
+        <td><% average = number_with_precision(Ingredient.get_price(ingredient.id, 'average'), :precision => 4) %>
+        <%= latest = number_with_precision(Ingredient.get_price(ingredient.id, 'latest'), :precision => 4) %></td>
         
         <td><% if (latest.to_f-average.to_f).ceil.is_a? Numeric%>
           <% if (latest.to_f-average.to_f).ceil > 0 %>

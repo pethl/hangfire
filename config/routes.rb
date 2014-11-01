@@ -15,6 +15,7 @@ Hangfire::Application.routes.draw do
   resources :ingredients do
     		 collection { post :import }
    	end
+   	
   
   resources :vendors
 

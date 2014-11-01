@@ -36,7 +36,7 @@ class BaseproductsController < ApplicationController
     if @baseproduct.update(baseproduct_params)
       redirect_to @baseproduct, notice: 'Purchase record was successfully updated.'
     else
-      render :edit
+      render :index
     end
   end
 

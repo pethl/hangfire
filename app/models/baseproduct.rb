@@ -27,14 +27,22 @@ class Baseproduct < ActiveRecord::Base
         if self.total_weight.blank? 
               if !self.unit_weight.blank? && !self.unit_count.blank? 
                 self.total_weight = self.unit_weight * self.unit_count
+              end   
+      end
+      
+      if self.unit_weight.blank? 
+              if !self.total_weight.blank? && !self.unit_count.blank? 
+                self.unit_weight = self.total_weight / self.unit_count
         end
       end
+      
         if self.unit_price.blank? 
                if !self.total_price.blank? && !self.unit_count.blank? 
                  Rails.logger.debug("in test: #{self.total_price.inspect}")
                  self.unit_price = self.total_price / self.unit_count
          end
-    end
+       end
+       
         if self.total_price.blank? || self.total_weight.blank?
           return "unavailable"
         else
