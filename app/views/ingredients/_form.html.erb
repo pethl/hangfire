@@ -19,6 +19,7 @@
     <%= f.label :category_id %>
     <%= f.collection_select :category_id, (Category.where(:reference => 'ingredient')), :id, :name, :prompt => true %><br>
     <i>Category missing? </i><%= link_to '+ add new Category', new_category_path %>
+      </div>
 <br>
 
     <%= f.fields_for :baseproducts do |builder| %>
@@ -26,7 +27,7 @@
     <% end %><br>
     <%= link_to_add_fields "+ add purchase record", f, :baseproducts %>
   
-  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
