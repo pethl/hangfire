@@ -24,7 +24,7 @@
         <td><% if (Product.get_total_price(@product.id)).to_s == "missing data" %>
                         "missing data"
                         <% else %>
-                        <%= @total_ingredient = number_with_precision(Product.get_total_price(@product.id), :precision => 1) %>
+                        <%= @total_ingredient = number_with_precision(Product.get_total_price(@product.id), :precision => 1) %>p
                       <% end %></td></tr> 
       <% end %>
       
@@ -35,7 +35,7 @@
         <td><%= Product.get_name(friend.friend_id) %></td>
         <td></td>
           <td><%= friend.prodvolume %></td>
-          <td><%= @tot_prod = number_with_precision((Product.get_ratios_price(friend.friend_id,friend.prodvolume)), :precision => 1) %></td>
+          <td><%= @tot_prod = number_with_precision((Product.get_ratios_price(friend.friend_id,friend.prodvolume)), :precision => 1) %>p</td>
         <% @total_product << @tot_prod.to_f %>
         </tr>
         <% end %>   
@@ -77,7 +77,7 @@
           <td><%= item.price_selector %></td>
           <td><%= number_with_precision(Ingredient.get_price(item.ingredient_id,item.price_selector), :precision => 4) %></td>
           <td><%= number_with_precision((Productitem.weight_ratio(item))*100, :precision => 1) %>%</td>
-          <td><%= number_with_precision(Productitem.total_price(item), :precision => 2) %></td>
+          <td><%= number_with_precision(Productitem.total_price(item), :precision => 2) %>p</td>
           </tr>      
       <% end %>
     </tbody>
@@ -125,7 +125,7 @@
           <td><%= frienditem.price_selector %></td>
           <td><%= price = number_with_precision(Ingredient.get_price(frienditem.ingredient_id,frienditem.price_selector), :precision => 4) %></td>
           <td><%= number_with_precision(((Productitem.weight_ratio(frienditem))*100), :precision => 2) %>%</td> 
-          <td><%= number_with_precision(vol.to_f*price.to_f, :precision => 2) %></td>
+          <td><%= number_with_precision(vol.to_f*price.to_f, :precision => 2) %>p</td>
           </tr>      
       <% end %>
     </tbody>
@@ -134,7 +134,7 @@
      <td><strong><%= friend.prodvolume %><strong></td>
       <td colspan="2"></td>
       <td><strong>Total Price</strong></td>
-      <td><strong><%= number_with_precision((Product.get_ratios_price(friend.friend_id,friend.prodvolume)), :precision => 2) %><strong></td>
+      <td><strong><%= number_to_currency((Product.get_ratios_price(friend.friend_id,friend.prodvolume)).to_f/100, :locale => :en)  %><strong></td>
     <tr>
   </table>
 
