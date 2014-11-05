@@ -5,6 +5,7 @@ class Product < ActiveRecord::Base
   
   accepts_nested_attributes_for :productitems, allow_destroy: true
     accepts_nested_attributes_for :friendships, allow_destroy: true
+    validates :category_id, presence: true
   
     
     def self.get_name(id)

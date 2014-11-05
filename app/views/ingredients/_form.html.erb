@@ -20,6 +20,11 @@
     <%= f.collection_select :category_id, (Category.where(:reference => 'ingredient')), :id, :name, :prompt => true %><br>
     <i>Category missing? </i><%= link_to '+ add new Category', new_category_path %>
       </div>
+      
+  <div class="field">
+    <%= f.label :unit_item, "Unit description" %>
+    <%= f.text_field :unit_item %>
+  </div>
 <br>
 
     <%= f.fields_for :baseproducts do |builder| %>

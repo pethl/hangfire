@@ -1,7 +1,8 @@
 <h1>Ingredients</h1>
 
 
-<%= link_to '+ add new ingredient', new_ingredient_path %>
+<%= link_to '+ add new ingredient', new_ingredient_path %><br>
+<%= link_to '>> see all products', products_path %>
 
 <% @ingredients_category.each do |category_id, ingredients| %>
 
@@ -31,7 +32,8 @@
             <% else age == "red" %><font color="red"> = </font> 
             <% end %>
         </td>
-        <td><%= number_with_precision(Ingredient.get_unit_weight(ingredient.id), :precision => 2) %> </td>  
+        <td><%= number_with_precision(Ingredient.get_unit_weight(ingredient.id), :precision => 2) %> 
+        <% if !ingredient.unit_item.blank? %>/ <%=  ingredient.unit_item%><% end %> </td>  
         
         <td><% average = number_with_precision(Ingredient.get_price(ingredient.id, 'average'), :precision => 4) %>
         <%= latest = number_with_precision(Ingredient.get_price(ingredient.id, 'latest'), :precision => 4) %></td>
@@ -46,7 +48,7 @@
           <% end %>
          </td>
           
-        <td> <%= link_to 'Delete', ingredient, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td> <%= link_to '[Delete]', ingredient, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

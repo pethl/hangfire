@@ -1,6 +1,5 @@
-
-<h3>
-  <%= Category.where(id: @product.category_id).first.name %> / <strong><%= @product.name %></strong></h3>
+<%= link_to '>> see all products', products_path %>
+<h3><%= Category.where(id: @product.category_id).first.name %> / <strong><%= @product.name %></strong></h3>
   <code><%= @product.desc %></code>
 
  <% if @product.productitems.any? || @friendships.any? %>

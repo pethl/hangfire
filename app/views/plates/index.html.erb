@@ -1,4 +1,5 @@
-<h1>HF plates</h1>
+<h1>HF Plates</h1>
+<%= link_to '+ add new plate', new_plate_path %>
 <% @plates_by_category.each do |category_id, plates| %>
 
 <h3><%= Category.where(:id => category_id).first.name %></h3>
@@ -8,7 +9,7 @@
     <tr>
       <th>Name</th>
       <th>Price</th>
-      <th>Product #</th>
+      <th>Products</th>
       <th>Cost</th>
       <th colspan="1"></th>
     </tr>
@@ -19,8 +20,8 @@
       <tr>
         <td><%= plate.name %></td>
         <td><%= plate.price %></td>
-        <td><%= plate.productlinks.inspect %></td>
-        <td><%= Product.get_plate_total_ratios_price(plate.id) %></td>
+        <td><% plate.productlinks.each do |product| %><%= Product.get_name(product.id) %><br><% end %></td>
+        <td><%= number_with_precision(Product.get_plate_total_ratios_price(plate.id), :precision=>2) %></td>
         <td><%= link_to 'Show', plate %> | 
         <%= link_to 'Edit', edit_plate_path(plate) %> | 
         <%= link_to 'Destroy', plate, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -31,4 +32,4 @@
 <% end %>
 <br>
 
-<%= link_to 'New Plate', new_plate_path %>
+
