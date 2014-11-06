@@ -5,7 +5,9 @@ class Product < ActiveRecord::Base
   
   accepts_nested_attributes_for :productitems, allow_destroy: true
     accepts_nested_attributes_for :friendships, allow_destroy: true
+   validates :name, presence: true, uniqueness: { case_sensitive: false }
     validates :category_id, presence: true
+   
   
     
     def self.get_name(id)

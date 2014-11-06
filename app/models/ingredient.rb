@@ -4,7 +4,7 @@ class Ingredient < ActiveRecord::Base
   has_many :baseproducts
   accepts_nested_attributes_for :baseproducts, allow_destroy: true
   
-    validates :name, presence: true, uniqueness: true
+    validates :name, presence: true, uniqueness: { case_sensitive: false }
       validates :category_id, presence: true
 
   def self.get_name(id)

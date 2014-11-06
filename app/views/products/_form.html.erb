@@ -35,13 +35,13 @@
    <%= f.fields_for :productitems do |builder| %>
       <%= render 'productitem_fields', f: builder %>
     <% end %>
-    <%= link_to_add_fields "+ add new ingredient", f, :productitems %>
+    <%= link_to_add_fields "+ add ingredient", f, :productitems %>
     
     <h3>Use quantity of existing product</h3>  
      <%= f.fields_for :friendships do |builder| %>
         <%= render 'friendship_fields', f: builder %>
       <% end %> 
-    <%= link_to "+ add new product", friendships_path(:product_id => @product), :method => :post %>
+    <%= link_to "+ add product", friendships_path(:product_id => @product), :method => :post %>
   <br><br>
   <div class="actions">
     <%= f.submit %>

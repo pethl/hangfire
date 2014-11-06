@@ -98,6 +98,7 @@
   <% end %>
   
   <% if @friendships.any? %>
+    <%= link_to 'Edit HF product', edit_product_path(@product) %>
   <% @friendships.each do |friend| %>
    <h4> <%= Product.where(:id => friend.friend_id).first.name %></h4>
     [Volume of Product required = <%= friend.prodvolume %>g] 
@@ -143,5 +144,5 @@
     <% end %>
         
      <br>
-<%= link_to 'Edit', edit_product_path(@product) %> |
+<%= link_to 'Edit HF product', edit_product_path(@product) %> |
 <%= link_to 'All HF products', products_path %>

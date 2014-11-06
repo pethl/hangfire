@@ -27,7 +27,7 @@
   <%  @baseproducts.each do |baseproduct| %> 
         <tr>
           <td><%= baseproduct.purchase_date %></td>
-          <td><%= Vendor.where(:id => baseproduct.vendor_id ).first.name %></td>
+          <td><%= link_to (Vendor.where(:id => baseproduct.vendor_id ).first.name), vendors_path(baseproduct.vendor_id) %></td>
           <td><%= baseproduct.unit_count %></td>
           <td><%= baseproduct.unit_weight %><% if !@ingredient.unit_item.blank? %>/ <%=  @ingredient.unit_item%><% end %> </td>
           <td><%= baseproduct.total_weight %></td>
