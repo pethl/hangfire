@@ -29,7 +29,7 @@
           <td><%= baseproduct.purchase_date %></td>
           <td><%= Vendor.where(:id => baseproduct.vendor_id ).first.name %></td>
           <td><%= baseproduct.unit_count %></td>
-          <td><%= baseproduct.unit_weight %></td>
+          <td><%= baseproduct.unit_weight %><% if !@ingredient.unit_item.blank? %>/ <%=  @ingredient.unit_item%><% end %> </td>
           <td><%= baseproduct.total_weight %></td>
           <td><%= number_with_precision(baseproduct.unit_price, :precision => 2) %></td>
           <td><%= baseproduct.total_price %></td>

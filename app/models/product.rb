@@ -21,7 +21,15 @@ class Product < ActiveRecord::Base
           "missing data"
           return 0
         else
-         line_item.volume*Ingredient.get_price(line_item.ingredient_id, line_item.price_selector)
+           if !line_item.volume.blank?
+            line_item.volume*Ingredient.get_price(line_item.ingredient_id, line_item.price_selector)
+           else
+             uc = line_item.unit_count * (Ingredient.get_unit_weight(line_item.ingredient_id))
+             uc*Ingredient.get_price(line_item.ingredient_id, line_item.price_selector)
+           end
+          
+          
+         
          end
        end
     end

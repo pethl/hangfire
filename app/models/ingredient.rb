@@ -12,6 +12,11 @@ class Ingredient < ActiveRecord::Base
     return name
   end
   
+  def self.get_unit_item(id)
+    unit_item = Ingredient.where(:id => id)[0].unit_item
+    return unit_item
+  end
+  
   def self.import(file)
       	 CSV.foreach(file.path, headers: true) do |row|
          		 Ingredient.create! row.to_hash

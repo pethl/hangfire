@@ -73,7 +73,7 @@
         <tr>
           <td><%= link_to (Ingredient.get_name(item.ingredient_id)), ingredient_path(item.ingredient_id) %></td>
           <td><%= item.volume %></td>
-          <td><%= item.unit_count %></td>
+          <td><%= item.unit_count %><% if !Ingredient.get_unit_item(item.ingredient_id).blank? %>/ <%=  Ingredient.get_unit_item(item.ingredient_id) %><% end %> </td>
           <td><%= item.price_selector %></td>
           <td><%= number_with_precision(Ingredient.get_price(item.ingredient_id,item.price_selector), :precision => 4) %></td>
           <td><%= number_with_precision((Productitem.weight_ratio(item))*100, :precision => 1) %>%</td>
@@ -90,7 +90,7 @@
       <% if (Product.get_total_price(@product.id)).to_s == "missing data" %>
         "missing data"
         <% else %>
-      <%= number_to_currency(Product.get_total_price(@product.id).to_f/100, :locale => :en) %>
+      <%= number_to_currency((Product.get_total_price(@product.id)).to_f/100, :locale => :en) %>
       <% end %>
       <strong></td>    
     <tr>

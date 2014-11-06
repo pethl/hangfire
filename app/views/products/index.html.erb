@@ -23,17 +23,17 @@
       <tr>  
         <td><strong><%= link_to product.name, product  %></strong></td>
         <td><%= product.productitems.count %></td>
-        <td><%= itotal = number_with_precision(Product.get_total_price(product.id), :precision =>2) %></td>        
+        <td><%= itotal = number_with_precision(Product.get_total_price(product.id), :precision =>2) %>p</td>        
         <td><%= count = Friendship.where(:product_id => product.id).count %></td>
         <% if count > 0 %>
-        <td><%= ptotal = number_with_precision(Product.get_total_ratios_price(product.id), :precision =>3) %></td>       
+        <td><%= ptotal = number_with_precision(Product.get_total_ratios_price(product.id), :precision =>3) %>p</td>       
         <% else %> 
         <td></td>
         <% end %> 
         <td><% if ptotal.blank? %>
-          <%= itotal %>
+          <%= number_to_currency((itotal).to_f/100, :locale => :en) %>
           <% else %>
-          <%= itotal.to_f + ptotal.to_f %>
+          <%= number_to_currency((itotal.to_f + ptotal.to_f).to_f/100, :locale => :en) %>
           <% end %>
           </td>
         <td>[ <%= link_to 'Edit', edit_product_path(product) %> | 
