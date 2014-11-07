@@ -1,12 +1,10 @@
-<p id="notice"><%= notice %></p>
+
 <div class="row">
 <div class="col-xs-6 col-md-5  col-md-offset-1">
 
 <p>
   <h2><%= @vendor.name %></h2>
-  
 </p>
-<% @products = Baseproduct.get_unique_products(@vendor.id) %>
 
 <% if @products.any?  %>
   <ul>

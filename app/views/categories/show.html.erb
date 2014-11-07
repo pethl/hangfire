@@ -1,14 +1,54 @@
-<p id="notice"><%= notice %></p>
+
+<div class="row">
+<div class="col-xs-6 col-md-5  col-md-offset-1">
 
 <p>
-  <strong>Name:</strong>
-  <%= @category.name %>
+  <h2><%= @category.name %></h2>
 </p>
 
-<p>
-  <strong>Reference:</strong>
-  <%= @category.reference %>
-</p>
+<% if @category.reference == "ingredient" %>
+
+  <% if @ingredients.any?  %>
+    <ul>
+    <% @ingredients.each do |ingredient| %>
+       <li> <%= link_to ingredient.name, ingredient_path(ingredient) %> </li> <br>
+        <% end %>  
+        </ul>
+    <% else %>
+    <br>
+    No ingredients as yet!
+    <br><br>
+  <% end %>
+
+<% elsif @category.reference == "product" %>
+
+<% if @products.any?  %>
+  <ul>
+  <% @products.each do |product| %>
+     <li> <%= link_to product.name, product_path(product) %> </li> <br>
+      <% end %>  
+      </ul>
+  <% else %>
+  <br>
+  No products as yet!
+  <br><br>
+<% end %>
+
+<% else %>
+<% if @plates.any?  %>
+  <ul>
+  <% @plates.each do |plate| %>
+     <li> <%= link_to plate.name, plate_path(plate) %> </li> <br>
+      <% end %>  
+      </ul>
+  <% else %>
+  <br>
+  No plates as yet!
+  <br><br>
+<% end %>
+
+<% end %>
+
 
 <%= link_to 'Edit', edit_category_path(@category) %> |
-<%= link_to 'All categories', categories_path %>
+<%= link_to '>> see all categories', categories_path %>

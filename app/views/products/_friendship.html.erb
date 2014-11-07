@@ -1,0 +1,10 @@
+<tr>
+   <td><%= link_to Product.get_name(friendship.friend_id), product_path(friendship.friend_id) %></td>
+   
+   <td><%= friendship.prodvolume %>g</td>
+   <td></td>
+   <td>n/a</td>
+   <td><%= p_price = get_product_price_per_gram(friendship.friend_id) %></td>
+   <td><%= number_with_precision((Productitem.weight_ratio(0,friendship))*100, :precision => 2) %>%</td>
+   <td><%= (friendship.prodvolume.to_f)*(p_price.to_f) %>p</td>
+</tr>           

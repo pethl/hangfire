@@ -9,6 +9,7 @@ class VendorsController < ApplicationController
 
   # GET /vendors/1
   def show
+    @products = Baseproduct.get_unique_products(@vendor.id)
   
   end
 

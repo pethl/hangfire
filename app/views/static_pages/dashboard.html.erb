@@ -62,7 +62,31 @@
     </tbody>
     </table>
     <%= link_to "+ add new vendor", new_vendor_path %>
-    </div>
+
+  <br>  
+    
+    <table class="table table-bordered">
+     <tr>
+     <th><%= link_to "Categories", categories_path %></th>
+     <th># <%= Category.all.count %></th>
+     </tr>
+     <tbody>
+       <% @categories_by_reference.each do |reference, categories| %>
+         <tr><td><h4><%= reference %></h4></td>
+         <td>(<%= categories.count %>)</td></tr>
+         <% categories.each do |category| %>
+     <tr>
+       <td><%= link_to category.name, category %></td>
+       <td><%= count_by_category(category) %></td>
+     </tr>
+     <% end %>
+       </tbody>
+         <% end %>
+       </table>
+       <%= link_to "+ add new category", new_category_path %>
+    
+    </div>    
+    
   </div>
 </div>
 </div>

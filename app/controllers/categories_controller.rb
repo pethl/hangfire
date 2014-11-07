@@ -9,6 +9,9 @@ class CategoriesController < ApplicationController
 
   # GET /categories/1
   def show
+    @products = Product.where(:category_id => @category.id)
+    @ingredients = Ingredient.where(:category_id => @category.id)
+    @plates = Plate.where(:category_id => @category.id)
   end
 
   # GET /categories/new

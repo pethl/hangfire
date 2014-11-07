@@ -23,14 +23,19 @@ class Productitem < ActiveRecord::Base
       end
     end
     
-    def self.weight_ratio(productitem)
-      if !productitem.unit_count.blank?
-        a = (productitem.unit_count.to_f*(Ingredient.get_unit_weight(productitem.ingredient_id)))
-        b =  Product.get_total_weight(productitem.product_id)
-        return a/b
-      else  
-      productitem.volume / Product.get_total_weight(productitem.product_id)
-    end
+    def self.weight_ratio(productitem,friend)
+      if friend == 0
+            if !productitem.unit_count.blank?
+              a = (productitem.unit_count.to_f*(Ingredient.get_unit_weight(productitem.ingredient_id)))
+              b =  Product.get_total_weight(productitem.product_id)
+              return a/b
+            else  
+            productitem.volume / Product.get_total_weight(productitem.product_id)
+          end
+        
+      elsif productitem == 0
+        friend.prodvolume / Product.get_total_weight(friend.product_id)
+      end
     end
     
 end

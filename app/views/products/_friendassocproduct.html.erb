@@ -1,0 +1,8 @@
+  <tr>
+    <td><%= Ingredient.get_name(friendproductitem.ingredient_id) %></td>
+    <td><%= vol = get_weight_by_ratio_formatted(@friendprodvolume,friendproductitem.volume,friendproductitem.product_id) %>g</td>
+    <td><%= friendproductitem.price_selector %></td>
+    <td><%= price = number_with_precision(Ingredient.get_price(friendproductitem.ingredient_id,friendproductitem.price_selector), :precision => 4) %></td>
+    <td><%= get_ratio_formatted(friendproductitem.volume,friendproductitem.product_id) %></td> 
+    <td><%= number_with_precision(vol.to_f*price.to_f, :precision => 2) %>p</td>
+  </tr> 

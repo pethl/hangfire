@@ -17,7 +17,8 @@ class Product < ActiveRecord::Base
     
     def self.get_total_price(id)
       @productitems = Productitem.where(:product_id => id)
-      total = @productitems.to_a.sum do |line_item|
+     # @total = 0
+      @total = @productitems.to_a.sum do |line_item|
         price = Ingredient.get_price(line_item.ingredient_id, line_item.price_selector)
         if price == "no data"
           "missing data"
@@ -29,11 +30,16 @@ class Product < ActiveRecord::Base
              uc = line_item.unit_count * (Ingredient.get_unit_weight(line_item.ingredient_id))
              uc*Ingredient.get_price(line_item.ingredient_id, line_item.price_selector)
            end
-          
-          
-         
          end
-       end
+    #  @product = Product.where(:id => id)
+    #    if @product.friendships.any?
+    #        @total +=  @product.friendships.to_a.sum do |friend|
+     #         get_product_price_per_gram(friend.friend_id) * (friend.prodvolume.to_f)
+    #        end
+    #      else
+    #      end
+    #   return @total
+     end
     end
     
     def self.get_plate_total_ratios_price(id)
@@ -61,8 +67,8 @@ class Product < ActiveRecord::Base
         @productitems = Productitem.where(:product_id => friend_id)
           @final_total =[]
           product_total = @productitems.each do |line_item|
-            prodratio = Productitem.weight_ratio(line_item)
-            new_weight = ((prodvolume)*(Productitem.weight_ratio(line_item)).to_f)
+            prodratio = Productitem.weight_ratio(line_item,0)
+            new_weight = ((prodvolume)*(Productitem.weight_ratio(line_item,0)).to_f)
             price_per = Ingredient.get_price(line_item.ingredient_id, line_item.price_selector)
             @final_total << (new_weight.to_f)*(price_per)
         end
@@ -71,13 +77,31 @@ class Product < ActiveRecord::Base
     
     def self.get_total_weight(id)
       @productitems = Productitem.where(:product_id => id)
-      weight = @productitems.to_a.sum do |line_item|
-         if !line_item.volume.blank?
-           line_item.volume
+      @weight = 0
+      @weight = @productitems.to_a.sum do |productitem|
+         if !productitem.volume.blank?
+           productitem.volume
          else
-           line_item.unit_count * (Ingredient.get_unit_weight(line_item.ingredient_id))
+           productitem.unit_count * (Ingredient.get_unit_weight(productitem.ingredient_id))
          end
        end
-    end    
+       @friends = Friendship.where(:product_id => id)
+      @weight += @friends.to_a.sum do |friend|
+        friend.prodvolume
+      end
+    end   
+    
+    def self.get_total_ingredient_weight(id)
+      @productitems = Productitem.where(:product_id => id)
+      @weight = 0
+      @weight = @productitems.to_a.sum do |productitem|
+         if !productitem.volume.blank?
+           productitem.volume
+         else
+           productitem.unit_count * (Ingredient.get_unit_weight(productitem.ingredient_id))
+         end
+       end
+     
+    end 
   
 end

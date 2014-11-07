@@ -9,6 +9,7 @@ class StaticPagesController < ApplicationController
     @ingredients = Ingredient.all
      @ingredients_category = @ingredients.group_by { |t| t.category_id }
      @vendors = Vendor.all.sort_by { |h| h[:name] }
+     @categories_by_reference = Category.all.group_by { |t| t.reference }
   end
   
   def help
