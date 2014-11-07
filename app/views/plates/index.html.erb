@@ -21,8 +21,10 @@
       <tr>
         <td><%= link_to plate.name, plate %></td>
         <td><%= plate.price %></td>
-        <td><% plate.productlinks.each do |product| %>
-          <%= link_to Product.get_name(product.id), product_path(product.id) %><br>
+        
+        <% @productlinks = Productlink.where(:plate_id => plate.id)%>
+        <td><% @productlinks.each do |productlink| %>
+          <%= link_to Product.get_name(productlink.product_id), product_path(productlink.product_id) %><br>
             <% end %>
           </td>
         <td><%= number_with_precision(Product.get_plate_total_ratios_price(plate.id), :precision=>2) %></td>
