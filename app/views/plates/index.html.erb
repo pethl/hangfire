@@ -19,12 +19,14 @@
   <% if plates.any? %>
     <% plates.each do |plate| %>
       <tr>
-        <td><%= plate.name %></td>
+        <td><%= link_to plate.name, plate %></td>
         <td><%= plate.price %></td>
-        <td><% plate.productlinks.each do |product| %><%= Product.get_name(product.id) %><br><% end %></td>
+        <td><% plate.productlinks.each do |product| %>
+          <%= link_to Product.get_name(product.id), product_path(product.id) %><br>
+            <% end %>
+          </td>
         <td><%= number_with_precision(Product.get_plate_total_ratios_price(plate.id), :precision=>2) %></td>
-        <td><%= link_to 'Show', plate %> | 
-        <%= link_to 'Edit', edit_plate_path(plate) %> | 
+        <td><%= link_to 'Edit', edit_plate_path(plate) %> | 
         <%= link_to 'Destroy', plate, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
