@@ -16,6 +16,7 @@
   </thead>
 
   <tbody>
+  <% if plates.any? %>
     <% plates.each do |plate| %>
       <tr>
         <td><%= plate.name %></td>
@@ -27,7 +28,9 @@
         <%= link_to 'Destroy', plate, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
+       <% end %>
   </tbody>
+  
 </table>
 <% end %>
 <br>
