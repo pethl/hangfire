@@ -2,6 +2,7 @@ class Product < ActiveRecord::Base
   has_many :productitems
   has_many :friendships
   has_many :friends, :through => :friendships
+   belongs_to :category
   
   accepts_nested_attributes_for :productitems, allow_destroy: true
     accepts_nested_attributes_for :friendships, allow_destroy: true
