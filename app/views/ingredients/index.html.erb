@@ -11,10 +11,11 @@
     <tr>
      <th><h3><%= Category.where(:id => category_id).first.name %></h3></th>
      <th colspan="1"></th>
-     <th>Pricing Data</th>
-      <th>Unit Weight (g)</th>
-      <th>Latest Price p/g</th>
-      <th>Price Change</th>
+      <th><center>Related<br>Products?</center></th>
+     <th><center>Pricing<br>Data</center></th>
+      <th>Unit<br>Weight (g)</th>
+      <th>Latest<br>Price p/g</th>
+      <th>Price<br>Change</th>
       <th colspan="1"></th>
     </tr>
   </thead>
@@ -25,12 +26,13 @@
       <tr>
         <td><%= link_to ingredient.name, ingredient %></td>
          <td> [<%= link_to 'Edit', edit_ingredient_path(ingredient) %>] </td>
-        <td><%= ingredient.baseproducts.count %>
+         <td><center><%= related_product_count(ingredient) %><center></td>
+        <td><center><%= ingredient.baseproducts.count %>
         <% age = Ingredient.record_age(ingredient.id) %>
         <% if age == "green" %><font color="green"> = </font>
           <% elsif age == "amber" %><font color="orange"> = </font>
             <% else age == "red" %><font color="red"> = </font> 
-            <% end %>
+            <% end %><center>
         </td>
         <td><%= number_with_precision(Ingredient.get_unit_weight(ingredient.id), :precision => 2) %> 
         <% if !ingredient.unit_item.blank? %>/ <%=  ingredient.unit_item%><% end %> </td>  

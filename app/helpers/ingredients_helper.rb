@@ -5,4 +5,18 @@ module IngredientsHelper
       page.insert_html :bottom, :baseproduct, :partial => 'baseproduct', :object => Baseproduct.new
     end
   end
+  
+  #returns the product names of all products that use a given ingredient
+  def related_product(ingredient)
+    @products = Productitem.where(:ingredient_id => ingredient.id).map {|x| [x.product_id]}
+  end
+  
+  def related_product_count(ingredient)
+    @products = Productitem.where(:ingredient_id => ingredient.id).map {|x| [x.product_id]}
+    if @products.any?
+      return @products.count
+    end
+  end
+  
+  
 end

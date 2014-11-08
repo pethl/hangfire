@@ -1,9 +1,15 @@
-
-
 <h3>
   <strong><%= Category.where(id: @ingredient.category_id).first.name %> / <%= @ingredient.name %></strong>
-  
 </h3>
+
+<% if (prods = (related_product(@ingredient))).any?%>
+ <h4>Related product(s): </h4>
+<% prods.each do |product| %>
+  <ul>
+  <li><%= link_to Product.get_name(product), product_path(product) %></li>
+  </ul>
+  <% end %>
+    <% end %>
 
 
 
@@ -35,20 +41,19 @@
           <td><%= baseproduct.total_price %></td>
           <td><%=  number_with_precision(baseproduct.price_per, :precision => 4)  %></td>
         </tr>
-      <% end %>
-      
+      <% end %>     
     </tbody>
      
   </table>
   <% else %>
   
-  There are no purchase records or pricing data for this ingredient.<br>
+  There are no purchase records for this ingredient.<br>
   To add a purchase record go to edit.
 
     <% end %>
     <br><br>
 
 <%= link_to 'Edit', edit_ingredient_path(@ingredient) %> |
-<%= link_to 'All ingredients', ingredients_path %> | 
+<%= link_to '>> see all ingredients', ingredients_path %> | 
 
 
