@@ -17,6 +17,11 @@ class Ingredient < ActiveRecord::Base
     return unit_item
   end
   
+  def self.get_shrinkage(id)
+    shrinkage = Ingredient.where(:id => id)[0].shrinkage
+    return shrinkage
+  end  
+  
   def self.import(file)
       	 CSV.foreach(file.path, headers: true) do |row|
          		 Ingredient.create! row.to_hash
@@ -24,11 +29,11 @@ class Ingredient < ActiveRecord::Base
     	end
    	
     	
-    	def self.get_unit_weight(id)
-    	  a = Baseproduct.where(:ingredient_id => id).sort_by { |h| h[:purchase_date]}.reverse
-    	  a.first.unit_weight
-  	  end
-    	
+  	def self.get_unit_weight(id)
+  	  a = Baseproduct.where(:ingredient_id => id).sort_by { |h| h[:purchase_date]}.reverse
+  	  a.first.unit_weight
+	  end
+  	
        def self.get_price(id,selector)
          case selector
              when "average"

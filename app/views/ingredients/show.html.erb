@@ -1,6 +1,9 @@
 <h3>
   <strong><%= Category.where(id: @ingredient.category_id).first.name %> / <%= @ingredient.name %></strong>
 </h3>
+<% if !@ingredient.shrinkage.blank? %>
+<h4>Shrinkage % - <%= @ingredient.shrinkage %></h4>
+<% end %>
 
 <% if (prods = (related_product(@ingredient))).any?%>
  <h4>Related product(s): </h4>
@@ -10,8 +13,6 @@
   </ul>
   <% end %>
     <% end %>
-
-
 
 <% if @ingredient.baseproducts.any? %>
 
@@ -39,7 +40,7 @@
           <td><%= baseproduct.total_weight %></td>
           <td><%= number_with_precision(baseproduct.unit_price, :precision => 2) %></td>
           <td><%= baseproduct.total_price %></td>
-          <td><%=  number_with_precision(baseproduct.price_per, :precision => 4)  %></td>
+          <td><%= number_with_precision((baseproduct.price_per), :precision => 4)  %></td>
         </tr>
       <% end %>     
     </tbody>

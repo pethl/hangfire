@@ -25,6 +25,11 @@
     <%= f.label :unit_item, "Unit description" %>
     <%= f.text_field :unit_item %>
   </div>
+  
+  <div class="field">
+    <%= f.label :shrinkage, "Shrinkage %" %>
+    <%= f.text_field :shrinkage %>
+  </div>
 <br>
 
     <%= f.fields_for :baseproducts do |builder| %>

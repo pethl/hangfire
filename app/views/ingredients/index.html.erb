@@ -11,9 +11,10 @@
     <tr>
      <th><h3><%= Category.where(:id => category_id).first.name %></h3></th>
      <th colspan="1"></th>
+     <th><center>Pricing<br>Data?</center></th>
       <th><center>Related<br>Products?</center></th>
-     <th><center>Pricing<br>Data</center></th>
       <th>Unit<br>Weight (g)</th>
+      <th> Shrinkage %</th>
       <th>Latest<br>Price p/g</th>
       <th>Price<br>Change</th>
       <th colspan="1"></th>
@@ -26,7 +27,7 @@
       <tr>
         <td><%= link_to ingredient.name, ingredient %></td>
          <td> [<%= link_to 'Edit', edit_ingredient_path(ingredient) %>] </td>
-         <td><center><%= related_product_count(ingredient) %><center></td>
+        
         <td><center><%= ingredient.baseproducts.count %>
         <% age = Ingredient.record_age(ingredient.id) %>
         <% if age == "green" %><font color="green"> = </font>
@@ -34,12 +35,12 @@
             <% else age == "red" %><font color="red"> = </font> 
             <% end %><center>
         </td>
+         <td><center><%= related_product_count(ingredient) %><center></td>
         <td><%= number_with_precision(Ingredient.get_unit_weight(ingredient.id), :precision => 2) %> 
         <% if !ingredient.unit_item.blank? %>/ <%=  ingredient.unit_item%><% end %> </td>  
-        
-        <td><% average = number_with_precision(Ingredient.get_price(ingredient.id, 'average'), :precision => 4) %>
-        <%= latest = number_with_precision(Ingredient.get_price(ingredient.id, 'latest'), :precision => 4) %></td>
-        
+        <td> <%= ingredient.shrinkage %> </td>
+        <td><% average = number_with_precision(Ingredient.get_price(ingredient.id, 'average'), :precision => 3) %>
+        <%= latest = number_with_precision(Ingredient.get_price(ingredient.id, 'latest'), :precision => 3) %></td>
         <td><% if (latest.to_f-average.to_f).ceil.is_a? Numeric%>
           <% if (latest.to_f-average.to_f).ceil > 0 %>
               <font color="red"> UP</font>

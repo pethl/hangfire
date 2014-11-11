@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141105160138) do
+ActiveRecord::Schema.define(version: 20141110153439) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(version: 20141105160138) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "unit_item"
+    t.decimal  "shrinkage"
   end
 
   create_table "items", force: true do |t|
@@ -114,7 +115,7 @@ ActiveRecord::Schema.define(version: 20141105160138) do
 
   create_table "productlinks", force: true do |t|
     t.integer  "product_id"
-    t.integer  "productlink_id"
+    t.integer  "productchild_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "plate_id"
