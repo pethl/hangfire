@@ -7,12 +7,9 @@
 <thead>
   <tr>
     <th><h3><%= Category.where(:id => category_id).first.name %> </h3></th>
-    <th>No. of<br>Ingredients</th>
-    <th>Ingredient<br>Cost (p)</th>
-    <th>No. of<br>Products</th>
-    <th>Product<br>Cost (p)</th>
-    <th>Total<br>Cost (p)</th>    
-    <th>Price<br>Per Gram(p)</th>    
+    <th>Contents #</th>
+    <th>Cost</th>
+    <th></th>
     <th colspan="3"></th>
   </tr>
 </thead>
@@ -23,27 +20,15 @@
     
       <tr>  
         <td><strong><%= link_to product.name, product  %></strong></td>
-        <td><%= has_ing= product.productitems.count %></td>
-        <td><%= itotal = number_with_precision(Product.get_total_price(product.id), :precision =>2) %>p</td>        
-        <td><%= count = Friendship.where(:product_id => product.id).count %></td>
-        <% if count > 0 %>
-        <td><%= ptotal = number_with_precision(Product.get_total_ratios_price(product.id), :precision =>3) %>p</td>       
-        <% else %> 
-        <td></td>
-        <% end %> 
-        <td><% if ptotal.blank? %>
-          <%= number_to_currency((itotal).to_f/100, :locale => :en) %>
-          <% else %>
-          <%= number_to_currency((itotal.to_f + ptotal.to_f).to_f/100, :locale => :en) %>
-          <% end %>
-          </td>
-          <td><% if (has_ing >0 && count==0 && product.category_id == 15) %><%= get_product_price_per_gram(product.id) %>p<% else %>n/a<% end %></td>
+        <td><%= get_items_count(product) %></td>
+        <td><%= number_to_currency(get_items_cost(product)/100, :locale => :en)  %></td>
+         
         <td>[ <%= link_to 'Edit', edit_product_path(product) %> | 
         <%= link_to 'Delete', product, method: :delete, data: { confirm: 'Are you sure?' } %>]</td>
       </tr> 
-      <% end %>
+
       </tbody>
-         
+      <% end %>    
 </table>
  <% end %>
 

@@ -16,6 +16,7 @@ class Product < ActiveRecord::Base
       return name
     end  
     
+    
     def self.get_total_price(id)
       @productitems = Productitem.where(:product_id => id)
      # @total = 0
@@ -25,21 +26,13 @@ class Product < ActiveRecord::Base
           "missing data"
           return 0
         else
-           if !line_item.volume.blank?
-            line_item.volume*Ingredient.get_price(line_item.ingredient_id, line_item.price_selector)
-           else
-             uc = line_item.unit_count * (Ingredient.get_unit_weight(line_item.ingredient_id))
-             uc*Ingredient.get_price(line_item.ingredient_id, line_item.price_selector)
-           end
-         end
-    #  @product = Product.where(:id => id)
-    #    if @product.friendships.any?
-    #        @total +=  @product.friendships.to_a.sum do |friend|
-     #         get_product_price_per_gram(friend.friend_id) * (friend.prodvolume.to_f)
-    #        end
-    #      else
-    #      end
-    #   return @total
+             if !line_item.volume.blank?
+              line_item.volume*price
+             else
+               uc = line_item.unit_count * (Ingredient.get_unit_weight(line_item.ingredient_id))
+               uc*price
+             end
+        end
      end
     end
     

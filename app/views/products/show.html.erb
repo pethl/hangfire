@@ -46,11 +46,12 @@
               <tr>
               <td><strong>Total</strong></td>
                 <td><strong><%= @product.productitems.count + @product.friendships.count %></strong></td>
-              <td><strong><%= Product.get_total_weight(@product.id) %>g</strong></td>
+              <td><strong><%= weigh = Product.get_total_weight(@product.id) %>g</strong></td>
                 <td>
                 <% ans = (@total_ingredient.to_f + (@total_product.inject 0, :+)) %>
                 <strong><%= number_to_currency((ans).to_f/100, :locale => :en) %></strong>
                 </td>
+                <td><%= number_with_precision((ans/weigh), :precision => 2) %><br>pence per gram</td>
               </tr>     
             <% end %>
             </table>
