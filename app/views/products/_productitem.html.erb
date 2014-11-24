@@ -1,9 +1,8 @@
 
-<% @categories_to_ignore = [7,8,9]  %>
 <tr>
         <td><%= link_to (Ingredient.get_name(productitem.ingredient_id)), ingredient_path(productitem.ingredient_id) %></td>
         <td>
-        <%  if @categories_to_ignore.include? (Ingredient.where(:id => productitem.ingredient_id)).first.category_id  %>
+        <%  if Productitem.food_category(productitem) %>
         (<%= productitem.volume.to_i %>)
         <% else %>
         <%= productitem.volume %>g

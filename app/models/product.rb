@@ -5,10 +5,13 @@ class Product < ActiveRecord::Base
    belongs_to :category
   
   accepts_nested_attributes_for :productitems, allow_destroy: true
-    accepts_nested_attributes_for :friendships, allow_destroy: true
-   validates :name, presence: true, uniqueness: { case_sensitive: false }
-    validates :category_id, presence: true
+  accepts_nested_attributes_for :friendships, allow_destroy: true
+  validates :name, presence: true, uniqueness: { case_sensitive: false }
+  validates :category_id, presence: true
 
+    def self.categories_to_ignore
+      @categories_to_ignore = [7,8,9]
+    end
     
     def self.get_name(id)
       name = Product.where(:id => id)[0].name
@@ -68,7 +71,6 @@ class Product < ActiveRecord::Base
     end    
 
     def self.get_total_weight(id)     # this gets the weight of all ingredients except where category 7,8,9 - non food items 
-      @categories_to_ignore = [7,8,9]
       
       @duffproductitems = Productitem.where(:product_id => id)
       
@@ -94,12 +96,10 @@ class Product < ActiveRecord::Base
     end   
     
     def self.get_total_ingredient_weight(id)
-         @categories_to_ignore = [7,8,9]
-
           @duffproductitems = Productitem.where(:product_id => id)
 
           @duffproductitems.each do |duffproductitem|
-            if @categories_to_ignore.include? (Ingredient.where(:id => duffproductitem.ingredient_id)).first.category_id 
+            if Product.categories_to_ignore.include? (Ingredient.get_category(duffproductitem.ingredient_id)) 
 
               @duffproductitems = @duffproductitems.select{|x| x != duffproductitem}
             else

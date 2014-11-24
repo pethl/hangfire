@@ -22,6 +22,12 @@ class Ingredient < ActiveRecord::Base
     return shrinkage
   end  
   
+  def self.get_category(id)
+    category = (Ingredient.where(:id => id))[0].category_id 
+    return category
+  end  
+  
+  
   def self.import(file)
       	 CSV.foreach(file.path, headers: true) do |row|
          		 Ingredient.create! row.to_hash

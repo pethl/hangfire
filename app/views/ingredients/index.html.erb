@@ -13,7 +13,7 @@
      <th colspan="1"></th>
      <th><center>Pricing<br>Data?</center></th>
       <th><center>Related<br>Products?</center></th>
-      <th>Unit<br>Weight (g)</th>
+      <th>Unit or<br>Weight (g)</th>
       <th> Shrinkage %</th>
       <th>Latest<br>Price p/g</th>
       <th>Price<br>Change</th>
@@ -36,7 +36,7 @@
             <% end %><center>
         </td>
          <td><center><%= related_product_count(ingredient) %><center></td>
-        <td><%= number_with_precision(Ingredient.get_unit_weight(ingredient.id), :precision => 2) %> 
+        <td><%= number_with_precision(Ingredient.get_unit_weight(ingredient.id), :precision => 0) %> 
         <% if !ingredient.unit_item.blank? %>/ <%=  ingredient.unit_item%><% end %> </td>  
         <td> <%= ingredient.shrinkage %> </td>
         <td><% average = number_with_precision(Ingredient.get_price(ingredient.id, 'average'), :precision => 3) %>

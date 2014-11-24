@@ -1,6 +1,20 @@
 class Productitem < ActiveRecord::Base
     belongs_to :product
    # after_save :calc_volume
+   
+   validate :check_vol_or_unit #ensure a unit count or volume is always entered 
+
+   def check_vol_or_unit
+     if volume.blank? and unit_count.blank?
+      #one at least must be filled in
+      errors.add(:base, ': You must enter ingredient volume or unit count') if volume.blank? and unit_count.blank?
+      return false
+    
+     else
+      return true
+     end
+   end
+   
     
     def self.import(file)
         	 CSV.foreach(file.path, headers: true) do |row|
@@ -9,6 +23,12 @@ class Productitem < ActiveRecord::Base
       	end
     
     PRICE_SELECTOR_TYPES = ["--", "average", "latest", "least", "most"]
+
+    # this function should return true if the productitem is a food ingredient and false if its a non-food item
+    def self.food_category(productitem)
+       return Product.categories_to_ignore.include? (Ingredient.get_category(productitem.ingredient_id))
+    end
+
     
     def self.total_price(productitem)
       if Ingredient.get_price(productitem.ingredient_id, productitem.price_selector) == "no data"
