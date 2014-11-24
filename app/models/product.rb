@@ -8,16 +8,14 @@ class Product < ActiveRecord::Base
     accepts_nested_attributes_for :friendships, allow_destroy: true
    validates :name, presence: true, uniqueness: { case_sensitive: false }
     validates :category_id, presence: true
-   
-  
+
     
     def self.get_name(id)
       name = Product.where(:id => id)[0].name
       return name
     end  
     
-    
-    def self.get_total_price(id)
+ def self.get_total_price(id)
       @productitems = Productitem.where(:product_id => id)
      # @total = 0
       @total = @productitems.to_a.sum do |line_item|
@@ -68,27 +66,48 @@ class Product < ActiveRecord::Base
         end
         return @final_total.inject 0, :+
     end    
-    
-    def self.get_total_weight(id)
-      @productitems = Productitem.where(:product_id => id)
-      @weight = 0
-      @weight = @productitems.to_a.sum do |productitem|
-         if !productitem.volume.blank?
-           productitem.volume
-         else
-           productitem.unit_count * (Ingredient.get_unit_weight(productitem.ingredient_id))
-         end
-       end
-       @friends = Friendship.where(:product_id => id)
-      @weight += @friends.to_a.sum do |friend|
-        friend.prodvolume
+
+    def self.get_total_weight(id)     # this gets the weight of all ingredients except where category 7,8,9 - non food items 
+      @categories_to_ignore = [7,8,9]
+      
+      @duffproductitems = Productitem.where(:product_id => id)
+      
+      @duffproductitems.each do |duffproductitem|
+        if @categories_to_ignore.include? (Ingredient.where(:id => duffproductitem.ingredient_id)).first.category_id 
+         
+          @duffproductitems = @duffproductitems.select{|x| x != duffproductitem}
+        else
       end
+    end
+           @weight = 0
+           @weight = @duffproductitems.to_a.sum do |productitem|
+              if !productitem.volume.blank?
+                productitem.volume
+              else
+                productitem.unit_count * (Ingredient.get_unit_weight(productitem.ingredient_id))
+              end
+            end
+            @friends = Friendship.where(:product_id => id)
+           @weight += @friends.to_a.sum do |friend|
+             friend.prodvolume
+           end
     end   
     
     def self.get_total_ingredient_weight(id)
-      @productitems = Productitem.where(:product_id => id)
+         @categories_to_ignore = [7,8,9]
+
+          @duffproductitems = Productitem.where(:product_id => id)
+
+          @duffproductitems.each do |duffproductitem|
+            if @categories_to_ignore.include? (Ingredient.where(:id => duffproductitem.ingredient_id)).first.category_id 
+
+              @duffproductitems = @duffproductitems.select{|x| x != duffproductitem}
+            else
+          end
+        end
+      
       @weight = 0
-      @weight = @productitems.to_a.sum do |productitem|
+      @weight = @duffproductitems.to_a.sum do |productitem|
          if !productitem.volume.blank?
            productitem.volume
          else

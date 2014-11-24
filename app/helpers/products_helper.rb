@@ -5,6 +5,7 @@ module ProductsHelper
     return Productitem.where(:product_id => id).count
   end
 
+
 #this returns the cost of ingredients linked to a product, based on productitem weights 
   def get_ingredients_cost(id)
       @productitems = Productitem.where(:product_id => id)
@@ -78,11 +79,7 @@ module ProductsHelper
     friends = Friendship.where(:product_id => product)
     if friends.any?
       friends.each do |friend|
-                Rails.logger.debug(">>>>>>>>>in helper_items_cost_in_friend: #{friend.inspect}") 
          @cost += ((friend.prodvolume) * (get_product_price_per_gram(friend.friend_id).to_f))
-          Rails.logger.debug("friend.prodvolume: #{friend.prodvolume.inspect}") 
-                    Rails.logger.debug("friend.price_per: #{get_product_price_per_gram(friend.friend_id).inspect}") 
-        Rails.logger.debug("in helper_items_cost_@cost: #{@cost.inspect}") 
       end  
     end
     return @cost

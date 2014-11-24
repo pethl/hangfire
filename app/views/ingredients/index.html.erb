@@ -9,7 +9,7 @@
 <table class="table  table-striped">
   <thead>
     <tr>
-     <th><h3><%= Category.where(:id => category_id).first.name %></h3></th>
+     <th><h3><%= Category.where(:id => category_id).first.name %></h3><%= link_to '+ add new ingredient', new_ingredient_path %><br></th>
      <th colspan="1"></th>
      <th><center>Pricing<br>Data?</center></th>
       <th><center>Related<br>Products?</center></th>
