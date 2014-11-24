@@ -5,6 +5,6 @@
    <td></td>
    <td>n/a</td>
    <td><%= p_price = get_product_price_per_gram(friendship.friend_id) %></td>
-   <td><%= number_with_precision((Productitem.weight_ratio(0,friendship))*100, :precision => 2) %>%</td>
-   <td><%= (friendship.prodvolume.to_f)*(p_price.to_f) %>p</td>
+   <td><%= number_with_precision((Productitem.weight_ratio(0,friendship))*100, :precision => 1) %>%</td>
+   <td><%= number_with_precision((friendship.prodvolume.to_f)*(p_price.to_f), :precision => 2) %>p</td>
 </tr>           

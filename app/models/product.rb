@@ -75,7 +75,7 @@ class Product < ActiveRecord::Base
       @duffproductitems = Productitem.where(:product_id => id)
       
       @duffproductitems.each do |duffproductitem|
-        if @categories_to_ignore.include? (Ingredient.where(:id => duffproductitem.ingredient_id)).first.category_id 
+        if Product.categories_to_ignore.include? (Ingredient.where(:id => duffproductitem.ingredient_id)).first.category_id 
          
           @duffproductitems = @duffproductitems.select{|x| x != duffproductitem}
         else
