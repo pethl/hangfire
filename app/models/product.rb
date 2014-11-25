@@ -9,6 +9,7 @@ class Product < ActiveRecord::Base
   validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :category_id, presence: true
 
+
     def self.categories_to_ignore
       @categories_to_ignore = [7,8,9]
     end
@@ -91,7 +92,11 @@ class Product < ActiveRecord::Base
             end
             @friends = Friendship.where(:product_id => id)
            @weight += @friends.to_a.sum do |friend|
+             if !friend.prodvolume.blank?
              friend.prodvolume
+           else
+             0
+           end
            end
     end   
     

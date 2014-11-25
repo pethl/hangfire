@@ -83,8 +83,12 @@ module ProductsHelper
     @cost = Product.get_total_price(product)
     friends = Friendship.where(:product_id => product)
     if friends.any?
-      friends.each do |friend|
+      friends.each do |friend| 
+        if !friend.prodvolume.blank?
          @cost += ((friend.prodvolume) * (get_product_price_per_gram(friend.friend_id).to_f))
+        else
+          
+       end
       end  
     end
     return @cost

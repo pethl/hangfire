@@ -54,7 +54,11 @@ class Productitem < ActiveRecord::Base
           end
         
       elsif productitem == 0
+         if !friend.prodvolume.blank?
         friend.prodvolume / Product.get_total_weight(friend.product_id)
+      else
+        0
+      end
       end
     end
     

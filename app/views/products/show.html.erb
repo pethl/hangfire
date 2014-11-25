@@ -29,9 +29,11 @@
                                 <%= @total_ingredient = number_with_precision(Product.get_total_price(@product.id), :precision => 1) %>p
                       <% end %>
                 </td>
-                <% unless @friendships.any? %>
-                <td><%=  number_with_precision((@total_ingredient.to_f/pw.to_f), :precision => 2) %>p</td>
-                <% end %>
+                 <% unless @friendships.any? %>
+                   <% unless pw == 0 %>
+                  <td><center><%=  number_with_precision(((@total_ingredient.to_f)/(pw.to_f)), :precision => 2) %>p</center></td>
+                    <% end %>
+                  <% end %>
                 
                 </tr> 
               <% end %>
@@ -42,10 +44,9 @@
                 <tr>
                 <td><%= link_to Product.get_name(friend.friend_id), product_path(friend.friend_id) %></td>
                 <td><center>1</center></td>
-                  <td><%= friend.prodvolume %>g</td>
-                  
-                  <td><%= @tot_prod = number_with_precision((Product.get_ratios_price(friend.friend_id,friend.prodvolume)), :precision => 1) %>p</td>
-               
+                <td><%= friend.prodvolume %>g</td>
+                <% p_price = get_product_price_per_gram(friend.friend_id) %>
+                <td><%= number_with_precision((friend.prodvolume.to_f)*(p_price.to_f), :precision => 2) %>p</td>                  
                 </tr>
               <% end %>   
             <% end %>  
