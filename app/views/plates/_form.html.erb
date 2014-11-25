@@ -13,16 +13,16 @@
 
 
   <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.label :name %>
+    <%= f.text_field :name, :size => 30 %>
   </div>
   <div class="field">
-    <%= f.label :category_id %><br>
+    <%= f.label :category_id %>
     <%= f.collection_select :category_id, (Category.where(:reference => 'plate')), :id, :name, :prompt => true %><br>
   </div>
   <div class="field">
-    <%= f.label :price %><br>
-    <%= f.text_field :price %>
+    <%= f.label :price %>
+    <%= f.text_field :price, :size => 10, :style => "text-align: Right", :placeholder => "<selling price>" %> p
   </div>
   
   <h3>Select from existing products</h3>  

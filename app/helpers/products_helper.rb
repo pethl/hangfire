@@ -1,5 +1,10 @@
 module ProductsHelper
 
+  def product_categories_to_add
+    @product_categories_to_add = [15,19]
+  end
+
+
 #this counts how many ingredients linked to a product
   def get_ingredients_count(id)
     return Productitem.where(:product_id => id).count

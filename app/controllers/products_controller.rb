@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
   def index
     # @product_groups = @products.group_by { |t| t.meat }
     @products_by_category = Product.all.group_by { |t| t.category_id }
-  end
+end
 
   # GET /products/1
   def show

@@ -1,28 +1,39 @@
-<h3>
-  <%= Category.where(id: @plate.category_id).first.name %> / <strong><%= @plate.name %></strong></h3>
+<h3><%= Category.where(id: @plate.category_id).first.name %> / <strong><%= @plate.name %></strong></h3>
 
-<p>
-  <strong>Price:</strong>
-  <%= @plate.price %>
-</p>
 <div class="row">
-<div class="col-xs-6 col-md-5  col-md-offset-1">
+<div class="col-xs-6 col-md-8  col-md-offset-1">
 
 <% if @productlinks.any? %>
   
   <table class="table">
+   <thead>
+    <tr>
+      <th>Item(s)</th>
+      <th>Cost</th>
+      <th>Price</th>
+      <th>Margin</th>
+      <th>Mg %</th>
+  </tr>
   <tbody>
     <% @productlinks.each do |productlink| %>
       <tr>
-      <td><%= Product.where(:id => productlink.product_id).first.name %>: </td>
-      <td><%= number_with_precision(Product.get_total_price(productlink.product_id), :precision => 2) %> pence</td><br>
+      <td><%= link_to (Product.get_name(productlink.product_id)), product_path(productlink.product_id)%>: </td>
+      <td><%= number_with_precision(get_items_cost(productlink.product_id), :precision => 2) %> p</td>
+      <td colspan="3"></td>
      </tr>
       <% end %>
 </tbody>
+    <tr>
+      <td><strong>Cost Total: </strong></td>
+      <td><%= pl_tot = number_with_precision(get_plate_cost(@plate), :precision => 2) %> p</td>
+       <td><%= @plate.price %> p</td>
+      <td><%= marg = number_with_precision((@plate.price.to_f)-(pl_tot.to_f), :precision => 2) %> p</td>
+      <td><%= number_with_precision((marg.to_f)/(@plate.price.to_f)*100, :precision => 2) %>%</td>      
+    </tr>
 </table>
 <% else %>
   <% end %>
 
 
 <%= link_to 'Edit', edit_plate_path(@plate) %> |
-<%= link_to '>>see all plates', plates_path %>
+<%= link_to '>> See all plates', plates_path %>

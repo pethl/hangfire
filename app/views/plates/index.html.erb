@@ -7,10 +7,13 @@
 <table class="table table-bordered table-striped">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Price</th>
-      <th>Products</th>
+      <th>Menu Plate</th>
+      <th colspan="1"></th>
+      <th>Contents</th>      
+      <th>Menu Price</th>
       <th>Cost</th>
+      <th>Margin</th>
+      <th>Mg %</th>
       <th colspan="1"></th>
     </tr>
   </thead>
@@ -20,16 +23,19 @@
     <% plates.each do |plate| %>
       <tr>
         <td><%= link_to plate.name, plate %></td>
-        <td><%= plate.price %></td>
+        <td><%= link_to '[Edit]', edit_plate_path(plate) %></td> 
+
+            <% @productlinks = Productlink.where(:plate_id => plate.id)%>
+            <td><% @productlinks.each do |productlink| %>
+              <%= link_to Product.get_name(productlink.product_id), product_path(productlink.product_id) %><br>
+                <% end %>
+            </td>
         
-        <% @productlinks = Productlink.where(:plate_id => plate.id)%>
-        <td><% @productlinks.each do |productlink| %>
-          <%= link_to Product.get_name(productlink.product_id), product_path(productlink.product_id) %><br>
-            <% end %>
-          </td>
-        <td><%= number_with_precision(Product.get_plate_total_ratios_price(plate.id), :precision=>2) %></td>
-        <td><%= link_to 'Edit', edit_plate_path(plate) %> | 
-        <%= link_to 'Destroy', plate, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= plate.price %> p</td>
+        <td><%= pl_tot = number_with_precision(get_plate_cost(plate), :precision => 2) %> p</td>
+        <td><%= marg = number_with_precision((plate.price.to_f)-(pl_tot.to_f), :precision => 2) %> p</td>
+        <td><%= number_with_precision((marg.to_f)/(plate.price.to_f)*100, :precision => 0) %>%</td>
+        <td><%= link_to '[Delete]', plate, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
        <% end %>

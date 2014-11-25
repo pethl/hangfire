@@ -26,7 +26,7 @@ class PlatesController < ApplicationController
     @plate = Plate.new(plate_params)
 
     if @plate.save
-      redirect_to @plate, notice: 'Plate was successfully created.'
+      redirect_to plates_path, notice: 'Plate was successfully created.'
     else
       render :new
     end

@@ -1,5 +1,38 @@
 <h1>New plate</h1>
+<h3>First - create the plate.</h3>
+<%= form_for(@plate) do |f| %>
+  <% if @plate.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@plate.errors.count, "error") %> prohibited this plate from being saved:</h2>
 
-<%= render 'form' %>
+      <ul>
+      <% @plate.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name, :size => 30 %>
+  </div>
+  <div class="field">
+    <%= f.label :category_id %>
+    <%= f.collection_select :category_id, (Category.where(:reference => 'plate')), :id, :name, :prompt => true %><br>
+  </div>
+  <div class="field">
+    <%= f.label :price %>
+    <%= f.text_field :price, :size => 10, :style => "text-align: Right", :placeholder => "<selling price>" %> p
+  </div>
+  
+
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
 
 <%= link_to 'Back', plates_path %>

@@ -37,14 +37,15 @@
               <% end %>
 
             <% if @friendships.any? %>    
-            <% @total_product = [] %>
+           
               <% @friendships.each do |friend| %>
                 <tr>
                 <td><%= link_to Product.get_name(friend.friend_id), product_path(friend.friend_id) %></td>
                 <td><center>1</center></td>
                   <td><%= friend.prodvolume %>g</td>
+                  
                   <td><%= @tot_prod = number_with_precision((Product.get_ratios_price(friend.friend_id,friend.prodvolume)), :precision => 1) %>p</td>
-                <% @total_product << @tot_prod.to_f %>
+               
                 </tr>
               <% end %>   
             <% end %>  
@@ -54,7 +55,7 @@
                 <td><strong><center><%= get_items_count(@product) %></center></strong></td>
                 <td><strong><%= weigh = Product.get_total_weight(@product.id) %>g</strong></td>
                 <td>
-                  <% ans = (@total_ingredient.to_f + (@total_product.inject 0, :+)) %>
+                  <% ans = get_items_cost(@product) %>
                   <strong><%= number_to_currency((ans).to_f/100, :locale => :en) %></strong>
                 </td>
                 <td><i><center><%= number_with_precision((ans/weigh), :precision => 2) %>p<i></center></td>
@@ -94,11 +95,8 @@
             <td><strong><%= Product.get_total_weight(@product.id) %>g<strong></td>
             <td colspan="3"></td>
             <td><strong>Total Price</strong></td>
-            <td><strong><% if @friendships.any? %>
-            <%= number_to_currency((ans).to_f/100, :locale => :en) %>
-            <% else %>
-             <%= @total_ingredient %>
-            <% end %>
+            <td><strong>
+            <%= number_to_currency((get_items_cost(@product)).to_f/100, :locale => :en) %>
             <strong></td>    
           <tr>
       </table>

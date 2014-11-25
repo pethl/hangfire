@@ -4,11 +4,11 @@
 
   <tbody>
   <tr>
-    <td> <%= f.grouped_collection_select :product_id, Category.where(:reference=>"product").order(:name), :products, :name, :id, :name, :prompt => true %></td>
+    <td> <%= f.grouped_collection_select :product_id, Category.where(id: categories_to_show).order(:name), :products, :name, :id, :name, {:prompt => 'Select product'}  %></td>
     <td> <%= f.check_box :_destroy %><%= f.label :_destroy, "Remove ingredient" %></td>
   </tr>
   </tbody>
 </table>
 <br>
-  
-  </fieldset>
+
+</fieldset>
