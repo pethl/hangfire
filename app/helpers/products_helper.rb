@@ -100,6 +100,29 @@ module ProductsHelper
     @count += product.friendships.count 
       return @count
   end
+
+  #returns the plate names of all plates that use a given product
+  def related_plate(product)
+    @plates = Productlink.where(:product_id => product.id).map {|x| [x.plate_id]}
+    @plates = @plates.uniq
+  end
   
+  def related_plate_count(product)
+    @plates = Productlink.where(:product_id => product.id).map {|x| [x.plate_id]}
+    if @plates.any?
+      @plates = @plates.uniq
+      return @plates.count
+    end
+  end
+
+  def shauna_format(product)
+     if product.shauna.blank?
+       return "No"
+    elsif product.shauna = true
+      return "Yes"
+    else
+      return "No"
+      end  
+  end
   
 end

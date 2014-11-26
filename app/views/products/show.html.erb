@@ -1,7 +1,8 @@
 <%= link_to '>> see all HF products', products_path %>
 
   <h3><%= Category.where(id: @product.category_id).first.name %> / <strong><%= @product.name %></strong></h3>
-  <code><%= @product.desc %></code>
+  <code><%= @product.desc %></code><br>
+  <font color="green">Checked by Shauna? </font><strong><%= shauna_format(@product) %></strong>
   
    <% if @product.productitems.any? || @friendships.any? %>
   <div class="row">
@@ -102,6 +103,16 @@
           <tr>
       </table>
   <% end %>       
-       <br>
-  <%= link_to 'Edit HF product', edit_product_path(@product) %> |
-  <%= link_to 'All HF products', products_path %> 
+              
+  [<%= link_to 'Edit HF product', edit_product_path(@product) %> |
+  <%= link_to 'All HF products', products_path %> ]
+  <br><br>
+  <% if (plates = (related_plate(@product))).any?%>
+   <h4>Plates containing this product: </h4>
+  <% plates.each do |plate| %>
+    <ul>
+    <li><%= link_to Plate.get_name(plate), plate_path(plate) %></li>
+    </ul>
+    <% end %>
+      <% end %>     
+  <br><br>  
