@@ -20,11 +20,12 @@ class Ingredient < ActiveRecord::Base
   def child_calc_prices
     self.baseproducts.each do |baseproduct|
       if !baseproduct.total_price.blank? && !baseproduct.total_weight.blank? 
-       @shrinkage = (1-(self.shrinkage/100))
+      
         
-          if @shrinkage.blank?
+          if self.shrinkage.blank?
             baseproduct.price_per = baseproduct.total_price.to_f/baseproduct.total_weight.to_f
           else
+             @shrinkage = (1-(self.shrinkage/100))
             new_weight = (baseproduct.total_weight.to_f) * (@shrinkage.to_f) 
             baseproduct.price_per = ((baseproduct.total_price.to_f)/ (new_weight.to_f))
           end      
