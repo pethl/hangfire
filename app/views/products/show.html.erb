@@ -109,10 +109,10 @@
   <br><br>
   <% if (plates = (related_plate(@product))).any?%>
    <h4>Plates containing this product: </h4>
-  <% plates.each do |plate| %>
-    <ul>
-    <li><%= link_to Plate.get_name(plate), plate_path(plate) %></li>
-    </ul>
+    <% plates.each do |plate| %>
+        <ul>
+        <li><%= link_to Plate.get_name(plate), plate_path(plate) %></li>
+        </ul>
     <% end %>
-      <% end %>     
+  <% end %>     
   <br><br>  

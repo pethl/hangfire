@@ -38,7 +38,8 @@
           <td><%= baseproduct.unit_weight %><% if !@ingredient.unit_item.blank? %>/ <%=  @ingredient.unit_item%><% end %> </td>
           <td><%= baseproduct.total_weight %></td>
           <td><%= number_with_precision(baseproduct.unit_price, :precision => 2) %></td>
-          <td><%= baseproduct.total_price %></td>
+          <td><%= baseproduct.total_price %>
+          <font color="blue"><% if !@ingredient.shrinkage.blank? %>adjusted<% end %></font></td>
           <td><%= number_with_precision((baseproduct.price_per), :precision => 4)  %></td>
         </tr>
       <% end %>     

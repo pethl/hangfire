@@ -28,9 +28,10 @@
   
   <div class="field">
     <%= f.label :shrinkage, "Shrinkage %" %>
-    <%= f.text_field :shrinkage %>
+    <%= f.text_field :shrinkage, :size => 6 %><br> 
+    Express as % of weight lost, i.e. 10kg > 7kg = 30% shrinkage
   </div>
-<br>
+ <br>
 
     <%= f.fields_for :baseproducts do |builder| %>
       <%= render 'baseproduct_fields', f: builder %>

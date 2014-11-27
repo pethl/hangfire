@@ -3,10 +3,10 @@ class Ingredient < ActiveRecord::Base
   
   has_many :baseproducts
   accepts_nested_attributes_for :baseproducts, allow_destroy: true
-  
     validates :name, presence: true, uniqueness: { case_sensitive: false }
-      validates :category_id, presence: true
-
+    validates :category_id, presence: true
+    before_save :child_calc_prices
+      
   def self.get_name(id)
     name = Ingredient.where(:id => id)[0].name
     return name
@@ -15,6 +15,21 @@ class Ingredient < ActiveRecord::Base
   def self.get_unit_item(id)
     unit_item = Ingredient.where(:id => id)[0].unit_item
     return unit_item
+  end
+  
+  def child_calc_prices
+    self.baseproducts.each do |baseproduct|
+      if !baseproduct.total_price.blank? && !baseproduct.total_weight.blank? 
+       @shrinkage = (1-(self.shrinkage/100))
+        
+          if @shrinkage.blank?
+            baseproduct.price_per = baseproduct.total_price.to_f/baseproduct.total_weight.to_f
+          else
+            new_weight = (baseproduct.total_weight.to_f) * (@shrinkage.to_f) 
+            baseproduct.price_per = ((baseproduct.total_price.to_f)/ (new_weight.to_f))
+          end      
+          end
+        end
   end
   
   def self.get_shrinkage(id)

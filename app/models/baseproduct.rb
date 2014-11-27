@@ -38,6 +38,7 @@ class Baseproduct < ActiveRecord::Base
 
   
   def calc_prices
+  
         if self.total_weight.blank? 
               if !self.unit_weight.blank? && !self.unit_count.blank? 
                   self.total_weight = self.unit_weight * self.unit_count
@@ -62,7 +63,7 @@ class Baseproduct < ActiveRecord::Base
           if @shrinkage.blank?
             self.price_per = self.total_price.to_f/self.total_weight.to_f
           else
-            new_weight = (self.total_weight.to_f) * ((@shrinkage/100).to_f) 
+            new_weight = (self.total_weight.to_f) * ((1-(@shrinkage/100)).to_f) 
             self.price_per = ((self.total_price.to_f)/ (new_weight.to_f))
             end      
           end

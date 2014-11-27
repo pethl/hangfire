@@ -9,7 +9,8 @@
     <tr><td><%= f.label :total_weight, "Total weight(g)" %></td><td><%= f.text_field :total_weight %></td><tr />
     <tr><td><%= f.label :unit_price, "Unit price(p)" %></td><td><%= f.text_field :unit_price %></td><tr />
     <tr><td><%= f.label :total_price, "Total price(p)" %></td><td><%= f.text_field :total_price %></td><tr />
-     
+    <tr><td><%= f.label :price_per, "Price per gram " %></td><td><%= f.text_field :price_per, :readonly => true  %></td><tr />
+    
        </tbody>
       </table>
       <%= f.check_box :_destroy %>
