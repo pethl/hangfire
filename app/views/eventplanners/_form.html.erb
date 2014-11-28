@@ -1,0 +1,34 @@
+<%= form_for(@eventplanner) do |f| %>
+  <% if @eventplanner.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@eventplanner.errors.count, "error") %> prohibited this eventplanner from being saved:</h2>
+
+      <ul>
+      <% @eventplanner.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name, :size => 30 %>
+  </div>
+  <div class="field">
+    <%= f.label :category_id %>
+    <%= f.collection_select :category_id, (Category.where(:reference => 'plate')), :id, :name, :prompt => true %><br>
+  </div>
+
+  <h3>Select from existing plates</h3>  
+   <%= f.fields_for :eventplates do |builder| %>
+      <%= render 'eventplate_fields', f: builder %>
+    <% end %> 
+  <%= link_to "+ add new plate", eventplates_path(:eventplanner_id => @eventplanner), :method => :post %>
+  
+  
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

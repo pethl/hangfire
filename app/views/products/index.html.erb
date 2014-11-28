@@ -1,6 +1,9 @@
 <h1>HF Products</h1>
 <%= link_to '+ add new product', new_product_path %>
 
+<div class="row">
+<div class="col-xs-6 col-md-10  col-md-offset-1">
+
 <% @products_by_category.each do |category_id, products| %>
  
 <table class="table">

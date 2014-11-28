@@ -1,0 +1,22 @@
+<fieldset>
+
+ <table>
+  <thead>
+    <th>Plate</th>
+    <th style="text-align:center">Covers?</th>
+    <th style="text-align:center">Override Price</th>
+    <th>Delete Plate</th>
+  </thead>
+ <tbody>
+ <tr>
+   <td> <%= f.collection_select :plate_id, (Plate.all.sort_by { |h| h[:name] }), :id, :name,  :prompt => true %></td>
+   <td> <%= f.text_field :covers, :style => "text-align: Center", :placeholder => "enter number"  %></td>
+   <td> <%= f.text_field :over_ride_price, :style => "text-align: Center", :placeholder => "enter price" %></td>
+   <td> <%= f.check_box :_destroy %></td>
+ </tr>
+ </tbody>
+
+</table>
+<br>
+
+</fieldset>

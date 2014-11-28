@@ -1,0 +1,36 @@
+<h1>Event Plans</h1>
+<%= link_to '+ add new event plan', new_eventplanner_path %>
+
+<div class="row">
+<div class="col-xs-6 col-md-8  col-md-offset-1">
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Category</th>
+      <th>Plates #</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @eventplanners.each do |eventplanner| %>
+      <tr>
+        <td><%= link_to eventplanner.name, eventplanner %> </td>
+        <td><%= Category.get_name(eventplanner.category_id) %></td>
+        <td><%= eventplanner.eventplates.count %></td>
+        <td>
+        <%= link_to 'Edit', edit_eventplanner_path(eventplanner) %> | 
+        <%= link_to 'Destroy', eventplanner, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New event plan', new_eventplanner_path %>
+</div>
+</div>

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Eventplanner:</strong>
+  <%= @eventplate.eventplanner_id %>
+</p>
+
+<p>
+  <strong>Plate:</strong>
+  <%= @eventplate.plate_id %>
+</p>
+
+<p>
+  <strong>Covers:</strong>
+  <%= @eventplate.covers %>
+</p>
+
+<p>
+  <strong>Over ride price:</strong>
+  <%= @eventplate.over_ride_price %>
+</p>
+
+<%= link_to 'Edit', edit_eventplate_path(@eventplate) %> |
+<%= link_to 'Back', eventplates_path %>

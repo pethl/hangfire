@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Eventplanner:</strong>
+  <%= @eventproduct.eventplanner_id %>
+</p>
+
+<p>
+  <strong>Product:</strong>
+  <%= @eventproduct.product_id %>
+</p>
+
+<p>
+  <strong>Covers:</strong>
+  <%= @eventproduct.covers %>
+</p>
+
+<p>
+  <strong>Over ride price:</strong>
+  <%= @eventproduct.over_ride_price %>
+</p>
+
+<%= link_to 'Edit', edit_eventproduct_path(@eventproduct) %> |
+<%= link_to 'Back', eventproducts_path %>

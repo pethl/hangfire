@@ -1,0 +1,56 @@
+<h3>EVENT : <%= Category.where(id: @eventplanner.category_id).first.name %> / <strong><%= @eventplanner.name %></strong></h3>
+
+<div class="row">
+<div class="col-xs-6 col-md-10  col-md-offset-1">
+
+<% if @eventplates.any? %>
+  
+  <table class="table">
+   <thead>
+    <tr>
+      <th>Plate(s)</th>
+      <th>Covers</th>
+      <th>Plate<br>Cost</th>
+      <th>Plate<br> Price</th>      
+      <th>Override<br>Price</th>
+      <th style="text-align:right">Total Revenue</th>
+      <th style="text-align:right">Total Profit</th>
+  </tr>
+  <tbody>
+    <% @eventplates.each do |eventplate| %>
+      <tr>
+      <td><%= link_to (Plate.get_name(eventplate.plate_id)), plate_path(eventplate.plate_id)%>: </td>
+      
+      <td><%= eventplate.covers %></td>
+      
+      <td><%= currency_format(get_plate_cost(eventplate.plate_id)) %></td>
+     
+      <td><%= get_plate_price_formatted(eventplate.plate_id) %></td>
+      
+      <td><% if !eventplate.over_ride_price.blank? %>
+        <strong><%= currency_format(eventplate.over_ride_price) %></strong>
+        <% end %></td>
+      
+      <td style="text-align:right">
+      <%= get_total_revenue_formatted(eventplate.covers,eventplate.over_ride_price,eventplate.plate_id) %></td>
+
+      <td style="text-align:right">
+     <%= get_total_profit_formatted(eventplate.covers,eventplate.over_ride_price,eventplate.plate_id) %></td>
+      
+      </tr>
+      <% end %>
+</tbody>
+    <tr>
+      <td><strong>Summary: </strong></td>
+      <td><%= @eventplates.sum("covers") %> </td>
+       <td><%=  %> </td>
+      <td><%= %> </td>
+      <td><%= %></td>      
+    </tr>
+</table>
+<% else %>
+  <% end %>
+
+
+  <%= link_to 'Edit', edit_eventplanner_path(@eventplanner) %> |
+  <%= link_to '>> see all event plans', eventplanners_path %>

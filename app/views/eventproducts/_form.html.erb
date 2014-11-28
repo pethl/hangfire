@@ -1,0 +1,33 @@
+<%= form_for(@eventproduct) do |f| %>
+  <% if @eventproduct.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@eventproduct.errors.count, "error") %> prohibited this eventproduct from being saved:</h2>
+
+      <ul>
+      <% @eventproduct.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :eventplanner_id %><br>
+    <%= f.number_field :eventplanner_id %>
+  </div>
+  <div class="field">
+    <%= f.label :product_id %><br>
+    <%= f.number_field :product_id %>
+  </div>
+  <div class="field">
+    <%= f.label :covers %><br>
+    <%= f.number_field :covers %>
+  </div>
+  <div class="field">
+    <%= f.label :over_ride_price %><br>
+    <%= f.text_field :over_ride_price %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

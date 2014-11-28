@@ -1,4 +1,12 @@
 Hangfire::Application.routes.draw do
+  resources :eventplates
+
+  resources :eventproducts
+
+  resources :eventplanners do
+    	resources :eventplates
+  	end
+
   resources :plates do
     	resources :productlinks
   	end

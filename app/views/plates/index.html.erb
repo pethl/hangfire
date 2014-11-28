@@ -2,6 +2,9 @@
 <%= link_to '+ add new plate', new_plate_path %>
 <% @plates_by_category.each do |category_id, plates| %>
 
+  <div class="row">
+  <div class="col-xs-6 col-md-10  col-md-offset-1">
+
 <h3><%= Category.where(:id => category_id).first.name %></h3>
 
 <table class="table table-bordered table-striped">
@@ -44,5 +47,5 @@
 </table>
 <% end %>
 <br>
-
+</div></div>
 

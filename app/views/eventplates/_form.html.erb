@@ -1,0 +1,33 @@
+<%= form_for(@eventplate) do |f| %>
+  <% if @eventplate.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@eventplate.errors.count, "error") %> prohibited this eventplate from being saved:</h2>
+
+      <ul>
+      <% @eventplate.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :eventplanner_id %><br>
+    <%= f.number_field :eventplanner_id %>
+  </div>
+  <div class="field">
+    <%= f.label :plate_id %><br>
+    <%= f.number_field :plate_id %>
+  </div>
+  <div class="field">
+    <%= f.label :covers %><br>
+    <%= f.number_field :covers %>
+  </div>
+  <div class="field">
+    <%= f.label :over_ride_price %><br>
+    <%= f.text_field :over_ride_price %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

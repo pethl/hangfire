@@ -1,4 +1,5 @@
 class ProductlinksController < ApplicationController
+  
   def create
     
     product = Product.where(:id => params[:productlink_id])
