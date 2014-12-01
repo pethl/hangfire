@@ -4,12 +4,10 @@ module ProductsHelper
     @product_categories_to_add = [15,19]
   end
 
-
 #this counts how many ingredients linked to a product
   def get_ingredients_count(id)
     return Productitem.where(:product_id => id).count
   end
-
 
 #this returns the cost of ingredients linked to a product, based on productitem weights 
   def get_ingredients_cost(id)
@@ -41,8 +39,7 @@ module ProductsHelper
          else
            productitem.unit_count * (Ingredient.get_unit_weight(productitem.ingredient_id))
          end
-       end
-   
+       end  
   end
   
   def get_all_ingredients_price_per_gram(id)
@@ -50,7 +47,6 @@ module ProductsHelper
         (Product.get_total_price(id))/(Product.get_total_weight(id))
       end
   end
-  
   
   def get_ratio_formatted(productitem_volume, product_id)
     original_product_total_weight = Product.get_total_weight(product_id)
@@ -75,7 +71,7 @@ module ProductsHelper
   end
   
   def get_product_price_per_gram(product_id)
-    ppg = Product.get_total_price(product_id)/Product.get_total_weight(product_id)
+    ppg = get_items_cost(product_id)/Product.get_total_weight(product_id)
     return number_with_precision((ppg), :precision => 2)
   end
   
@@ -115,6 +111,19 @@ module ProductsHelper
     end
   end
 
+  #returns the plate names of all plates that use a given product
+  def related_product(product)
+    @products = Friendship.where(:product_id => product.id).map {|x| [x.friend_id]}
+    @products = @products.uniq
+  end
+  
+  def related_product_count(product)
+    @products = Friendship.where(:product_id => product.id).map {|x| [x.friend_id]}
+    if @products.any?
+      @products = @products.uniq
+      return @products.count
+    end
+  end
   def shauna_format(product)
      if product.shauna.blank?
        return "No"
