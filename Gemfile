@@ -12,7 +12,6 @@ gem 'capistrano-rails', group: :development
 
 gem 'pg', '0.17.1'
 
-gem 'heroku'
 gem 'rails_12factor', group: :production
 gem 'best_in_place', github: 'aaronchi/best_in_place'
 
