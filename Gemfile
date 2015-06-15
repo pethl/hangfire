@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby "1.9.3"
+ruby "2.2.2"
 gem 'rails', '4.1.6'
 gem 'bcrypt-ruby', '~> 3.1.5'
 
@@ -13,6 +13,7 @@ gem 'capistrano-rails', group: :development
 gem 'pg', '0.17.1'
 
 gem 'heroku'
+gem 'certified', '~> 1.0.0'
 gem 'rails_12factor', group: :production
 gem 'best_in_place', github: 'aaronchi/best_in_place'
 
