@@ -1,0 +1,17 @@
+<fieldset>
+
+<table>
+  <tbody>
+  <tr>
+  <td><%= i_id = f.collection_select :saleproduct_id, (Saleproduct.all.sort_by { |h| h[:name] }), :id, :name,  :prompt => true %></td>
+  <td><%= i_id = f.text_field :sale_product_id%>
+  <td><%= f.text_field :id %></td>
+  <td><%= f.text_field :saleproduct_id %></td>
+  <td><%= f.text_field :item_price %></td>
+  <td><%= f.text_field :item_price %></td>
+  <td><center> <%= f.text_field :quantity %> </center></td>
+  </tr>
+  </tbody>
+</table>
+
+</fieldset>

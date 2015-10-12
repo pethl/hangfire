@@ -10,13 +10,20 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js">
         </script>
       <![endif]-->
+      <!-- Custom styles for this template -->
+         <link href="dashboard.css" rel="stylesheet">
 </head>
 <body>
 <div class="container-fluid">
-	<%= render 'layouts/header' %>
-</div>
-<%= render 'layouts/messages' %>
+  <%= render 'layouts/header' %>
+
+  <%= render 'layouts/messages' %>
+
+    
+    
 <%= yield %>
+
+
 
 </body>
 

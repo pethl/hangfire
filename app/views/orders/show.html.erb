@@ -1,0 +1,104 @@
+
+<div class="masthead">
+<div class="container-fluid">
+<div class="row">
+<div class="col-md-6 col-md-offset-3  "> 
+
+<table class="table">
+
+<tr>
+<H2>
+   <%= @order.contact_person %>
+</H2>
+</tr>
+
+<tr>
+<td><strong>Phone:</strong>  <%= @order.phone %> | <strong>Email:</strong>  <%= @order.email %></td>
+</tr>
+
+<tr>
+<td>
+<% if @order.marketing == true %>
+<h5>Sign me up for the Hang Fire Smokehouse newsletter</h5>
+<% else %>
+No newsletter for me thanks.
+<% end %>
+</tr>
+</table>
+
+
+<% if logged_in? %>
+  <h3>MANAGEMENT USE ONLY::  </h3>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="field">
+       <%= "Change status when order is collected:" %>
+        <strong><%= best_in_place @order, :status, :as => :select, :collection => %w(Open Paid Collected) %> </strong>
+         <%= "(Click on status to edit)" %>
+     </div>
+    </div>
+  </div>
+  <% end %>
+
+
+<% if @order.orderitems.any? %>
+  
+  <% if logged_in? %><h3>Customer Order:</h3><% else %><h3>Your Order:</h3><% end %>
+  <div class="panel panel-default">
+    <div class="panel-body">
+    <h5>Status:  <strong>  <%= @order.status %></strong></h5>
+    <strong>::IMPORTANT::</strong> Your collection date is <strong>  <%= @order.date_selector %></strong>
+  <br><br>
+  
+   <table class="table">
+   <tr>
+     <th>Quantity</th>
+     <th>Product</th>
+     <th>Unit Price</th>
+     <th class="text-right">Price</th>
+   </tr>
+  
+  <% for orderitem in @order.orderitems %>
+  
+  <% if orderitem.quantity > 0 %>
+    
+    <tr>
+    <td><%= h orderitem.quantity %></td>
+    <td><%= get_name(orderitem.saleproduct_id) %></td>
+    <td>(<%= orderitem.quantity %> @ <%= get_price_currency(orderitem.saleproduct_id) %>)</td>
+    <td class="text-right"><%= number_to_currency(orderitem.quantity*get_price(orderitem.saleproduct_id)) %></td>
+    </tr>
+  <% else %>
+  <% end %>
+
+  <% end %>
+  <tr>
+  <td></td>
+  <td></td>
+  <td><strong>Total Price: </strong></td>
+  <td class="text-right"><strong><%= get_order_total_currency(@order.id) %></strong></td>
+  </tr>
+  </table>
+ 
+  <% else %>
+  no order item records
+  <% end %>
+ 
+  <% if @order.status == "Open" %>
+    <h5>If you order is correct please progress to payment, otherwise click <%= link_to 'here', edit_order_path(@order) %> to edit </h5>
+    <center>
+    <%= form_tag payment_orders_path, multipart: true, :class => "form-inline" do %>
+      <%= submit_tag "Pay for my order", name: nil, class: "btn btn-success" %>   
+      <% end %>
+    </center>
+ 
+  <% elsif @order.status == "Paid" %>
+    <h5>Thanks for making your online payment, looking forward to seeing you on the <%= @order.date_selector%>.</h5>
+  <% end %>
+  
+  </div></div>
+  
+
+
+</div></div>
+</div></div>

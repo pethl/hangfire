@@ -1,0 +1,146 @@
+<br>
+
+<%= form_for(@order) do |f| %>
+  <% if @order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+      <ul>
+      <% @order.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+<div class="masthead">
+<div class="container-fluid">
+<div class="row">
+<div class="col-md-8 col-md-offset-2"> 
+
+<% if logged_in? %>
+  <h3>MANAGEMENT USE ONLY::  </h3>
+  <div class="panel panel-default">
+    <div class="panel-body">
+    <table>
+    <tr>
+    <td>
+      <div class="field">
+       <%= f.label :status, "Change status when order is collected:" %>
+        <%= f.select(:status, Order::ORDER_STATUS_TYPES) %>
+     </div>
+     </td>
+    
+    <td class="text-right">
+      <div class="actions">
+       <%= f.submit "Save change" %>
+       </div>
+     </td>
+    </tr>
+    </table>
+    </div>
+  </div>
+  <% end %>
+
+
+<div>
+<h3>1) Choose a pickup date:</h3>
+<div class="panel panel-default">
+  <div class="panel-body">
+   <div class="field">
+    <%= f.label :date_selector, "Please choose a date to collect your order ..." %>
+     <%= f.select(:date_selector, Order::COLLECTION_DATE_TYPES, :prompt => true, :include_blank => true) %>
+   </div>
+  </div>
+</div>
+</div>
+
+<div>
+<h3>2) Place your order:</h3>
+<div class="panel panel-default">
+  <div class="panel-body">
+  <strong>Please enter quantity for items you require</strong><br><br>
+  
+  <% if @order.orderitems.any? %>
+    <table class="table">
+    
+    <tr>
+    <th>Product</th>
+    <th>Weight</th>
+    <th><center>Stock<br>Available</center></th>
+    <th class="text-right">Price</th>
+    <th class="text-right">Quantity</center></th>
+    </tr>
+    
+    <%= f.fields_for :orderitems do |ff| %>
+      <div>
+      <tr>
+        <td><%= Saleproduct.where(:id => (ff.object.saleproduct_id)).first.name %></td>
+        <td><%= Saleproduct.where(:id => (ff.object.saleproduct_id)).first.weight %></td>
+        <td><center><%= Saleproduct.where(:id => (ff.object.saleproduct_id)).first.remaining_quanity %></center></td>
+        <td class="text-right"><%= number_to_currency(Saleproduct.where(:id => (ff.object.saleproduct_id)).first.price) %></td>
+        <td class="text-right"><%= ff.number_field :quantity, :style => "width: 50px;" %></td>
+      </div>
+      </tr>
+    <% end %>
+    </table>
+    
+  <% else %>
+  Error No Records
+  <% end %>
+  
+  </div>
+</div>
+</div>
+
+
+<div>
+<h3>3) Contact Details:</h3>
+<div class="panel panel-default">
+  <div class="panel-body">
+   These details are private and confidential.
+   We'll only use them if we need to contact you about your order.<br>
+   We promise never to pass them onto a third party.<br><br>
+   <table>
+   <tr>
+   <td> <%= f.label :contact_person, :style => "width: 160px;" %></td>
+   <td> <%= f.text_field :contact_person, :style => "width: 200px;" %></td>
+    </tr>
+     <tr>
+     <td>  <%= f.label :phone %></td>
+     <td> <%= f.text_field :phone, :style => "width: 200px;" %></td>
+     </tr>
+     <tr>
+     <td>  <%= f.label :email %></td>
+     <td> <%= f.text_field :email, :style => "width: 250px;" %></td>
+     </tr>
+      </table>
+      <br>
+    Would you like to receive updates from Hang Fire about future events and new offers. Promise we won't spam.
+     
+    <table>
+     <tr>
+     <td> <%= f.label :marketing, "Sign me up", :style => "width: 160px;" %></td>
+     <td> <%= f.check_box :marketing %></td>
+      </tr>
+    </table>
+    <br>
+    
+    <div class="actions">
+      <%= f.submit "Review Order" %>
+    </div>
+  <% end %>
+ 
+  </div>
+</div>
+</div>
+
+
+
+
+</div></div>
+</div></div>
+
+
+

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141128113328) do
+ActiveRecord::Schema.define(version: 20151010140718) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,36 +71,6 @@ ActiveRecord::Schema.define(version: 20141128113328) do
     t.decimal  "prodvolume"
   end
 
-  create_table "hf_product_items", force: true do |t|
-    t.integer  "hf_product_id"
-    t.integer  "ingredient_id"
-    t.decimal  "vol"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "hf_products", force: true do |t|
-    t.string   "name"
-    t.text     "desc"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "hfproductitems", force: true do |t|
-    t.integer  "hfproduct_id"
-    t.integer  "ingredient_id"
-    t.decimal  "vol"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "hfproducts", force: true do |t|
-    t.string   "name"
-    t.text     "desc"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "ingredients", force: true do |t|
     t.string   "name"
     t.integer  "category_id"
@@ -118,6 +88,28 @@ ActiveRecord::Schema.define(version: 20141128113328) do
     t.integer  "quantity"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "orderitems", force: true do |t|
+    t.integer  "order_id"
+    t.integer  "saleproduct_id"
+    t.integer  "quantity"
+    t.decimal  "item_price"
+    t.decimal  "total_price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "orders", force: true do |t|
+    t.date     "collection_date"
+    t.string   "contact_person"
+    t.boolean  "marketing"
+    t.string   "phone"
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "date_selector"
+    t.string   "status"
   end
 
   create_table "plates", force: true do |t|
@@ -154,6 +146,18 @@ ActiveRecord::Schema.define(version: 20141128113328) do
     t.datetime "updated_at"
     t.integer  "category_id"
     t.boolean  "shauna"
+  end
+
+  create_table "saleproducts", force: true do |t|
+    t.string   "name"
+    t.integer  "stock_quantity"
+    t.integer  "remaining_quanity"
+    t.decimal  "price",             precision: 16, scale: 2
+    t.string   "weight"
+    t.integer  "category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "status"
   end
 
   create_table "users", force: true do |t|

@@ -15,4 +15,9 @@ class StaticPagesController < ApplicationController
   def help
   end
   
+  def xmas_order
+    @saleproducts = Saleproduct.all
+  end
+  
+
 end

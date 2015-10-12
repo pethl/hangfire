@@ -1,0 +1,60 @@
+<br>
+
+<div class="masthead">
+<div class="container-fluid">
+<div class="row">
+<div class="col-md-8 col-md-offset-2"> 
+<h2>Hang Fire Christmas Orders</h2>
+<br>
+<div>
+<center>
+  <%= form_tag dothat_orders_path, multipart: true, :class => "form-inline" do %>
+    <%= submit_tag "Place order now", name: nil, class: "btn btn-success" %>   
+    <% end %>
+</center>
+
+<h3>1) Order collection:</h3>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+  
+   <p>Orders will be available for collection on 21st, 22nd or 23rd of December from our shop in Llantwit Major, 10am - 6pm.</p>
+  </div>
+</div>
+</div>
+
+
+<h3>2) Contact Details:</h3>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+  <p>
+   We'll only need a few details in case we need to contact you about your order.<br>
+   We promise to protect them and never to pass them onto a third party.
+  </p>
+  </div>
+</div>
+
+<div>
+
+
+<h3>3) Products available:</h3>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+   <p>Products have limited availability, when they are gone, they're gone. </p>
+     <%= render 'saleproducts/saleproductlist' %>
+  </div>
+</div>
+</div>
+
+<div>
+<center>
+  <%= form_tag dothat_orders_path, multipart: true, :class => "form-inline" do %>
+    <%= submit_tag "Place order now", name: nil, class: "btn btn-success" %>   
+    <% end %>
+</center>
+<br>
+</div>
+</div></div>
+</div></div>

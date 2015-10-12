@@ -1,0 +1,54 @@
+<%= form_for(@saleproduct) do |f| %>
+  <% if @saleproduct.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@saleproduct.errors.count, "error") %> prohibited this saleproduct from being saved:</h2>
+
+      <ul>
+      <% @saleproduct.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="masthead">
+  <div class="container-fluid">
+  <div class="row">
+  <div class="col-md-8 col-md-offset-2"> 
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :stock_quantity %><br>
+    <%= f.number_field :stock_quantity %>
+  </div>
+  <div class="field">
+    <%= f.label :remaining_quanity %><br>
+    <%= f.number_field :remaining_quanity %>
+  </div>
+  <div class="field">
+    <%= f.label :price %><br>
+    <%= f.text_field :price %>
+  </div>
+  <div class="field">
+    <%= f.label :weight %><br>
+    <%= f.text_field :weight %>
+  </div>
+  <div class="field">
+    <%= f.label :category_id %><br>
+    <%= f.number_field :category_id %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br>
+    <%= f.select(:status, Saleproduct::STATUS_TYPES, :value => "Live") %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Create Product for Sale" %>
+  </div>
+<% end %>
+  </div>
+    </div>
+      </div>  
+      </div>

@@ -1,0 +1,23 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th><center>Quantity Available</center></th>
+      <th><center>Pack Weight</center></th>
+      <th class="text-right">Price</th>
+      
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @saleproducts.each do |saleproduct| %>
+      <tr>
+        <td><%= saleproduct.name %></td>
+        <td><center><%= saleproduct.remaining_quanity %></center></td>
+        <td><center><%= saleproduct.weight %></center></td>
+        <td align="right"><%= number_to_currency(saleproduct.price) %></td>
+        
+      </tr>
+    <% end %>
+  </tbody>
+</table>

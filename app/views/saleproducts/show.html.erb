@@ -1,0 +1,48 @@
+<div class="masthead">
+<div class="container-fluid">
+<div class="row">
+<div class="col-md-8 col-md-offset-2"> 
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @saleproduct.name %>
+</p>
+
+<p>
+  <strong>Stock quantity:</strong>
+  <%= @saleproduct.stock_quantity %>
+</p>
+
+<p>
+  <strong>Remaining quanity:</strong>
+  <%= @saleproduct.remaining_quanity %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @saleproduct.price %>
+</p>
+
+<p>
+  <strong>Weight:</strong>
+  <%= @saleproduct.weight %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @saleproduct.status %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @saleproduct.category_id %>
+</p>
+
+<%= link_to 'Edit', edit_saleproduct_path(@saleproduct) %> |
+<%= link_to 'View List', saleproducts_path %>
+</div>
+  </div>
+    </div>  
+    </div>

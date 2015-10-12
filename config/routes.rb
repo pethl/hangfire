@@ -1,4 +1,10 @@
 Hangfire::Application.routes.draw do
+  resources :orderitems
+
+  resources :saleproducts
+
+  resources :orders
+
   resources :eventplates
 
   resources :eventproducts
@@ -38,11 +44,25 @@ Hangfire::Application.routes.draw do
      		resources :friendships
    		end
   
+  resources :orders do
+        collection { post :dothat }
+   end
+  
+   resources :orders do
+         collection { post :payment }
+    end
+    
+    resources :saleproducts do
+       		 collection { post :import }
+      	end
+    
+  
   resources :users
   
    get '/home' => 'static_pages#home'
    get '/help' => 'static_pages#help'
    get '/dashboard' => 'static_pages#dashboard'
+  get '/xmas_order' => 'static_pages#xmas_order'
   
   resources :sessions, only: [:new, :create, :destroy]
 
@@ -57,7 +77,7 @@ Hangfire::Application.routes.draw do
      get "static_pages/home"
      get "static_pages/help"
      get "static_pages/dashboard"
-
+     get "static_pages/xmas_order"
 
   
 
