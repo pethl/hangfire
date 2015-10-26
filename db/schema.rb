@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151010140718) do
+ActiveRecord::Schema.define(version: 20151022075216) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -110,6 +110,22 @@ ActiveRecord::Schema.define(version: 20151010140718) do
     t.datetime "updated_at"
     t.string   "date_selector"
     t.string   "status"
+    t.datetime "puchased_at"
+    t.datetime "purchased_at"
+    t.string   "guid"
+    t.string   "strip_id"
+    t.decimal  "total"
+    t.string   "permalink"
+  end
+
+  create_table "payment_notifications", force: true do |t|
+    t.text     "params"
+    t.string   "status"
+    t.string   "transaction_id"
+    t.integer  "cart_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "order_id"
   end
 
   create_table "plates", force: true do |t|

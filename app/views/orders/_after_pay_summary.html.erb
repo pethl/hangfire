@@ -1,0 +1,50 @@
+<% if order.orderitems.any? %>
+  
+  
+  
+  <div class="panel panel-default">
+    <div class="panel-body">
+  
+  <% if logged_in? %><h3>Order for <%= order.contact_person%> : </h3>
+    
+    <% else %><h3>What did I order?</h3><% end %>
+   <table class="table">
+   <tr>
+     <th>Quantity</th>
+     <th>Product</th>
+     <th>Unit Price</th>
+     <th class="text-right">Price</th>
+   </tr>
+  
+  <% for orderitem in order.orderitems %>
+  
+  <% if orderitem.quantity > 0 %>
+    
+    <tr>
+    <td><%= h orderitem.quantity %></td>
+    <td><%= get_name(orderitem.saleproduct_id) %></td>
+    <td>(<%= orderitem.quantity %> @ <%= get_price_currency(orderitem.saleproduct_id) %>)</td>
+    <td class="text-right"><%= number_to_currency(orderitem.quantity*get_price(orderitem.saleproduct_id)) %></td>
+    </tr>
+  <% else %>
+  <% end %>
+
+  <% end %>
+  <tr>
+  <td></td>
+  <td></td>
+  <td><strong>Total Price: </strong></td>
+  <td class="text-right"><strong><%= get_order_total_currency(@order.id) %></strong></td>
+  </tr>
+  </table>
+ 
+  <% else %>
+  no order item records
+  <% end %>
+  <table>
+  <tr><td>Status:</td><td><strong>  <%= order.status %></strong> </td></tr>
+  <tr><td>Ref:</td><td><strong>  <%= order.guid %></strong> </td></tr>
+  <tr><td>Collection:</td><td><strong>  <%= order.date_selector %></strong> </td></tr>
+  </table>
+ 
+ 

@@ -8,6 +8,7 @@ GIT
 
 GEM
   remote: https://rubygems.org/
+  remote: https://code.stripe.com/
   specs:
     actionmailer (4.1.6)
       actionpack (= 4.1.6)
@@ -24,6 +25,11 @@ GEM
       activesupport (= 4.1.6)
       builder (~> 3.1)
       erubis (~> 2.7.0)
+    activemerchant (1.54.0)
+      activesupport (>= 3.2.14, < 5.0.0)
+      builder (>= 2.1.2, < 4.0.0)
+      i18n (>= 0.6.9)
+      nokogiri (~> 1.4)
     activemodel (4.1.6)
       activesupport (= 4.1.6)
       builder (~> 3.1)
@@ -98,6 +104,8 @@ GEM
       factory_girl (~> 2.3.0)
       railties (>= 3.0.0)
     ffi (1.9.8)
+    figaro (1.1.1)
+      thor (~> 0.14)
     heroku (3.37.7)
       heroku-api (>= 0.3.19)
       launchy (>= 0.3.2)
@@ -196,6 +204,9 @@ GEM
       colorize (>= 0.7.0)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
+    stripe (1.30.2)
+      json (~> 1.8.1)
+      rest-client (~> 1.4)
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (1.4.1)
@@ -216,6 +227,7 @@ PLATFORMS
 
 DEPENDENCIES
   actionpack-action_caching
+  activemerchant
   activerecord-session_store
   activeresource
   autoprefixer-rails
@@ -228,6 +240,7 @@ DEPENDENCIES
   certified (~> 1.0.0)
   coffee-rails
   factory_girl_rails (= 1.4.0)
+  figaro
   heroku
   jquery-rails
   minitest
@@ -239,4 +252,5 @@ DEPENDENCIES
   rspec-rails (= 2.13.1)
   sass-rails (>= 3.2)
   selenium-webdriver (= 2.35.1)
+  stripe
   uglifier (>= 1.0.3)

@@ -1,0 +1,79 @@
+<% if order.orderitems.any? %>
+  
+  <div class="panel panel-default">
+  <div class="panel-body">
+  
+  <table class="table">
+  <tr>
+  <th class="text-left"><h4>Reference: <strong><%= order.guid %></strong></h4></th>
+
+  <th class="text-right"><h4>Status: <strong><%= order.status %></strong></h4></th>
+  </tr>
+  <tr>
+  <td class="text-center"><strong>:: IMPORTANT ::</strong></td>
+  <td class="text-left"> Your collection date is <strong><%= order.date_selector %></strong>
+ </td>
+  </tr>
+  </table>
+
+  
+   <table class="table table-hover">
+       <tr>
+         <th>Quantity</th>
+         <th>Product</th>
+         <th>Unit Price</th>
+         <th class="text-right">Price</th>
+       </tr>
+  
+  <% for orderitem in order.orderitems %>  
+    <% if orderitem.quantity > 0 %>
+      <tr>
+        <td><%= h orderitem.quantity %></td>
+        <td><%= get_name(orderitem.saleproduct_id) %></td>
+        <td>(<%= orderitem.quantity %> @ <%= get_price_currency(orderitem.saleproduct_id) %>)</td>
+        <td class="text-right"><%= number_to_currency(orderitem.quantity*get_price(orderitem.saleproduct_id)) %></td>
+      </tr>
+    <% else %>
+    <% end %>
+  <% end %>
+  
+  <tr>
+      <td></td>
+      <td></td>
+      <td><strong>Total Price: </strong></td>
+      <td class="text-right"><strong><%= get_order_total_currency(order.id) %></strong></td>
+  </tr>
+  </table>
+ 
+  <% else %>
+  no order item records
+  <% end %>
+  <h5>If your order is correct please progress to payment, otherwise click <%= link_to 'here', edit_order_path(order) %> to edit order. </h5>
+ 
+  <table class="table">
+  <tr>
+  <td>
+ <%= form_tag buy_path(guid: order.guid) do %>
+   <script src="https://checkout.stripe.com/v2/checkout.js"
+     class="stripe-button"
+     data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+     data-name="Hang Fire Smokehouse"
+     data-description="Christmas Order"
+     data-email=<%= order.email%>
+     data-amount="<%= (get_order_total(order.id)*100) %>"
+     data-currency="GBP"
+     data-image="images/HFlogo.png"
+     data-allow-remember-me=false
+     data-locale="auto">
+     </script>
+ <% end %>
+ </td>
+ <td class="text-right"><%= image_tag("dark_solid/solid.png", :alt => "Powered by Stripe")  %>
+</td>
+ </tr>
+ </table>
+
+  
+
+</div></div>
+

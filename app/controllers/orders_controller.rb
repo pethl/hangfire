@@ -1,30 +1,25 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
    before_action :signed_in_user, only: [:index]
+   respond_to :html, :json
 
   def dothat
-     @order = Order.create(date_selector: "Select a date", contact_person: "your name", phone: "your phone number", email: "your@email.com", status: "Open")
+  @order = Order.create(status: "Open", total: 0, date_selector: "Select a date")
       @order.save
-       n = Saleproduct.all.count
-       @saleproduct = Saleproduct.pluck(:id)
+  
+       n = Saleproduct.where(:status => "Live").count
+       @saleproduct = Saleproduct.where(:status => "Live").pluck(:id)
        while n> 0 do
          Orderitem.create(:order_id => @order.id, :saleproduct_id => @saleproduct[n-1], :quantity => 0 ).save
          n = n-1
        end
-     redirect_to edit_order_path(@order), notice: 'Please enter quantities for items you want to order.'
+     redirect_to edit_new_order_path(guid: @order.guid)
    end
-  
-  
-   def payment
-     #do some code here for paypal
-      redirect_to :back, notice: 'Thanks your order has been placed, you will receive an email when everything is confirmed.'
-    end
-  
   
   # GET /orders
   def index
     # @orders = Order.all
-    @orders_by_status = Order.all.group_by { |t| t.status }
+    @orders_by_status = Order.all.group_by { |t| t.status }   
   end
 
   # GET /orders/1
@@ -60,11 +55,12 @@ class OrdersController < ApplicationController
 
   # PATCH/PUT /orders/1
   def update
-    if @order.update(order_params)
-      redirect_to @order, notice: 'Please review your order and personal details before making payment.'
-    else
-      render :edit
-    end
+      if @order.update(order_params)
+       redirect_to @order, notice: 'Please review your order and personal details before making payment.'
+      else
+        render :edit
+      end
+   
   end
 
   # DELETE /orders/1
@@ -76,11 +72,14 @@ class OrdersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order
-      @order = Order.find(params[:id])
+      @order = Order.find_by!(
+      guid: params[:guid]
+    )
     end
 
     # Only allow a trusted parameter "white list" through.
     def order_params
-      params.require(:order).permit(:collection_date, :contact_person, :marketing, :phone, :email, :status, :date_selector, orderitems_attributes:[:_destroy, :id, :order_id, :saleproduct_id, :quantity, :item_price, :total_price])
-    end
+      params.require(:order).permit(:collection_date, :contact_person, :marketing, :phone, :email, :status, :date_selector, :guid, :stripe_id, :total, :permalink, orderitems_attributes:[:_destroy, :id, :order_id, :saleproduct_id, :quantity, :item_price, :total_price])
+    end 
+    
 end

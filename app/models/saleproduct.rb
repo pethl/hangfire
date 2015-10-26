@@ -7,7 +7,7 @@ class Saleproduct < ActiveRecord::Base
   validates :remaining_quanity, presence: true 
   validates :status, presence: true   
  
-  STATUS_TYPES = ["Live", "Dead"]
+  STATUS_TYPES = ["Live", "Suspended"]
 
   
   def self.import(file)
@@ -17,10 +17,10 @@ class Saleproduct < ActiveRecord::Base
       end
   
   
-  after_initialize :init
+#  after_initialize :init
 
-     def init
-       self.remaining_quanity = self.stock_quantity          
-      
-     end
+#     def init
+#       self.remaining_quanity = self.stock_quantity          
+#           end
+
 end

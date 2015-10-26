@@ -2,8 +2,8 @@
 <html>
   <head>
     <title>Hangfire Smokehoue</title>
-<body><center><h1>HANGFIRE SMOKEHOUSE</center></h1></body>
-<center><h3>SOUTHERN STYLE BARBECUE</h3></center>
+<body><center><%= image_tag "HF-Logo-Lndscape.jpg", size: "800x200" %></center></body>
+
 <br>
 <br>
 <center><button type="button" class="btn btn-success"><%= link_to "Christmas Orders", static_pages_xmas_order_path %></button>
@@ -12,7 +12,13 @@
 <br>
   <% if logged_in? %>
     <table class= "table">
-     
+    <tr>
+     <td>-</td>
+      <td><center><a href="/saleproducts">Christmas Products</a></center></td>
+      <td><center><a href="/orders ">Christmas Orders</a></center></td>
+      <td><center><a href="/static_pages/xmas_order ">Place Christmas Order</a></center></td>
+      <td>-</td>
+    </tr> 
     <tr>
      <td>-</td>
       <td><center><a href="/static_pages/dashboard">Dashboard</a></center></td>

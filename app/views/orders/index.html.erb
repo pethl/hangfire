@@ -6,29 +6,36 @@
 <table class="table">
   <thead>
     <tr>
-       <th>Date Created</th>
+      <th>Created at</th>
+      <th>Paid at</th>
       <th>Collection date</th>
-      <th>Contact person</th>
-      <th>Contact</th>
-      <th>Items Count</th>
-      <th colspan="3"></th>
+      <th>Name</th>
+      <th>Contact Details</th>
+      <th>Items</th>
+       <th class="text-right">Total</th>
+      <th colspan="1"></th>
     </tr>
   </thead>
 
   <tbody>
-      <% orders = orders.sort_by { |h| h[:contact_person]} %>
+      <% orders = orders.sort_by { |h| h[:date_selector]} %>
         <% orders.each do |order| %>  
       
       <tr>
     
-      <td><%= order.created_at.strftime('%d/%m/%Y') %></td>
+      <td><%= order.created_at.strftime('%d %b ''%y,%H:%M') %></td>
+      <% if order.purchased_at.blank? %>
+        <td></td>
+      <% else %>
+        <td><%= order.purchased_at.strftime('%d %b ''%y,%H:%M') %></td>
+      <% end%>        
         <td><%= order.date_selector %></td>
         <td><%= order.contact_person %></td>
         <td><%= order.phone %> | <%= order.email %></td>
         <td><%= get_count(order.id) %></td>
-        <td><%= link_to 'Show', order %></td>
-        <td><%= link_to 'Edit', edit_order_path(order) %></td>
-        <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="text-right"><%= get_order_total_currency(order.id) %></td>
+        <td><%= link_to 'Show', show_order_path(guid: order.guid) %> | 
+        <%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

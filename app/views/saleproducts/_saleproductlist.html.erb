@@ -10,13 +10,20 @@
   </thead>
 
   <tbody>
+ 
     <% @saleproducts.each do |saleproduct| %>
       <tr>
         <td><%= saleproduct.name %></td>
-        <td><center><%= saleproduct.remaining_quanity %></center></td>
-        <td><center><%= saleproduct.weight %></center></td>
+        <% if saleproduct.remaining_quanity > 0 %>
+        <td align="center"><%= saleproduct.remaining_quanity %></center></td>
+        <td align="center"><%= saleproduct.weight %></center></td>
         <td align="right"><%= number_to_currency(saleproduct.price) %></td>
+        <% else %>
+        <td align="center"><a>SOLD OUT</a></td>
+        <td align="center"><a>SOLD OUT</a></td>
+        <td align="right"><a>SOLD OUT</a></td>
         
+        <% end %>
       </tr>
     <% end %>
   </tbody>

@@ -10,7 +10,9 @@ class SaleproductsController < ApplicationController
   
   # GET /saleproducts
   def index
-    @saleproducts = Saleproduct.all
+    @saleproducts_unsorted = Saleproduct.all
+    @saleproducts = @saleproducts_unsorted.sort_by { |h| h[:id]}
+    
   end
 
   # GET /saleproducts/1

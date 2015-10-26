@@ -6,6 +6,7 @@
       <th>Product<br>Name</th>
       <th class="text-right">Stock<br>quantity</th>
       <th class="text-right">Remaining<br>quanity</th>
+      <th class="text-right">% Sold</th>
       <th class="text-right">Unit<br>Price</th>
       <th class="text-center">Unit<br>Weight</th>
       <th class="text-center">Product<br>Status</th>
@@ -14,11 +15,13 @@
   </thead>
 
   <tbody>
+  
     <% @saleproducts.each do |saleproduct| %>
       <tr>
         <td><%= saleproduct.name %></td>
         <td class="text-right"><%= saleproduct.stock_quantity %></td>
         <td class="text-right"><%= saleproduct.remaining_quanity %></td>
+        <td class="text-right"><%= number_to_percentage((percentage_sold(saleproduct)), precision: 0) %></td>
         <td class="text-right"><%= number_to_currency(saleproduct.price) %></td>
         <td class="text-center"><%= saleproduct.weight %></td>
         <td class="text-center"><%= saleproduct.status %></td>

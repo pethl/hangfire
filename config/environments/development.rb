@@ -36,4 +36,12 @@ Hangfire::Application.configure do
   config.assets.debug = true
   
   config.eager_load = false
+  
+  config.after_initialize do
+      ActiveMerchant::Billing::Base.mode = :test
+    end
+  
+  config.action_mailer.default_url_options = {
+      :host => 'localhost:3000'
+    }
 end

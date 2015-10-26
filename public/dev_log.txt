@@ -1,0 +1,27 @@
+Dev Log
+
+To do
+(1_SS)- add note about ability to pay online by stripe at the pre order page
+(1_SS)- message prior to payment - please dont move from browser until confirmation message
+(1)- MGMT ONLY:best_in_place error, showing edit message and not updating screen - make a new show page for mgmt?
+
+
+(2)- error handling tests (done name, email, phone, data)
+(2)- add HF logo to site
+(2) - add validation to ensure order is greater than 3.49 = ie to ensure something has been ordered
+(3)- ability to search your order?
+(3)- send email to customer when order completed
+(3)- add HF logo to Stripe
+
+
+Done
+(1)- add powered by Stripe logo to all orders pages
+(1)- update orders/edit/form to mark product as sold out when remaining_quanity is zero on orderitems creation
+(2)- validation to ensure user name and details are complete and not spam
+
+
+Live testing
+- product load
+- images
+- payment/payment keys
+- email

@@ -16,7 +16,7 @@ class StaticPagesController < ApplicationController
   end
   
   def xmas_order
-    @saleproducts = Saleproduct.all
+    @saleproducts = Saleproduct.where(:status => "Live")
   end
   
 

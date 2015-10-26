@@ -3,8 +3,11 @@ Hangfire::Application.routes.draw do
 
   resources :saleproducts
 
-  resources :orders
 
+  resources :orders, param: :guid do
+        collection { post :dothat }
+   end
+   
   resources :eventplates
 
   resources :eventproducts
@@ -43,21 +46,21 @@ Hangfire::Application.routes.draw do
      		resources :items;
      		resources :friendships
    		end
-  
-  resources :orders do
-        collection { post :dothat }
-   end
-  
-   resources :orders do
-         collection { post :payment }
-    end
+   
+  resources :saleproducts do
+     		 collection { post :import }
+  	end
     
-    resources :saleproducts do
-       		 collection { post :import }
-      	end
-    
-  
   resources :users
+  
+
+  resources :charges
+  
+  get  '/buy/:guid', to: 'charges#new',      as: :show_buy
+  post '/buy/:guid', to: 'charges#create',   as: :buy
+  get '/paid/:guid', to: 'orders#show',   as: :paid  
+  get  '/show/:guid', to: 'orders#show',      as: :show_order
+  get  '/edit/:guid', to: 'orders#edit',      as: :edit_new_order
   
    get '/home' => 'static_pages#home'
    get '/help' => 'static_pages#help'

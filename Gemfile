@@ -1,10 +1,16 @@
 source 'https://rubygems.org'
+source 'https://code.stripe.com'
 ruby "2.2.2"
 gem 'rails', '4.1.6'
 gem 'bcrypt-ruby', '~> 3.1.5'
 
 gem 'capistrano-rvm',   group: :development
 gem 'capistrano-rails', group: :development
+
+gem 'activemerchant'
+gem 'stripe' # for payment via strip
+gem "figaro" # to help store and manage ENVs
+# gem "has_permalink" # give improved urls to hide id
 
 
 # Bundle edge Rails instead:

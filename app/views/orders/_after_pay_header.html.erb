@@ -1,0 +1,38 @@
+<% if logged_in? %>
+  <%= link_to 'Show all orders', orders_path %> 
+  
+  <h3>MANAGEMENT USE ONLY::</h3>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="field">
+       <p> Change status when order is collected: 
+        <strong><%= best_in_place @order, :status, :type => :select, :collection => Order::ORDER_STATUS_TYPES %></strong>
+          (Click on status to edit) </p>
+     </div>
+    </div>
+  </div>
+  <br>
+
+  <% else %>
+  <H2>
+    Thanks for your order  <%= order.contact_person %>!
+    </H2>
+    <br>
+  <H4>
+    You have paid and 
+    your order can be collected on <%= order.date_selector %>.
+     </H4>
+     <br>
+     <p>
+  If you have any further questions about your order please email us at <i><strong>hangfirebbq@gmail.com </i></strong>
+  and include your <strong>name</strong> and order reference :<strong><%= order.guid %></strong>.
+  </p>
+  <br>
+  <p>Click here to go to the  <strong><%= link_to "Hang Fire website", "http://hangfiresmokehouse.com" %> </strong></p>
+  <% end %>
+
+
+
+
+
+
