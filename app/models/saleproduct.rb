@@ -5,7 +5,8 @@ class Saleproduct < ActiveRecord::Base
   validates :price, presence: true 
   validates :weight, presence: true 
   validates :remaining_quanity, presence: true 
-  validates :status, presence: true   
+  validates :status, presence: true
+  validates :category_id, presence: true   
  
   STATUS_TYPES = ["Live", "Suspended"]
 

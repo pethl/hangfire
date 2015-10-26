@@ -4,41 +4,38 @@
   <div class="panel-body">
   
   <table class="table">
+   <tr><td class="text-center", colspan="2"><h2>Your Order</h2></td></tr>
   <tr>
-  <th class="text-left"><h4>Reference: <strong><%= order.guid %></strong></h4></th>
-
-  <th class="text-right"><h4>Status: <strong><%= order.status %></strong></h4></th>
+    <th class="text-left"><h4>Reference: <strong><%= order.guid %></strong></h4></th>
+    <th class="text-right"><h4>Status: <strong><%= order.status %></strong></h4></th>
   </tr>
   <tr>
-  <td class="text-center"><strong>:: IMPORTANT ::</strong></td>
-  <td class="text-left"> Your collection date is <strong><%= order.date_selector %></strong>
- </td>
+    <td class="text-center", colspan="2"><strong>:: IMPORTANT ::</strong>
+     Your collection date is <strong><%= order.date_selector %></strong></td>
   </tr>
   </table>
+  <br>
+  
+       <% my_orderitems = order.orderitems %>
+       <% my_orderitems_by_category_id = my_orderitems.group_by { |h| h[:category_id]}  %>
+       
+      <table class="table table-hover">
+       <% my_orderitems_by_category_id.each do |category_id, my_sorted_orderitems| %>
+         
+        <tr><td colspan="4"></th><strong><%= Category.where(:id => category_id).first.name %></strong></td> </tr>
 
-  
-   <table class="table table-hover">
-       <tr>
-         <th>Quantity</th>
-         <th>Product</th>
-         <th>Unit Price</th>
-         <th class="text-right">Price</th>
-       </tr>
-  
-  <% for orderitem in order.orderitems %>  
+  <% for orderitem in my_sorted_orderitems %>  
     <% if orderitem.quantity > 0 %>
       <tr>
-        <td><%= h orderitem.quantity %></td>
         <td><%= get_name(orderitem.saleproduct_id) %></td>
         <td>(<%= orderitem.quantity %> @ <%= get_price_currency(orderitem.saleproduct_id) %>)</td>
         <td class="text-right"><%= number_to_currency(orderitem.quantity*get_price(orderitem.saleproduct_id)) %></td>
       </tr>
-    <% else %>
-    <% end %>
+    <% else %><% end %>
   <% end %>
+    <% end %>  
   
   <tr>
-      <td></td>
       <td></td>
       <td><strong>Total Price: </strong></td>
       <td class="text-right"><strong><%= get_order_total_currency(order.id) %></strong></td>
@@ -48,7 +45,7 @@
   <% else %>
   no order item records
   <% end %>
-  <h5>If your order is correct please progress to payment, otherwise click <%= link_to 'here', edit_order_path(order) %> to edit order. </h5>
+  <h5>If your order is correct please progress to payment, otherwise click <%= link_to 'here', edit_order_path(order) %> to edit order or continue shopping. </h5>
  
   <table class="table">
   <tr>
@@ -62,7 +59,6 @@
      data-email=<%= order.email%>
      data-amount="<%= (get_order_total(order.id)*100) %>"
      data-currency="GBP"
-     data-image="images/HFlogo.png"
      data-allow-remember-me=false
      data-locale="auto">
      </script>
@@ -72,8 +68,6 @@
 </td>
  </tr>
  </table>
-
-  
 
 </div></div>
 

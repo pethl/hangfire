@@ -1,46 +1,45 @@
 <% if order.orderitems.any? %>
   
-  
-  
   <div class="panel panel-default">
     <div class="panel-body">
   
-  <% if logged_in? %><h3>Order for <%= order.contact_person%> : </h3>
-    
+  <% if logged_in? %><h3>Order for <%= order.contact_person%> : </h3>  
     <% else %><h3>What did I order?</h3><% end %>
+    <br>
+    
    <table class="table">
-   <tr>
-     <th>Quantity</th>
-     <th>Product</th>
-     <th>Unit Price</th>
-     <th class="text-right">Price</th>
-   </tr>
+   
   
-  <% for orderitem in order.orderitems %>
+   <% my_orderitems = order.orderitems %>
+   <% my_orderitems_by_category_id = my_orderitems.group_by { |h| h[:category_id]}  %>
+   
+   <% my_orderitems_by_category_id.each do |category_id, my_orderitems| %>
+     <tr><td colspan="3"></th><strong><%= Category.where(:id => category_id).first.name %></strong></td> </tr>
+   
+  <% for orderitem in my_orderitems %>
   
   <% if orderitem.quantity > 0 %>
     
     <tr>
-    <td><%= h orderitem.quantity %></td>
     <td><%= get_name(orderitem.saleproduct_id) %></td>
-    <td>(<%= orderitem.quantity %> @ <%= get_price_currency(orderitem.saleproduct_id) %>)</td>
+    <td class="text-right">(<%= orderitem.quantity %> @ <%= get_price_currency(orderitem.saleproduct_id) %>)</td>
     <td class="text-right"><%= number_to_currency(orderitem.quantity*get_price(orderitem.saleproduct_id)) %></td>
     </tr>
   <% else %>
-  <% end %>
+  <% end %>  <% end %><% end %>
 
-  <% end %>
-  <tr>
-  <td></td>
-  <td></td>
-  <td><strong>Total Price: </strong></td>
-  <td class="text-right"><strong><%= get_order_total_currency(@order.id) %></strong></td>
-  </tr>
+    <tr>
+      <td></td>
+      <td><strong>Total Price: </strong></td>
+      <td class="text-right"><strong><%= get_order_total_currency(order.id) %></strong></td>
+    </tr>
   </table>
+    
  
   <% else %>
   no order item records
   <% end %>
+  
   <table>
   <tr><td>Status:</td><td><strong>  <%= order.status %></strong> </td></tr>
   <tr><td>Ref:</td><td><strong>  <%= order.guid %></strong> </td></tr>

@@ -17,6 +17,7 @@ class StaticPagesController < ApplicationController
   
   def xmas_order
     @saleproducts = Saleproduct.where(:status => "Live")
+    @saleproducts_by_category_id = @saleproducts.group_by { |h| h[:category_id]}  
   end
   
 

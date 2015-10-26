@@ -4,6 +4,9 @@ class Category < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
     validates :reference, presence: true
     
+    REFERENCE_VALUE_TYPES = [["ingredient", "ingredient"], ["product", "product"], ["plate", "plate"], ["christmas product", "christmas product"]]
+      
+    
     def self.get_name(id)
         Category.where(:id => id)[0].name
     end

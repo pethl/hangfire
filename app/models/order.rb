@@ -1,8 +1,9 @@
 class Order < ActiveRecord::Base
-  has_many :orderitems, -> { order(saleproduct_id: :asc) }, :dependent => :destroy
+  has_many :orderitems, -> { order(category_id: :asc) }, :dependent => :destroy
    accepts_nested_attributes_for :orderitems, :reject_if => lambda { |a| a[:quantity].blank? }
    before_save :populate_guid
        validates_uniqueness_of :guid
+      validates_confirmation_of :email 
 
    def to_param
      guid

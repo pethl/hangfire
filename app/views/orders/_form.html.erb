@@ -62,20 +62,22 @@
   <strong>Please enter quantity for items you require, up to the maximum available</strong><br><br>
   
   <% if @order.orderitems.any? %>
-    <table class="table">
-    
+  
+    <table class="table">    
     <tr>
+    <th></th>
     <th>Product</th>
-    <th>Weight</th>
-    
+    <th>Weight</th> 
     <th class="text-right">Price</th>
     <th class="text-right">Quantity</th>
     </tr>
     
-    <%= f.fields_for :orderitems do |ff| %>
+    <%= f.fields_for :orderitems, f.object.orderitems.order(:id) do |ff| %>
       
       <div>
       <tr>
+      <td><%= Category.where(:id => (ff.object.category_id)).first.name %></td>
+
         <td><%= Saleproduct.where(:id => (ff.object.saleproduct_id)).first.name %></td>
         <td><%= Saleproduct.where(:id => (ff.object.saleproduct_id)).first.weight %></td>
         
@@ -88,7 +90,7 @@
          <% end %>
       </div>
       </tr>
-    <% end %>
+    <% end %> 
     </table>
     
   <% else %>
@@ -109,7 +111,7 @@
    We promise never to pass them onto a third party.<br><br>
    <table>
    <tr>
-   <td> <%= f.label :contact_person, :style => "width: 160px;" %></td>
+   <td> <%= f.label :contact_person, "Contact name",  :style => "width: 160px;" %></td>
    <td> <%= f.text_field :contact_person, :style => "width: 200px;" %></td>
     </tr>
      <tr>
@@ -119,6 +121,10 @@
      <tr>
      <td>  <%= f.label :email %></td>
      <td> <%= f.text_field :email, :style => "width: 250px;" %></td>
+     </tr>
+     <tr>
+     <td>  <%= f.label :email, "Email Confirmation" %></td>
+     <td> <%= f.text_field :email_confirmation, :style => "width: 250px;" %></td>
      </tr>
       </table>
       <br>

@@ -11,7 +11,13 @@
 
   <tbody>
  
-    <% @saleproducts.each do |saleproduct| %>
+  <% if @saleproducts_by_category_id.any? %>
+ <% @saleproducts_by_category_id.each do |category_id, saleproducts| %>
+   <tr>
+   <td><h3><%= Category.where(:id => category_id).first.name %></h3></td></tr>
+   
+ 
+    <% saleproducts.each do |saleproduct| %>
       <tr>
         <td><%= saleproduct.name %></td>
         <% if saleproduct.remaining_quanity > 0 %>
@@ -27,4 +33,5 @@
       </tr>
     <% end %>
   </tbody>
+     <% end %>   <% end %>
 </table>

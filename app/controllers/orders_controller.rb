@@ -8,9 +8,9 @@ class OrdersController < ApplicationController
       @order.save
   
        n = Saleproduct.where(:status => "Live").count
-       @saleproduct = Saleproduct.where(:status => "Live").pluck(:id)
+       @saleproduct = Saleproduct.where(:status => "Live").pluck(:id, :category_id)
        while n> 0 do
-         Orderitem.create(:order_id => @order.id, :saleproduct_id => @saleproduct[n-1], :quantity => 0 ).save
+         Orderitem.create(:order_id => @order.id, :saleproduct_id => @saleproduct[n-1].first, :category_id => @saleproduct[n-1].second, :quantity => 0 ).save
          n = n-1
        end
      redirect_to edit_new_order_path(guid: @order.guid)
@@ -39,7 +39,9 @@ class OrdersController < ApplicationController
 
   # GET /orders/1/edit
   def edit
-     @saleproducts = Saleproduct.all.order(id: :desc)
+   #  @saleproducts = Saleproduct.all.order(id: :desc)
+     @saleproducts = Saleproduct.where(:status => "Live")
+     @saleproducts_by_category_id = @saleproducts.group_by { |h| h[:category_id]}  
   end
 
   # POST /orders
@@ -79,7 +81,7 @@ class OrdersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def order_params
-      params.require(:order).permit(:collection_date, :contact_person, :marketing, :phone, :email, :status, :date_selector, :guid, :stripe_id, :total, :permalink, orderitems_attributes:[:_destroy, :id, :order_id, :saleproduct_id, :quantity, :item_price, :total_price])
+      params.require(:order).permit(:collection_date, :contact_person, :marketing, :phone, :email, :email_confirmation, :status, :date_selector, :guid, :stripe_id, :total, :permalink, orderitems_attributes:[:_destroy, :id, :order_id, :saleproduct_id, :quantity, :item_price, :total_price])
     end 
     
 end

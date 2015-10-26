@@ -17,7 +17,8 @@
   </div>
   <div class="field">
     <%= f.label :reference %><br>
-    <%= f.select(:reference, options_for_select([['ingredient', 'ingredient'], ['product', 'product'], ['plate','plate']]), :prompt => true ) %>
+    <%= f.select(:reference, Category::REFERENCE_VALUE_TYPES, :include_blank => true)%>
+      
   </div>
   <div class="actions">
     <%= f.submit %>

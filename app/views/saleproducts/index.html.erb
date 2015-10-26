@@ -1,10 +1,14 @@
-<h2>Christmas Products</h2>
+<h2 class="text-center">Christmas Products</h2>
 
-<table class="table">
+ <% if @saleproducts_by_category_id.any? %>
+<% @saleproducts_by_category_id.each do |category_id, saleproducts| %>
+<h3><%= Category.where(:id => category_id).first.name %></h3>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Product<br>Name</th>
-      <th class="text-right">Stock<br>quantity</th>
+
+      <th class="text-right">Original<br>quantity</th>
       <th class="text-right">Remaining<br>quanity</th>
       <th class="text-right">% Sold</th>
       <th class="text-right">Unit<br>Price</th>
@@ -15,8 +19,9 @@
   </thead>
 
   <tbody>
-  
-    <% @saleproducts.each do |saleproduct| %>
+  <% if saleproducts.any? %>
+    <% saleproducts.each do |saleproduct| %>
+      
       <tr>
         <td><%= saleproduct.name %></td>
         <td class="text-right"><%= saleproduct.stock_quantity %></td>
@@ -32,9 +37,9 @@
     <% end %>
   </tbody>
 </table>
-
+    <% end %>   <% end %>
 <br>
-
+ <% end %>
 <%= link_to '+ add new christmas product', new_saleproduct_path %>
 <br>
 <button class="btn">	<%= form_tag import_saleproducts_path, multipart: true do %>
@@ -42,4 +47,6 @@
 	                      <%= submit_tag "Import Products" %>
                         <% end %>
 </button>
+
+
 
