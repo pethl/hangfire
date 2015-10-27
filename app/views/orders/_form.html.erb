@@ -50,6 +50,10 @@
    <div class="field">
     <%= f.label :date_selector, "Please choose a date to collect your order ..." %>
      <%= f.select(:date_selector, Order::COLLECTION_DATE_TYPES, :prompt => true, :include_blank => true) %>
+   <p>Last date for online orders are midnight 14th December. <br>
+   Orders will be available for collection from our shop: 10 Church Street, Llantwit Major, CF61 1SB<br>
+   from 10am to 7pm 21st, 22nd, 23rd December.
+   </p>
    </div>
   </div>
 </div>
@@ -63,34 +67,34 @@
   
   <% if @order.orderitems.any? %>
   
-    <table class="table">    
-    <tr>
-    <th></th>
-    <th>Product</th>
-    <th>Weight</th> 
-    <th class="text-right">Price</th>
-    <th class="text-right">Quantity</th>
-    </tr>
-    
-    <%= f.fields_for :orderitems, f.object.orderitems.order(:id) do |ff| %>
-      
-      <div>
+   <% @order.orderitems.group_by {|rq| rq.category_id }.each do |category_id, items_group| %>
+          
+    <strong>  <%= Category.where(:id => category_id).first.name %></strong>
+	
+      <table class="table">    
       <tr>
-      <td><%= Category.where(:id => (ff.object.category_id)).first.name %></td>
-
-        <td><%= Saleproduct.where(:id => (ff.object.saleproduct_id)).first.name %></td>
-        <td><%= Saleproduct.where(:id => (ff.object.saleproduct_id)).first.weight %></td>
-        
-        <% if Saleproduct.where(:id => (ff.object.saleproduct_id)).first.remaining_quanity > 0 %>
-         <td class="text-right"><%= number_to_currency(Saleproduct.where(:id => (ff.object.saleproduct_id)).first.price) %></td>        
-               <td class="text-right"><%= ff.select :quantity, options_for_select(Range.new(0,(Saleproduct.where(:id => (ff.object.saleproduct_id)).first.remaining_quanity))) %></td>
-        <% else %>
-        <td class="text-right"><a>SOLD OUT</a></td>
-        <td class="text-right"><a>SOLD OUT</a></td>
-         <% end %>
-      </div>
+        <th>Product</th>
+        <th>Weight/Size</th> 
+        <th class="text-right">Price</th>
+        <th class="text-right">Quantity</th>
       </tr>
-    <% end %> 
+        
+        
+<%= f.fields_for :orderitems, items_group.sort_by{|rq| rq.id} do |builder| %>           
+       
+       <tr>
+       <td><%= Saleproduct.where(:id => (builder.object.saleproduct_id)).first.name %></td>
+       <td><%= Saleproduct.where(:id => (builder.object.saleproduct_id)).first.weight %></td>
+   
+    <% if Saleproduct.where(:id => (builder.object.saleproduct_id)).first.remaining_quanity > 0 %>
+       <td class="text-right"><%= number_to_currency(Saleproduct.where(:id => (builder.object.saleproduct_id)).first.price) %></td>
+       <td class="text-right"><%= builder.select :quantity, options_for_select(Range.new(0,(Saleproduct.where(:id => (builder.object.saleproduct_id)).first.remaining_quanity)), :selected => builder.object.quantity) %></td>
+       <% else %>
+       <td class="text-right"><a>SOLD OUT</a></td>
+       <td class="text-right"><a>SOLD OUT</a></td>
+        <% end %>
+       </tr>
+    <% end %>    <% end %> 
     </table>
     
   <% else %>
@@ -128,32 +132,28 @@
      </tr>
       </table>
       <br>
-    Would you like to receive updates from Hang Fire about future events and new offers. Promise we won't spam.
-     
+    <p>Would you like to receive updates from Hang Fire about future events and new offers? Promise we won't spam.
+    </p>
     <table>
      <tr>
      <td> <%= f.label :marketing, "Sign me up", :style => "width: 160px;" %></td>
      <td> <%= f.check_box :marketing %></td>
       </tr>
     </table>
-    <br>
-    <%= f.hidden_field :total, :value => get_order_total(@order)%>
-  
-     
-    <div class="actions">
-    <%= f.hidden_field :guid, :value => @order[0].guid %>
 
-      <%= f.submit "Review Order" %>
-      
-    </div>
-  <% end %>
+    <%= f.hidden_field :total, :value => get_order_total(@order)%>
  
   </div>
 </div>
 </div>
+<p>Click the button to review your order and pay by card using <strong><%= link_to "Stripe", "https://stripe.com/about" %> </strong>
+  for secure online payments.</p>
 
-
-
+  <div class="actions">
+  <%= f.hidden_field :guid, :value => @order[0].guid %>
+    <%= f.submit "Review Order and Pay" %>
+  </div>
+<% end %>
 
 </div></div>
 </div></div>

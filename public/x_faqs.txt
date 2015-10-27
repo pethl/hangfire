@@ -1,0 +1,6 @@
+title,desc
+"I have not received my confirmation email","If you have already checked your ‘spam’ or ‘trash’ folder in your email and still can’t find it, drop us an email at hangfirebbq@gmail.com , with your reference number if you took note of it, or tell us when you placed your order and we’ll resend your order details and confirmation."
+"Can you deliver my order?","Were afraid that due to the high number of orders we can only offer a collection service this year. However, we do offer free hugs, mulled cider, tangerines and a ton of festive cheer when you arrive."
+"What if I want to order more items?","Unfortunately we cant amend your existing order, you will need to create a new order. However we’ll make sure it’s all together as one when you come and collect."
+"What if I need to change my collection day?","No problem, just give us 48hrs notice. Drop us an email quoting your reference number and well make sure your order collection date is changed."
+"What if I want to cancel my order?","You have a 24 hour period after you’ve received your order confirmation email to cancel your order and get a full refund. To cancel your order simply drop us an email at hangfirebbq@gmail.com and quote your reference number" 

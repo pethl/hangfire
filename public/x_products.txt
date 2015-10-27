@@ -1,18 +1,2 @@
-category_id,name,weight,price,stock_quantity,remaining_quanity,status
-22,Turkey Crown,5KG,40,20,20,Live
-22,Turkey Crown - Half,3KG,25,10,10,Live
-23,St Louis Spare Ribs - Half Rack,1.5KG,8.50,50,50,Live
-23,Beef Brisket - Slices,500grams,9,10,10,Live
-23,Lamb Leg,3KG,35,10,10,Live
-23,Lamb Leg - Slices,500grams,12,10,10,Live
-23,Pork Shoulder - Whole,3KG,36,4,4,Live
-23,Pulled Pork,500grams,10,20,20,Live
-22,Ham - Whole piece,1KG,17,4,4,Live
-22,Ham - Slices,500grams,8.50,10,10,Live
-23,Texas Hot Links - Pack of 2,300grams,6,30,30,Live
-24,Texas Espresso Sauce,175grams,3.50,30,30,Live
-24,South Caroline Mustard Sauce,175grams,3.50,30,30,Live
-24,Kansas City BBQ sauce,175grams,3.50,30,30,Live
-24,Ltd Edition Cranberry BBQ Sauce,175grams,4,30,30,Live
-25,Hang Fire Boxing Day Box,4 people,25,10,10,Live
-25,Hang Fire Boxing Day Box,8 people,50,10,10,Live
+category_id,name,desc,weight,price,status,stock_quantity,remaining_quanity
+22,"TurkeyCrown(whole)",”FreeRange - CherrywoodSmoked”,"Approx.4.5kg",45,Live,50,0

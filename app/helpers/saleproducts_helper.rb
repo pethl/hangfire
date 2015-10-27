@@ -6,4 +6,7 @@ module SaleproductsHelper
     
   end
   
+  def number_sold(saleproduct)
+    return saleproduct.stock_quantity-saleproduct.remaining_quanity
+  end
 end

@@ -21,6 +21,10 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
+    <%= f.label :desc %><br>
+    <%= f.text_field :desc %>
+  </div>
+  <div class="field">
     <%= f.label :stock_quantity %><br>
     <%= f.number_field :stock_quantity %>
   </div>
@@ -37,9 +41,11 @@
     <%= f.text_field :weight %>
   </div>
   <div class="field">
-    <%= f.label :category_id %><br>
-    <%= f.number_field :category_id %>
-  </div>
+    <%= f.label :category_id %>
+    <%= f.collection_select :category_id, (Category.where(:reference => 'christmas product')), :id, :name, :prompt => true %><br>
+    <i>Category missing? </i><%= link_to '+ add new Category', new_category_path %>
+      </div>
+
   <div class="field">
     <%= f.label :status %><br>
     <%= f.select(:status, Saleproduct::STATUS_TYPES, :value => "Live") %>

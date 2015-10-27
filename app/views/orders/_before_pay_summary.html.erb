@@ -45,7 +45,9 @@
   <% else %>
   no order item records
   <% end %>
-  <h5>If your order is correct please progress to payment, otherwise click <%= link_to 'here', edit_order_path(order) %> to edit order or continue shopping. </h5>
+  <p><strong>Please review your order and personal details before making payment.</strong></p>
+
+  <h5>If your order is correct please progress to payment, otherwise <%= link_to 'clickhere to edit order.', edit_order_path(order) %>  </h5>
  
   <table class="table">
   <tr>
@@ -64,7 +66,8 @@
      </script>
  <% end %>
  </td>
- <td class="text-right"><%= image_tag("dark_solid/solid.png", :alt => "Powered by Stripe")  %>
+ <td class="text-right">
+<button type="button" class="btn btn-warning"><%= link_to "Continue Shopping", edit_order_path(order) %></button> 
 </td>
  </tr>
  </table>

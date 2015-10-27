@@ -1,0 +1,29 @@
+category_id,name,desc,weight,price,status,stock_quantity,remaining_quanity
+22,Turkey Crown (whole),Free range Cherrywood Smoked,Approx. 4.5kg,45,Live,50,50
+22,Turkey Crown (half),Free range Cherrywood Smoked,Approx. 2.25kg,25,Live,50,50
+22,Lamb Leg,Oak smoked whole Welsh lamb leg,Approx. 3.5kg,35,Live,50,50
+22,Ham (whole piece),Free range Oak Smoked Welsh Ham,Approx 1kg,18,Live,50,50
+22,Ham (Slices),Free range Oak Smoked sliced,250g,5,Live,50,50
+22,Duck Pastrami,Whole Gressingham Duck cured and smoked,Single breast-200g,7,Live,50,50
+22,Proper Bacon,Free range cold smoked thick cut streaky bacon,250g,5,Live,50,50
+23,Beef Brisket(250g),12hr Oak Smoked Welsh Beef,250g,8.5,Live,50,50
+23,Beef Brisket(500g),12hr Oak Smoked Welsh Beef,500g,16,Live,50,50
+23,Brisket Burnt Ends,Twice smoked hunks of tender Welsh brisket,300g,12,Live,50,50
+23,Pulled Pork(250g),21hr Smoked free range Welsh pulled pork,250g,6.5,Live,50,50
+23,Pulled Pork(500g),21hr Smoked free range Welsh pulled pork,500g,12,Live,50,50
+23,Smoked Chicken Wings (Hot n Spicy),Bag of 8 smoked wings in our original recipe Louisiana Hot Sauce,8 per bag,6,Live,50,50
+23,St Louis Spare Ribs,Our famous smoked ribs,1/2 rack,8.5,Live,50,50
+23,Smoked Chicken Wings (Smokey),Bag of 8 smoked Wings in our original recipe Kansas City BBQ sauce,8 per bag,6,Live,50,50
+23,Texas Hot Links,Award winning - all natural Welsh PGI Beef & Pork sausages with a spicy kick,4 per bag,10,Live,50,50
+23,BBQ Party Box 1,8 Smoked Wings (choose hot or smokey): 500g Pulled Pork: 500gm Beef Brisket: 4 slices Smoked Pork Belly: 1 Jar Smokehouse: Sweet Dill Pickles: 1 Bottle Kansas City BBQ Sauce,Serves 4 - 6,50,Live,50,50
+23,BBQ Party Box 2,16 Smoked Wings (choose hot or smokey): 2 x 500g Pulled Pork: 2 x 500g Beef Brisket: 8 slices Smoked Pork Belly: 1 Jar Smokehouse Sweet Dill Pickles: 1 Bottle Kansas City BBQ Sauce: 1 Bottle Texas Espresso Sauce: 1 Bottle South Carolina Mustard Sauce,Serves 8-10,97,Live,50,50
+24,Kansas City BBQ Sauce,Our original recipe - sweet and smokey sauce,1 bottle,3.5,Live,50,50
+24,Texas Espresso Sauce,Our original recipe - dark and rich sauce,1 bottle,3.5,Live,50,50
+24,South Carolina Mustard Sauce,Our original recipe - sweet and sharp sauce,1 bottle,3.5,Live,50,50
+24,Ltd Edition Cranberry BBQ Sauce,Our original recipe - sharp fruity sweet festive sauce,1 bottle,4,Live,50,50
+24,Louisiana Hot Sauce,Our original recipe - Serrano chilli hot sauce,1 bottle,4.5,Live,50,50
+24,Almost All Purpose Rub in a Tub,Add a little Hang Fire to your cooking with our original recipe: Almost All purpose BBQ Rub & Seasoning for beef/pork/lamb/ poultry and vegetables,150g tub,3.5,Live,50,50
+24,Hang Fires Famous Pit Beans,Slow and low BBQ beans with pork and beef barbecue,large tub serves 2,6.5,Live,50,50
+24,Hang Fires Jambalaya,Delicious Louisiana rice dish with our house made Andouille sausage,large tub serves 2,6.5,Live,50,50
+25,Sauce - T-Shirt - Gift Pack,1 Bottle Kansas City BBQ Sauce: 1 Bottle Texas Espresso Sauce: 1 Bottle South Carolina Mustard Sauce: 1 Hang Fire Sauce T-shirt (S/M/L/XL). We will contact you with t-shirt size and colour options,0,21,Live,50,50
+25,Sauce - T-Shirt - Rub - Gift Pack,1 Bottle Kansas City BBQ Sauce: 1 Bottle Texas Espresso Sauce: 1 Bottle South Carolina Mustard Sauce: 1 Bottle Louisiana Hot Sauce: 1 Almost All Purpose Rub in a tub: 1 Hang Fire Sauce T-shirt (S/M/L/XL). We will contact you with t-shirt size and colour options,0,30,Live,50,50

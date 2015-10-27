@@ -58,7 +58,8 @@ class OrdersController < ApplicationController
   # PATCH/PUT /orders/1
   def update
       if @order.update(order_params)
-       redirect_to @order, notice: 'Please review your order and personal details before making payment.'
+       redirect_to @order
+       #, notice: 'Please review your order and personal details before making payment.'
       else
         render :edit
       end

@@ -1,0 +1,33 @@
+<h2>FAQs</h2>
+
+<table clas="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Desc</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @faqs.each do |faq| %>
+      <tr>
+        <td><%= faq.title %></td>
+        <td><%= faq.desc %></td>
+        <td><%= link_to 'Show', faq %> | 
+        <%= link_to 'Edit', edit_faq_path(faq) %> | 
+        <%= link_to 'Destroy', faq, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Faq', new_faq_path %>
+<button class="btn">	<%= form_tag import_faqs_path, multipart: true do %>
+	                      <%= file_field_tag :file %>
+	                      <%= submit_tag "Import FAQs" %>
+                        <% end %>
+</button>
+

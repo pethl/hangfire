@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151026172355) do
+ActiveRecord::Schema.define(version: 20151027091425) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,14 @@ ActiveRecord::Schema.define(version: 20151026172355) do
     t.decimal  "over_ride_price"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "faqs", force: true do |t|
+    t.string   "title"
+    t.string   "string"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "desc"
   end
 
   create_table "friendships", force: true do |t|
@@ -175,6 +183,7 @@ ActiveRecord::Schema.define(version: 20151026172355) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "status"
+    t.text     "desc"
   end
 
   create_table "users", force: true do |t|

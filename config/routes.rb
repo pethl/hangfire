@@ -1,4 +1,8 @@
 Hangfire::Application.routes.draw do
+  resources :faqs do
+    		 collection { post :import }
+       end
+
   resources :orderitems
 
   resources :saleproducts
@@ -62,10 +66,12 @@ Hangfire::Application.routes.draw do
   get  '/show/:guid', to: 'orders#show',      as: :show_order
   get  '/edit/:guid', to: 'orders#edit',      as: :edit_new_order
   
-   get '/home' => 'static_pages#home'
-   get '/help' => 'static_pages#help'
-   get '/dashboard' => 'static_pages#dashboard'
+  get '/home' => 'static_pages#home'
+  get '/help' => 'static_pages#help'
+  get '/dashboard' => 'static_pages#dashboard'
   get '/xmas_order' => 'static_pages#xmas_order'
+  get '/faqs' => 'static_pages#faq'
+
   
   resources :sessions, only: [:new, :create, :destroy]
 
@@ -81,6 +87,7 @@ Hangfire::Application.routes.draw do
      get "static_pages/help"
      get "static_pages/dashboard"
      get "static_pages/xmas_order"
+     get "static_pages/faq"
 
   
 

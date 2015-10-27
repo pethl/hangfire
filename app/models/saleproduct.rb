@@ -9,19 +9,11 @@ class Saleproduct < ActiveRecord::Base
   validates :category_id, presence: true   
  
   STATUS_TYPES = ["Live", "Suspended"]
-
-  
+ 
   def self.import(file)
       	 CSV.foreach(file.path, headers: true) do |row|
          		 Saleproduct.create! row.to_hash
       	end
       end
   
-  
-#  after_initialize :init
-
-#     def init
-#       self.remaining_quanity = self.stock_quantity          
-#           end
-
 end
