@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby "2.2.2"
 gem 'rails', '4.1.6'
-gem 'bcrypt-ruby', '~> 3.1.5'
+gem 'bcrypt', '~> 3.1.5'
 
 gem 'capistrano-rvm',   group: :development
 gem 'capistrano-rails', group: :development

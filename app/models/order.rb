@@ -15,7 +15,7 @@ class Order < ActiveRecord::Base
   validates :phone, :on => :update, presence: true
   
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
- validates :email, :on => :update, :on => :update, format:  { with: VALID_EMAIL_REGEX }, :exclusion =>  { :in => %w(your@email.com), :message => " : Please enter a contact email." }
+ validates :email, :on => :update, format:  { with: VALID_EMAIL_REGEX }, :exclusion =>  { :in => %w(your@email.com), :message => " : Please enter a contact email." }
 
   COLLECTION_DATE_TYPES = ["Monday, 21st December", "Tuesday, 22nd December", "Wednesday, 23rd December"]
   ORDER_STATUS_TYPES = [["Open", "Open"], ["Paid", "Paid"], ["Collected", "Collected"]]
