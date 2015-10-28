@@ -1,10 +1,22 @@
 <html>
   <body>
-  <p>Hi  @order.contact_person,</p>
-  <br>
-  <p>Thanks for completing your Christmas order from Hang Fire Smokehouse for £<%= @order.total %> </p>
-  <br>
-  <p>You can view your order details here:</p>
-  <p><%= link_to @order.guid, show_order_path(guid: @order.guid) %></p>
+<p>HANG FIRE SMOKEHOUSE</p> 
+<p>Christmas Orders</p>
+<br><br><p>Hi <%= @order.contact_person %>,</p>
+<br>
+<p>Thanks for placing you order and paying online.</p>
+<br>
+<p>Your order reference is <%= @order.guid %> and your total was £<%= @order.total %>.</p>
+<p>Follow this link to see what you ordered :<p><strong><%= link_to "my order details", https://hangfire.herokuapp.com/show/@order.guid) %></strong></p></p>
+<br>
+<p>Please visit out <p><strong><%= link_to "FAQs", https://hangfire.herokuapp.com/static_pages/faq) %></strong></p> for guidance if you need to make any changes to your order.</p>
+<br>
+<p>Don't forget to come and collect your order on <%= @order.date_selector %></p>
+<p>You can find us at 10 Church Street, Llantwit Major, CF61 1SB</p>
+<p>We are open between 10am and 7pm.</p>
+<br>
+<p>See you then, </p>
+<br><br>
+<p><strong>Sam and Shauna</strong><p>
   </body>
 </html>

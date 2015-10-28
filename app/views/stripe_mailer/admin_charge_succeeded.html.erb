@@ -1,6 +1,8 @@
 <html>
   <body>
-    <p>Charge succeded  - <%= @order.total %> </p>
+  <br>
+    <p>Good news! A new order was placed for £<%= @order.total %>. </p>
+    <br>
     <p><%= link_to @order.guid, show_order_path(guid: @order.guid) %></p>
   </body>
 </html>

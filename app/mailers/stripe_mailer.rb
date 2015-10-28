@@ -11,12 +11,13 @@ class StripeMailer < ActionMailer::Base
   
   def admin_charge_succeeded(charge)
     @charge = charge
-    mail(to: 'contacthangfirebbq@gmail.com', subject: 'Woo! Charge Succeeded!')
+    @order = Order.find_by!(strip_id: @charge.id)
+    mail(to: 'contacthangfirebbq@gmail.com', subject: "Xmas Orders - New Order:#{@order.guid}")
     end
 
   def receipt(charge)
     @charge = charge
     @order = Order.find_by!(strip_id: @charge.id)
-    mail(to: @order.email, subject: "Thanks for purchasing from Hang Fire Smokehouse")
+    mail(to: @order.email, subject: "Order Confirmation from Hang Fire Smokehouse")
     end
 end
