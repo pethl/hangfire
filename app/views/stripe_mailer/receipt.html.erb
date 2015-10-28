@@ -7,7 +7,7 @@
 <p>Thanks for placing you order and paying online.</p>
 <br>
 <p>Your order reference is <%= @order.guid %> and your total was £<%= @order.total %>.</p>
-<p>Follow this link to see what you ordered :<p><strong><%= link_to "my order details", https://hangfire.herokuapp.com/show/@order.guid) %></strong></p></p>
+<p>Follow this link to see what you ordered :<p><strong><%= link_to "my order details", "https://hangfire.herokuapp.com/show/#{@order.guid}" %></strong></p></p>
 <br>
 <p>Please visit out <p><strong><%= link_to "FAQs", https://hangfire.herokuapp.com/static_pages/faq %></strong></p> for guidance if you need to make any changes to your order.</p>
 <br>
