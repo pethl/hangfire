@@ -153,7 +153,10 @@
 
   <div class="actions">
   <%= f.hidden_field :guid, :value => @order[0].guid %>
-    <%= f.submit "Review Order and Pay" %>
+  <%= button_tag(type: 'submit', class: "btn btn-success") do %>
+    Review Order and Pay
+  <% end %>
+   
   </div>
 <% end %>
 
