@@ -17,6 +17,6 @@ class StripeMailer < ActionMailer::Base
     def receipt(charge)
       @charge = charge
       @order = Order.find_by!(strip_id: @charge.id)
-      mail(to: @order.email, subject: "Thanks for purchasing #{@sale.product.name}")
+      mail(to: @order.email, subject: "Thanks for purchasing from Hang Fire Smokehouse")
     end
 end
