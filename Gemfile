@@ -8,6 +8,7 @@ gem 'capistrano-rails', group: :development
 
 gem 'activemerchant'
 gem 'stripe' # for payment via strip
+gem 'stripe_event' # for stripe web hooks
 gem "figaro" # to help store and manage ENVs
 # gem "has_permalink" # give improved urls to hide id
 

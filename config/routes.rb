@@ -57,8 +57,9 @@ Hangfire::Application.routes.draw do
     
   resources :users
   
-
   resources :charges
+  
+  mount StripeEvent::Engine => '/stripe-events'
   
   get  '/buy/:guid', to: 'charges#new',      as: :show_buy
   post '/buy/:guid', to: 'charges#create',   as: :buy

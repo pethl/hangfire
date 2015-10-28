@@ -23,7 +23,8 @@ class ChargesController < ApplicationController
               )
              order.update_attributes(
                 :status => "Paid",
-                :purchased_at => DateTime.now 
+                :purchased_at => DateTime.now,
+                :strip_id => charge.id
               )
               update_available_inventory(order)
               redirect_to paid_url(guid: order.guid)

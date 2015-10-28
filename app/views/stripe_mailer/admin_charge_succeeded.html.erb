@@ -1,0 +1,6 @@
+<html>
+  <body>
+    <p>Charge succeded  - <%= get_order_total(@order) %> </p>
+    <p><%= link_to @order.guid, show_order_path(guid: @order.guid) %></p>
+  </body>
+</html>
