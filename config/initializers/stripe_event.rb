@@ -3,7 +3,7 @@ StripeEvent.event_retriever = lambda do |params|
   StripeWebhook.create!(stripe_id: params[:id])
   Stripe::Event.retrieve(params[:id])
   end
-end
+
 
 StripeEvent.configure do |events|
   events.subscribe 'charge.dispute.created' do |event|
