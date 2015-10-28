@@ -1,5 +1,5 @@
 class FaqsController < ApplicationController
-  before_action :set_saleproduct, only: [:show, :edit, :update, :destroy]
+  before_action :set_faq, only: [:show, :edit, :update, :destroy]
    before_action :signed_in_user, only: [:edit, :update, :destroy, :index, :show, :new]
 
   # GET /faqs
@@ -60,6 +60,6 @@ class FaqsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def faq_params
-      params.require(:faq).permit(:title, :desc)
+      params.require(:faq).permit(:title, :desc, :sort)
     end
 end

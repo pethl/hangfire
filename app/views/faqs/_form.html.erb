@@ -12,12 +12,16 @@
   <% end %>
 
   <div class="field">
+    <%= f.label :sort %><br>
+    <%= f.number_field :sort %>
+  </div>
+  <div class="field">
     <%= f.label :title %><br>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, :style => "width: 400px;" %>
   </div>
   <div class="field">
     <%= f.label :desc %><br>
-    <%= f.text_field :desc %>
+    <%= f.text_area :desc, :cols => "50", :rows => "6" %>
   </div>
   <div class="actions">
     <%= f.submit %>

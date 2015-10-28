@@ -8,9 +8,9 @@ class OrdersController < ApplicationController
       @order.save
   
        n = Saleproduct.where(:status => "Live").count
-       @saleproduct = Saleproduct.where(:status => "Live").pluck(:id, :category_id)
+       @saleproduct = Saleproduct.where(:status => "Live").pluck(:id, :category_id, :sort)
        while n> 0 do
-         Orderitem.create(:order_id => @order.id, :saleproduct_id => @saleproduct[n-1].first, :category_id => @saleproduct[n-1].second, :quantity => 0 ).save
+         Orderitem.create(:order_id => @order.id, :saleproduct_id => @saleproduct[n-1].first, :category_id => @saleproduct[n-1].second, :sort => @saleproduct[n-1].third, :quantity => 0 ).save
          n = n-1
        end
      redirect_to edit_new_order_path(guid: @order.guid)

@@ -1,17 +1,19 @@
 <h2>FAQs</h2>
 
-<table clas="table">
+<table clas="table" table-layout: fixed>
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Desc</th>
-      <th colspan="1"></th>
+      <th style="width: 10%">Sort Order</th>
+      <th style="width: 25%">Title</th>
+      <th style="width: 50%">Desc</th>
+      <th colspan="1" style="width: 15%"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @faqs.each do |faq| %>
       <tr>
+        <td><%= best_in_place faq, :sort, :as => :input %></td>
         <td><%= faq.title %></td>
         <td><%= faq.desc %></td>
         <td><%= link_to 'Show', faq %> | 

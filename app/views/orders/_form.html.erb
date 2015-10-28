@@ -81,7 +81,7 @@
       </tr>
         
         
-<%= f.fields_for :orderitems, items_group.sort_by{|rq| rq.id} do |builder| %>           
+<%= f.fields_for :orderitems, items_group.sort_by{|rq| rq.sort} do |builder| %>           
        
        <tr>
        <td><%= Saleproduct.where(:id => (builder.object.saleproduct_id)).first.name %></td>
