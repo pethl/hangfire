@@ -1,0 +1,10 @@
+<html>
+  <body>
+  <p>Hi  @order.contact_person,</p>
+  <br>
+  <p>Thanks for completing your Christmas order from Hang Fire Smokehouse for £<%= get_order_total(@order) %> </p>
+  <br>
+  <p>You can view your order details here:</p>
+  <p><%= link_to @order.guid, show_order_path(guid: @order.guid) %></p>
+  </body>
+</html>
