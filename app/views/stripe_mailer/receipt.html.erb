@@ -1,6 +1,6 @@
 <html>
   <body>
-<p>HANG FIRE SMOKEHOUSE</p> 
+<p><strong>HANG FIRE SMOKEHOUSE</strong></p> 
 <p>Christmas Orders</p>
 <br><br><p>Hi <%= @order.contact_person %>,</p>
 <br>
@@ -9,7 +9,7 @@
 <p>Your order reference is <%= @order.guid %> and your total was £<%= @order.total %>.</p>
 <p>Follow this link to see what you ordered :<p><strong><%= link_to "my order details", https://hangfire.herokuapp.com/show/@order.guid) %></strong></p></p>
 <br>
-<p>Please visit out <p><strong><%= link_to "FAQs", https://hangfire.herokuapp.com/static_pages/faq) %></strong></p> for guidance if you need to make any changes to your order.</p>
+<p>Please visit out <p><strong><%= link_to "FAQs", https://hangfire.herokuapp.com/static_pages/faq %></strong></p> for guidance if you need to make any changes to your order.</p>
 <br>
 <p>Don't forget to come and collect your order on <%= @order.date_selector %></p>
 <p>You can find us at 10 Church Street, Llantwit Major, CF61 1SB</p>
