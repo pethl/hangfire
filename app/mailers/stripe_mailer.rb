@@ -3,7 +3,7 @@ class StripeMailer < ActionMailer::Base
 
   def admin_dispute_created(charge)
     @charge = charge
-    @order = Order.find_by(stripe_id: @charge.id)
+    @order = Order.find_by(strip_id: @charge.id)
     if @order
       mail(to: 'contacthangfirebbq@gmail.com', subject: "Dispute created on charge #{@order.guid} (#{charge.id})").deliver
     end
@@ -16,7 +16,7 @@ class StripeMailer < ActionMailer::Base
 
     def receipt(charge)
       @charge = charge
-      @order = Order.find_by!(stripe_id: @charge.id)
+      @order = Order.find_by!(strip_id: @charge.id)
       mail(to: @order.email, subject: "Thanks for purchasing #{@sale.product.name}")
     end
 end

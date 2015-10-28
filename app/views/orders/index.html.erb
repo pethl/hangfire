@@ -27,7 +27,7 @@
       <% if order.purchased_at.blank? %>
         <td></td>
       <% else %>
-        <td><%= order.purchased_at.strftime('%d %b ''%y,%H:%M') %></td>
+        <td><%= order.purchased_at.strftime('%d %b ''%y,%H:%M') %><br><%= order.strip_id %></td>
       <% end%>        
         <td><%= order.date_selector %></td>
         <td><%= order.contact_person %></td>
