@@ -1,7 +1,7 @@
 <html>
   <body>
   <br>
-    <p>Good news! A new order was placed for £<%= @order.total %>. </p>
+    <p>Good news! A new order was placed for £<%= @order.total %> from <%= @order.contact_person %>. </p>
     <br>
     <p><%= link_to "reference #{@order.guid}", "https://hangfire.herokuapp.com/show/#{@order.guid}" %></p>
   </body>

@@ -10,7 +10,7 @@ gem 'activemerchant'
 gem 'stripe' # for payment via strip
 gem 'stripe_event' # for stripe web hooks
 gem "figaro" # to help store and manage ENVs
-# gem "has_permalink" # give improved urls to hide id
+gem 'newrelic_rpm' #for new relic monitoring
 
 
 # Bundle edge Rails instead:
