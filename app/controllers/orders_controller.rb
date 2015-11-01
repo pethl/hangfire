@@ -17,6 +17,23 @@ class OrdersController < ApplicationController
    end
   
   # GET /orders
+  def collected_orders
+    @orders = Order.where(:status => "Collected")
+  end
+
+  # GET /orders
+  def paid_orders
+    @orders = Order.where(:status => "Paid")
+    @orders_by_col_date = @orders.group_by { |t| t.date_selector }   
+
+  end
+  
+  # GET /orders
+  def open_orders
+    @orders = Order.where(:status => "Open")
+  end
+
+  # GET /orders
   def index
     # @orders = Order.all
     @orders_by_status = Order.all.group_by { |t| t.status }   

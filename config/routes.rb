@@ -6,8 +6,11 @@ Hangfire::Application.routes.draw do
   resources :orderitems
 
   resources :saleproducts
-
-
+  
+  get "orders/collected_orders" => 'orders#collected_orders'
+  get "orders/paid_orders" => 'orders#paid_orders'
+  get "orders/open_orders" => 'orders#open_orders'
+  
   resources :orders, param: :guid do
         collection { post :dothat }
    end
