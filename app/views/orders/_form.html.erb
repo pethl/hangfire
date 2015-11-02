@@ -69,9 +69,10 @@
   
    <% @order.orderitems.group_by {|rq| rq.category_id }.each do |category_id, items_group| %>
           
-    <strong>  <%= Category.where(:id => category_id).first.name %></strong>
+   
 	
       <table class="table">    
+      <strong>   <%= Category.where(:id => category_id).first.name %></strong>
       <tr>
         <th style="width: 20%">Product</th>
         <th style="width: 35%"></th> 

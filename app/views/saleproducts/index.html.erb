@@ -32,9 +32,9 @@
         <td class="text-right"><%= number_to_currency(saleproduct.price) %></td>
         <td class="text-center"><%= saleproduct.weight %></td>
         <td class="text-center"><%= saleproduct.status %></td>
-        <td><%= link_to 'Show', saleproduct %>/
-            <%= link_to 'Edit', edit_saleproduct_path(saleproduct) %>/
-            <%= link_to 'Destroy', saleproduct, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="text-center"><%= link_to 'Show', saleproduct %> /
+            <%= link_to 'Edit', edit_saleproduct_path(saleproduct) %>
+            </td>
       </tr>
       
     <% end %>
