@@ -22,10 +22,15 @@ class OrdersController < ApplicationController
   end
 
   # GET /orders
+  def summary_orders
+    @orders = Order.where(:status => "Paid")
+      
+  end
+  
+  # GET /orders
   def paid_orders
     @orders = Order.where(:status => "Paid")
     @orders_by_col_date = @orders.group_by { |t| t.date_selector }   
-
   end
   
   # GET /orders

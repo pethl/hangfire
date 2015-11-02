@@ -10,6 +10,7 @@ Hangfire::Application.routes.draw do
   get "orders/collected_orders" => 'orders#collected_orders'
   get "orders/paid_orders" => 'orders#paid_orders'
   get "orders/open_orders" => 'orders#open_orders'
+  get "orders/summary_orders" => 'orders#summary_orders'
   
   resources :orders, param: :guid do
         collection { post :dothat }
