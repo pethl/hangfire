@@ -30,7 +30,12 @@
     <% saleproducts.each do |saleproduct| %>
       
       <tr>
-        <td><%= saleproduct.name %></td>
+        <td><%= saleproduct.name %>
+        <br>
+                <% if Saleproduct.gifts_n_packs.include? saleproduct.id  %>
+                 <i><%= saleproduct.desc %></i>
+            <% end %> 
+        </td>
         <td class="text-center"><%= number_sold(saleproduct) %></td>
         <td class="text-center"><%= saleproduct.weight %></td>
       </tr>
