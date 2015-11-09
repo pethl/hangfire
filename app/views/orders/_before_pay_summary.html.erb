@@ -27,7 +27,12 @@
   <% for orderitem in my_sorted_orderitems %>  
     <% if orderitem.quantity > 0 %>
       <tr>
-        <td><%= get_name(orderitem.saleproduct_id) %></td>
+        <td><%= get_name(orderitem.saleproduct_id) %><br>
+        <% if Saleproduct.gifts_n_packs.include? orderitem.saleproduct_id  %>
+         <i><%= get_desc(orderitem.saleproduct_id) %></i>
+    <% end %> 
+        
+        </td>
         <td>(<%= orderitem.quantity %> @ <%= get_price_currency(orderitem.saleproduct_id) %>)</td>
         <td class="text-right"><%= number_to_currency(orderitem.quantity*get_price(orderitem.saleproduct_id)) %></td>
       </tr>

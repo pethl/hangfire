@@ -7,6 +7,12 @@ class SaleproductsController < ApplicationController
         redirect_to saleproducts_path, notice: "Products imported."
       end
   
+  # GET /saleproducts
+  def summary_saleproducts
+    @saleproducts = Saleproduct.all
+    @saleproducts_by_category_id = @saleproducts.group_by { |h| h[:category_id]}  
+  end
+
   
   # GET /saleproducts
   def index

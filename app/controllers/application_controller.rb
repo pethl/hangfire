@@ -8,8 +8,7 @@ class ApplicationController < ActionController::Base
         super
       end
       
-      
-      def get_name(saleproduct_id)
+     def get_name(saleproduct_id)
         Saleproduct.where(:id => saleproduct_id)[0].name
       end
    

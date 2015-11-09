@@ -23,8 +23,11 @@ class OrdersController < ApplicationController
 
   # GET /orders
   def summary_orders
+    @orders = Order.where(:status => "Paid") 
+  end
+  
+  def fulldetail_orders
     @orders = Order.where(:status => "Paid")
-      
   end
   
   # GET /orders

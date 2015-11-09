@@ -16,5 +16,13 @@ class Saleproduct < ActiveRecord::Base
          		 Saleproduct.create! row.to_hash
       	end
       end
+      
+  def self.gifts_n_packs
+    gnp = Array.new
+    gnp << Saleproduct.where("name like ?", "%ift%").pluck(:id)
+    gnp << Saleproduct.where("name like ?", "%arty%").pluck(:id)
+    gnp = gnp.flatten
+    return gnp
+  end    
   
 end

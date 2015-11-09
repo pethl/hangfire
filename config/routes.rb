@@ -5,8 +5,11 @@ Hangfire::Application.routes.draw do
 
   resources :orderitems
 
+  get "saleproducts/summary_saleproducts" => 'saleproducts#summary_saleproducts'
+
   resources :saleproducts
-  
+
+  get "orders/fulldetail_orders" => 'orders#fulldetail_orders'  
   get "orders/collected_orders" => 'orders#collected_orders'
   get "orders/paid_orders" => 'orders#paid_orders'
   get "orders/open_orders" => 'orders#open_orders'

@@ -4,6 +4,10 @@ module OrdersHelper
     Saleproduct.where(:id => saleproduct_id)[0].name
   end
   
+  def get_desc(saleproduct_id)
+    Saleproduct.where(:id => saleproduct_id)[0].desc
+  end
+  
   def get_max_available(saleproduct_id)
     Saleproduct.where(:id => saleproduct_id)[0].remaining_quanity
   end
