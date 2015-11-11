@@ -27,13 +27,14 @@ class OrdersController < ApplicationController
   end
   
   def fulldetail_orders
-    @orders = Order.where(:status => "Paid")
+    @orders = Order.where(:status => "Paid").sort_by { |h| h[:date_selector]}
   end
   
   # GET /orders
   def paid_orders
-    @orders = Order.where(:status => "Paid")
-    @orders_by_col_date = @orders.group_by { |t| t.date_selector }   
+    @orders_mon = Order.where(:status => "Paid", :date_selector => "Monday, 21st December").sort_by { |h| h[:contact_person]}
+    @orders_tues = Order.where(:status => "Paid", :date_selector => "Tuesday, 22nd December").sort_by { |h| h[:contact_person]}
+    @orders_wed = Order.where(:status => "Paid", :date_selector => "Wednesday, 23rd December").sort_by { |h| h[:contact_person]}
   end
   
   # GET /orders

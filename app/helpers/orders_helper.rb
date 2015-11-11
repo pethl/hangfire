@@ -8,6 +8,19 @@ module OrdersHelper
     Saleproduct.where(:id => saleproduct_id)[0].desc
   end
   
+  def get_item_summary_for_orders_hash(orders_hash)
+    items = Array.new
+    orders_hash.each do |order|
+      items << order.orderitems.where("quantity > ?", 0).pluck(:saleproduct_id, :quantity)
+    end
+    items = items.flatten(1)
+    items = items.group_by(&:first).map{ |x, y| [y.inject(0){ |sum, i| sum + i.last }, x] }
+    items = items.map(&:reverse)
+    items = items.sort_by(&:first)
+    return items
+  end
+  
+  
   def get_max_available(saleproduct_id)
     Saleproduct.where(:id => saleproduct_id)[0].remaining_quanity
   end

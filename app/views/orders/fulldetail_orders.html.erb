@@ -16,8 +16,6 @@
 <div class="row">
 <div class="col-md-6 col-md-offset-3  "> 
 
-
-      <% @orders = @orders.sort_by { |h| h[:purchased_at]} %>
         <% @orders.each do |order| %>  
           <center>
           <h3><%= image_tag("christmas-holly-leaf-icon-72451.png", :border => 0, size: "50x50", :alt => "holly") %>
@@ -25,12 +23,12 @@
           <%= image_tag("christmas-holly-leaf-icon-72451.png", :border => 0, size: "50x50", :alt => "holly") %>
           </center></h3>
 
-<table class="table table-striped table-bordered">
+<table class="table table-striped table-bordered" table-layout: fixed>
     <tbody>      
       <tr>
-        <td><strong><%= link_to order.guid, show_order_path(guid: order.guid) %></strong></td>
-        <td><%= order.phone %> | <%= order.email %></td>
-        <td colspan="3" class="text-right"><%= order.date_selector %></td>
+        <td style="width: 15%"><strong><%= link_to order.guid, show_order_path(guid: order.guid) %></strong></td>
+        <td style="width: 50%"><%= order.phone %> | <%= order.email %></td>
+        <td style="width: 35%"colspan="3" class="text-right"><%= order.date_selector %></td>
       </tr>
       
       <tr>
