@@ -10,7 +10,7 @@
 <div class="masthead">
 <div class="container-fluid">
 <div class="row">
-<div class="col-md-6 col-md-offset-3  "> 
+<div class="col-md-8 col-md-offset-2  "> 
 
  <% if @saleproducts_by_category_id.any? %>
 <% @saleproducts_by_category_id.each do |category_id, saleproducts| %>
@@ -20,8 +20,9 @@
   <thead>
     <tr>
       <th style="width: 50%">Product</th>
-      <th class="text-center" style="width: 25%">Sold</th>
-      <th class="text-center" style="width: 25%">Weight</th>
+      <th class="text-center" style="width: 15%">Sold</th>
+      <th class="text-center" style="width: 20%">Weight</th>
+      <th class="text-center" style="width: 10%"></th>
     </tr>
   </thead>
 
@@ -38,6 +39,14 @@
         </td>
         <td class="text-center"><%= number_sold(saleproduct) %></td>
         <td class="text-center"><%= saleproduct.weight %></td>
+        <td class="text-center">
+            <% if saleproduct.soldout == 1%>
+              <strong><font size=1>SOLD OUT</font></strong>
+            <% end %>
+            <% if saleproduct.lowstock == 1%>
+              <strong><font size=1>LOW STOCK</font></strong>
+            <% end %>
+            </td>
       </tr>
       
     <% end %>

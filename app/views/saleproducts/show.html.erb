@@ -3,20 +3,30 @@
 <div class="row">
 <div class="col-md-8 col-md-offset-2"> 
 
-
+<h3> <%= @saleproduct.name %></h3>
 <p>
-  <strong>Sort:</strong>
-  <%= @saleproduct.sort %>
+  <strong>Category:</strong>
+  <%= Category.where(:id => @saleproduct.category_id).first.name %>
 </p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @saleproduct.name %>
-</p>
-
 <p>
   <strong>Desc</strong>
   <%= @saleproduct.desc %>
+</p>
+
+<p>
+<% if @saleproduct.lowstock == 1 %>
+  LOW STOCK
+  <% end %>
+</p>
+
+<% if @saleproduct.soldout == 1 %>
+  SOLD OUT
+  <% end %>
+</p>
+
+<p>
+  <strong>Sort Order:</strong>
+  <%= @saleproduct.sort %>
 </p>
 
 <p>
@@ -31,7 +41,7 @@
 
 <p>
   <strong>Price:</strong>
-  <%= @saleproduct.price %>
+  £<%= @saleproduct.price %>
 </p>
 
 <p>
@@ -42,11 +52,6 @@
 <p>
   <strong>Status:</strong>
   <%= @saleproduct.status %>
-</p>
-
-<p>
-  <strong>Category:</strong>
-  <%= @saleproduct.category_id %>
 </p>
 
 <%= link_to 'Edit', edit_saleproduct_path(@saleproduct) %> |

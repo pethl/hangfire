@@ -17,45 +17,63 @@
   <div class="col-md-8 col-md-offset-2"> 
 
   <div class="field">
-    <%= f.label :sort %><br>
-    <%= f.text_field :sort %>
+    <%= f.label :category_id %>: 
+    <%= f.collection_select :category_id, (Category.where(:reference => 'christmas product')), :id, :name, :prompt => true %>
   </div>
+
+  <div class="field">
+    <%= f.label :status %>: 
+    <%= f.select(:status, Saleproduct::STATUS_TYPES, :value => "Live") %>
+  </div>
+
   <div class="field">
     <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.text_field :name,  :style => "width: 300px;" %>
   </div>
+
   <div class="field">
     <%= f.label :desc %><br>
-    <%= f.text_field :desc %>
+    <%= f.text_area :desc, cols: 80, rows: 5 %>
   </div>
+
+  <div class="field">
+    <%= f.label :lowstock %><br>
+    <%= f.check_box :lowstock %>
+  </div>
+
+  <div class="field">
+    <%= f.label :soldout %><br>
+    <%= f.check_box :soldout %>
+  </div>
+
+  <div class="field">
+    <%= f.label :sort, "Sort Order" %><br>
+    <%= f.text_field :sort,  :style => "width: 26px;" %>
+  </div>
+
   <div class="field">
     <%= f.label :stock_quantity %><br>
-    <%= f.number_field :stock_quantity %>
+    <%= f.number_field :stock_quantity,  :style => "width: 50px;" %>
   </div>
   <div class="field">
     <%= f.label :remaining_quanity %><br>
-    <%= f.number_field :remaining_quanity %>
+    <%= f.number_field :remaining_quanity,  :style => "width: 50px;" %>
   </div>
   <div class="field">
     <%= f.label :price %><br>
-    <%= f.text_field :price %>
+    <strong>£</strong>
+    <%= f.text_field :price,  :style => "width: 70px;" %>
   </div>
   <div class="field">
     <%= f.label :weight %><br>
-    <%= f.text_field :weight %>
+    <%= f.text_field :weight,  :style => "width: 150px;" %>
   </div>
-  <div class="field">
-    <%= f.label :category_id %>
-    <%= f.collection_select :category_id, (Category.where(:reference => 'christmas product')), :id, :name, :prompt => true %><br>
-    <i>Category missing? </i><%= link_to '+ add new Category', new_category_path %>
-      </div>
 
-  <div class="field">
-    <%= f.label :status %><br>
-    <%= f.select(:status, Saleproduct::STATUS_TYPES, :value => "Live") %>
-  </div>
   <div class="actions">
-    <%= f.submit "Save Product" %>
+  <%= button_tag(type: 'submit', class: "btn btn-success") do %>
+    Save Product
+  <% end %>
+   
   </div>
 <% end %>
   </div>

@@ -47,7 +47,7 @@ class SaleproductsController < ApplicationController
   # PATCH/PUT /saleproducts/1
   def update
     if @saleproduct.update(saleproduct_params)
-      redirect_to @saleproduct, notice: 'Saleproduct was successfully updated.'
+      redirect_to saleproducts_url, notice: 'Saleproduct was successfully updated.'
     else
       render :edit
     end
@@ -67,6 +67,6 @@ class SaleproductsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def saleproduct_params
-      params.require(:saleproduct).permit(:name, :stock_quantity, :remaining_quanity, :price, :weight, :category_id, :status, :desc, :sort)
+      params.require(:saleproduct).permit(:name, :stock_quantity, :remaining_quanity, :price, :weight, :category_id, :status, :desc, :sort, :lowstock, :soldout)
     end
 end

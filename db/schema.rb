@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151028095939) do
+ActiveRecord::Schema.define(version: 20151116155418) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -187,6 +187,8 @@ ActiveRecord::Schema.define(version: 20151028095939) do
     t.string   "status"
     t.text     "desc"
     t.integer  "sort"
+    t.integer  "lowstock"
+    t.integer  "soldout"
   end
 
   create_table "stripe_webhooks", force: true do |t|

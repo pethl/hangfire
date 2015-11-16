@@ -15,7 +15,12 @@ class OrdersController < ApplicationController
        end
      redirect_to edit_new_order_path(guid: @order.guid)
    end
-  
+
+   # GET /orders
+   def marketing_list
+     @orders = Order.where(:status => "Paid",:marketing => true)
+   end
+     
   # GET /orders
   def collected_orders
     @orders = Order.where(:status => "Collected")
