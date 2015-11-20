@@ -95,7 +95,7 @@
       <td></td>
       <% else %>
        <td class="text-right"><%= number_to_currency(Saleproduct.where(:id => (builder.object.saleproduct_id)).first.price) %></td>
-       <td class="text-right"><%= builder.select :quantity, options_for_select(Range.new(0,(Saleproduct.where(:id => (builder.object.saleproduct_id)).first.remaining_quanity)), :selected => builder.object.quantity) %></td>
+       <td class="text-right"><%= builder.select :quantity, options_for_select(Range.new(0,10), :selected => builder.object.quantity) %></td>
               <% end %>
          <td class="text-center">
          <% if Saleproduct.where(:id => (builder.object.saleproduct_id)).first.lowstock == 1 %>

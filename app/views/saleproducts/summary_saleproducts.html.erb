@@ -29,7 +29,7 @@
   <tbody>
   <% if saleproducts.any? %>
     <% saleproducts.each do |saleproduct| %>
-      
+      <% prc = product_running_count %>
       <tr>
         <td><%= saleproduct.name %>
         <br>
@@ -37,7 +37,7 @@
                  <i><%= saleproduct.desc %></i>
             <% end %> 
         </td>
-        <td class="text-center"><%= number_sold(saleproduct) %></td>
+        <td class="text-center"><%= prc.select{ |quant, sp| sp == saleproduct.id}.first.first %></td>
         <td class="text-center"><%= saleproduct.weight %></td>
         <td class="text-center">
             <% if saleproduct.soldout == 1%>
