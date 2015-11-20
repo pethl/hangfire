@@ -48,7 +48,7 @@
 
   <div class="field">
     <%= f.label :sort, "Sort Order" %><br>
-    <%= f.text_field :sort,  :style => "width: 26px;" %>
+    <%= f.select :sort, options_for_select(Range.new(1,35), :selected => f.object.sort) %>
   </div>
 
   <div class="field">
