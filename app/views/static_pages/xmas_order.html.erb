@@ -6,11 +6,7 @@
 <body><center><%= image_tag "HF-Logo-Lndscape.jpg", size: "600x160" %></center></body>
 <center><%= image_tag "FP_Infographic_FAQ.jpg"%></center>
 <div>
-<center>
-  <%= form_tag dothat_orders_path, multipart: true, :class => "form-inline" do %>
-    <%= submit_tag "START YOUR ORDER", name: nil, class: "btn btn-success" %>   
-    <% end %>
-</center>
+
 <br>
 <font color="green"><strong><center>If you have any questions, take a look through our <%= link_to "FAQs", static_pages_faq_path %>
   </center></font></strong>
