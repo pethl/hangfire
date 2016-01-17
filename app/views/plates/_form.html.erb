@@ -1,4 +1,7 @@
-<%= form_for(@plate) do |f| %>
+
+
+
+<%= bootstrap_form_for(@plate) do |f| %>
   <% if @plate.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@plate.errors.count, "error") %> prohibited this plate from being saved:</h2>
@@ -11,18 +14,9 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %>
     <%= f.text_field :name, :size => 30 %>
-  </div>
-  <div class="field">
-    <%= f.label :category_id %>
     <%= f.collection_select :category_id, (Category.where(:reference => 'plate')), :id, :name, :prompt => true %><br>
-  </div>
-  <div class="field">
-    <%= f.label :price %>
-    <%= f.text_field :price, :size => 10, :style => "text-align: Right", :placeholder => "<selling price>" %> p
-  </div>
+    <%= f.text_field :price, :size => 10, :style => "text-align: Right", :placeholder => "<selling price>" %>
   
   <h3>Select from existing products</h3>  
    <%= f.fields_for :productlinks do |builder| %>
@@ -32,6 +26,6 @@
   
   
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit class: "btn btn-primary" %>
   </div>
 <% end %>

@@ -1,4 +1,7 @@
-<%= form_for(@product) do |f| %>
+<div class="row">
+<div class="col-md-6  col-md-offset-2">
+
+<%= bootstrap_form_for(@product) do |f| %>
   <% if @product.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
@@ -11,29 +14,12 @@
     </div>
   <% end %>
   
-  <div class="row">
-  <div class="col-xs-6 col-md-6">
   <h2>Edit Product</h2>
-  <table class="table table-condensed">
-<tr>
-  <td><%= f.label :name %></td>
-  <td><%= f.text_field :name, :size => 40 %></td>
-</tr>
-<tr>
-  <td><%= f.label :shauna, "Checked by Shauna?" %></td>
-  <td><%= f.check_box :shauna %></td>
-</tr>
-<tr>
-    <td>  <%= f.label :category_id %></td>
-    <td>  <%= f.collection_select :category_id, (Category.where(:reference => 'product')), :id, :name, :prompt => true %></td>
-</tr>
-  <tr>
-<td>    <%= f.label :desc %></td>
-    <td><%= f.text_field :desc, :size => 40, :placeholder => "...enter product description here..." %></td>
-  </tr>
-  </table>
-  </div></div>
-
+  
+  <%= f.text_field :name, :size => 40 %>
+  <%= f.text_field :desc, :size => 40, :placeholder => "...enter product description here..." %>
+  <%= f.collection_select :category_id, (Category.where(:reference => 'product')), :id, :name, :prompt => true %>
+  <%= f.check_box :shauna, :label => "Checked by Sam/Shauna?" %>
 
   <h3>Ingredients</h3>
    <%= f.fields_for :productitems do |builder| %>
@@ -48,7 +34,8 @@
     <%= link_to "+ add product", friendships_path(:product_id => @product), :method => :post %>
   <br><br>
   <div class="actions">
-    <%= f.submit %>
+        <%= f.submit class: "btn btn-primary" %>
   </div>
     <br>
 <% end %>
+ </div></div>

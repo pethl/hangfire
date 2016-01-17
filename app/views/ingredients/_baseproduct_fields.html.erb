@@ -1,19 +1,15 @@
     <fieldset>
     
-    <table>
-    <tbody>
-    <tr><td><%= f.label :purchase_date %></td><td><%= f.date_select :purchase_date %></td></tr>
-    <tr><td><%= f.label :vendor_id %></td><td><%= f.collection_select :vendor_id, (Vendor.all.sort_by { |h| h[:name] }), :id, :name, :prompt => true %></td><tr />
-    <tr><td><%= f.label :unit_count %></td><td><%= f.text_field :unit_count %></td><tr />
-    <tr><td><%= f.label :unit_weight, "Unit weight(g)" %></td><td><%= f.text_field :unit_weight %></td><tr />
-    <tr><td><%= f.label :total_weight, "Total weight(g)" %></td><td><%= f.text_field :total_weight %></td><tr />
-    <tr><td><%= f.label :unit_price, "Unit price(p)" %></td><td><%= f.text_field :unit_price %></td><tr />
-    <tr><td><%= f.label :total_price, "Total price(p)" %></td><td><%= f.text_field :total_price %></td><tr />
-    <tr><td><%= f.label :price_per, "Price per gram " %></td><td><%= f.text_field :price_per, :readonly => true  %></td><tr />
+    <%= f.date_select :purchase_date %>
+    <%= f.collection_select :vendor_id, (Vendor.all.sort_by { |h| h[:name] }), :id, :name, :prompt => true %>
+    <%= f.text_field :unit_count, help: "Will be 1 unless entering a multipack" %>
+    <%= f.text_field :unit_weight, :placeholder => "grams" , help: "IMPORTANT: Enter weight in grams" %>
+    <%= f.text_field :total_weight, :placeholder => "grams" , help: "IMPORTANT: Enter weight in grams, if only 1 item, this will be the same as unit weight" %>
+    <%= f.text_field :unit_price, :placeholder => "pence" , help: "IMPORTANT: Enter price in pence" %>
+    <%= f.text_field :total_price, :placeholder => "pence" , help: "IMPORTANT: Enter price in pence, if only 1 item, this will be the same as unit price" %>
+    <%= f.text_field :price_per, :readonly => true, help: "DO NOT ENTER, will be calculated"  %>
     
-       </tbody>
-      </table>
       <%= f.check_box :_destroy %>
-      <%= f.label :_destroy, "Remove purchase record" %>
+      <%= f.label :_destroy, "Remove this purchase record" %>
      
     </fieldset>

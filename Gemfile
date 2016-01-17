@@ -23,6 +23,10 @@ gem 'certified', '~> 1.0.0'
 gem 'rails_12factor', group: :production
 gem 'best_in_place', github: 'aaronchi/best_in_place'
 
+gem 'bootstrap_form'
+
+
+
 #for testing with rspec
 gem 'minitest',   group: :development
 gem 'rspec-rails', '2.13.1',   group: :development

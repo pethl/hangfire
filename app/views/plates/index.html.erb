@@ -1,23 +1,23 @@
-<h1>HF Plates</h1>
+<div class="row">
+<div class="col-xs-6 col-md-10  col-md-offset-1">
+
+<h2>HF Plates</h2>
 <%= link_to '+ add new plate', new_plate_path %>
 <% @plates_by_category.each do |category_id, plates| %>
 
-  <div class="row">
-  <div class="col-xs-6 col-md-10  col-md-offset-1">
 
 <h3><%= Category.where(:id => category_id).first.name %></h3>
 
 <table class="table table-bordered table-striped">
   <thead>
     <tr>
-      <th>Menu Plate</th>
-      <th colspan="1"></th>
-      <th>Contents</th>      
-      <th>Menu Price</th>
-      <th>Cost</th>
-      <th>Margin</th>
-      <th>Mg %</th>
-      <th colspan="1"></th>
+      <th style="width:25%" >Menu Plate</th>
+      <th style="width:25%" >Contents</th>      
+      <th style="width:10%; text-align:right">Menu Price</th>
+      <th style="width:10%; text-align:right">Cost</th>
+      <th style="width:10%; text-align:right">Margin</th>
+      <th style="width:10%; text-align:right">Margin %</th>
+      <th style="width:10%"></th>
     </tr>
   </thead>
 
@@ -26,20 +26,26 @@
     <% plates.each do |plate| %>
       <tr>
         <td><%= link_to plate.name, plate %></td>
-        <td><%= link_to '[Edit]', edit_plate_path(plate) %></td> 
-
+        
             <% @productlinks = Productlink.where(:plate_id => plate.id)%>
             <td><% @productlinks.each do |productlink| %>
               <%= link_to Product.get_name(productlink.product_id), product_path(productlink.product_id) %><br>
                 <% end %>
             </td>
         
-        <td><%= plate.price %> p</td>
-        <td><%= pl_tot = number_with_precision(get_plate_cost(plate), :precision => 2) %> p</td>
-        <td><%= marg = number_with_precision((plate.price.to_f)-(pl_tot.to_f), :precision => 2) %> p</td>
-        <td><%= number_with_precision((marg.to_f)/(plate.price.to_f)*100, :precision => 0) %>%</td>
-        <td><%= link_to '[Delete]', plate, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+        <td style="text-align:right"><%= plate.price %> p</td>
+        <td style="text-align:right"><%= pl_tot = number_with_precision(get_plate_cost(plate), :precision => 2) %> p</td>
+        <td style="text-align:right"><%= marg = number_with_precision((plate.price.to_f)-(pl_tot.to_f), :precision => 2) %> p</td>
+        <td style="text-align:right"><%= number_with_precision((marg.to_f)/(plate.price.to_f)*100, :precision => 0) %>%</td>
+        <td>
+        <%= link_to edit_plate_path(plate), class: 'btn btn-success btn-xs' do %>
+                   <span class="fa fa-pencil-square-o""></span>
+                <% end %>
+               |
+              <%= link_to plate, method: :delete, data: { confirm: 'Are you sure you want to delete this record?' }, class: 'btn btn-danger btn-xs' do %>
+               <span class="fa fa-trash""></span>
+             <% end %> 
+        </tr>
     <% end %>
        <% end %>
   </tbody>

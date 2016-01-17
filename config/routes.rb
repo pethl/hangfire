@@ -84,6 +84,7 @@ Hangfire::Application.routes.draw do
   
   resources :sessions, only: [:new, :create, :destroy]
 
+     get '/PCA_help', to: 'static_pages#PCA_help'
      get '/signup',  to: 'users#new'
      get '/signin',  to: 'sessions#new'
      delete '/signout', to: 'sessions#destroy'
@@ -97,6 +98,7 @@ Hangfire::Application.routes.draw do
      get "static_pages/dashboard"
      get "static_pages/xmas_order"
      get "static_pages/faq"
+     get "static_pages/PCA_help"
 
   
 

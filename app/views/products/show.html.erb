@@ -2,29 +2,30 @@
 
   <h3>PRODUCT: <%= Category.where(id: @product.category_id).first.name %> / <strong><%= @product.name %></strong></h3>
   <code><%= @product.desc %></code><br>
-  <font color="green">Checked by Shauna? </font><strong><%= shauna_format(@product) %></strong>
+  <font color="green">Checked by Sam/Shauna? </font><strong><%= shauna_format(@product) %></strong>
   
    <% if @product.productitems.any? || @friendships.any? %>
   <div class="row">
   <div class="col-xs-6 col-md-6">
 
 <h4>Product Summary</h4>
-      <table class="table  table-bordered table-condensed">
-        <thead>
+      <table class="table table-bordered table-condensed">
+     
         <tr>
-          <th><strong></strong></th>
-          <th>Count</th>
-          <th>Volume</th>
-          <th>Cost</th>
-          <th><center>Price Per Gram</center></th>
+          <th style="width:40%"></th>
+          <th style="width:15%; text-align:center">Count</th>
+          <th style="width:15%; text-align:right">Volume</th>
+          <th style="width:15%; text-align:right">Cost</th>
+          <th style="width:15%"><center>Price Per Gram</center></th>
           </tr>
-        </thead>
+    
           <% if @product.productitems.any? %>
                <tr>
                 <td>Basic Ingredients</td>
-                <td><center><%= @product.productitems.count %></center></td>
-                <td><%= pw = Product.get_total_ingredient_weight(@product.id) %>g</td>
-                <td><% if (Product.get_total_price(@product.id)).to_s == "missing data" %>
+                <td style="text-align:center"><%= @product.productitems.count %></center></td>
+                <td style="text-align:right"><%= pw = Product.get_total_ingredient_weight(@product.id) %>g</td>
+               
+                <td style="text-align:right"><% if (Product.get_total_price(@product.id)).to_s == "missing data" %>
                                 "missing data"
                                 <% else %>
                                 <%= @total_ingredient = number_with_precision(Product.get_total_price(@product.id), :precision => 1) %>p
@@ -32,7 +33,7 @@
                 </td>
                  <% unless @friendships.any? %>
                    <% unless pw == 0 %>
-                  <td><center><%=  number_with_precision(((@total_ingredient.to_f)/(pw.to_f)), :precision => 2) %>p</center></td>
+                  <td style="text-align:center"><%=  number_with_precision(((@total_ingredient.to_f)/(pw.to_f)), :precision => 2) %>p</td>
                     <% end %>
                   <% end %>
                 
@@ -44,19 +45,19 @@
               <% @friendships.each do |friend| %>
                 <tr>
                 <td><%= link_to Product.get_name(friend.friend_id), product_path(friend.friend_id) %></td>
-                <td><center>1</center></td>
-                <td><%= friend.prodvolume %>g</td>
+                <td style="text-align:center">1</td>
+                <td style="text-align:right"><%= friend.prodvolume %>g</td>
                 <% p_price = get_product_price_per_gram(friend.friend_id) %>
-                <td><%= number_with_precision((friend.prodvolume.to_f)*(p_price.to_f), :precision => 2) %>p</td>                  
+                <td style="text-align:right"><%= number_with_precision((friend.prodvolume.to_f)*(p_price.to_f), :precision => 2) %>p</td>                  
                 </tr>
               <% end %>   
             <% end %>  
             <% if @product.productitems.any? && @friendships.any? %>
               <tr>
               <td><strong>Total</strong></td>
-                <td><strong><center><%= get_items_count(@product) %></center></strong></td>
-                <td><strong><%= weigh = Product.get_total_weight(@product.id) %>g</strong></td>
-                <td>
+                <td style="text-align:center"><strong><%= get_items_count(@product) %></strong></td>
+                <td style="text-align:right"><strong><%= weigh = Product.get_total_weight(@product.id) %>g</strong></td>
+                <td style="text-align:right; color:blue">
                   <% ans = get_items_cost(@product) %>
                   <strong><%= number_to_currency((ans).to_f/100, :locale => :en) %></strong>
                 </td>
@@ -73,12 +74,12 @@
          <thead>
            <tr>
              <th>Ingredients </th>
-             <th>Volume (g)</th>
-             <th>Unit Count</th>
-             <th>Pricing Type </th>
-             <th>Price per (p/g)</th>
-             <th>Ratio</th>
-             <th>Total cost (p)</th>
+             <th style="text-align:right">Volume (g)</th>
+             <th style="text-align:center">Unit Count</th>
+             <th style="text-align:center">Pricing Type </th>
+             <th style="text-align:right">Price per gram</th>
+             <th style="text-align:right">Ratio</th>
+             <th style="text-align:right">Total cost (p)</th>
            </tr>
          </thead>
          <tbody>
@@ -94,18 +95,22 @@
         </tbody>
          <tr>
             <td><strong>Total Volume</strong></td>
-            <td><strong><%= Product.get_total_weight(@product.id) %>g<strong></td>
+            <td style="text-align:right"><strong><%= Product.get_total_weight(@product.id) %>g<strong></td>
             <td colspan="3"></td>
-            <td><strong>Total Price</strong></td>
-            <td><strong>
+            <td style="text-align:right"><strong>Total Price</strong></td>
+            <td style="text-align:right"><strong>
             <%= number_to_currency((get_items_cost(@product)).to_f/100, :locale => :en) %>
             <strong></td>    
           <tr>
       </table>
   <% end %>       
-              
-  [<%= link_to 'Edit HF product', edit_product_path(@product) %> |
-  <%= link_to 'All HF products', products_path %> ]
+ 
+  <%= link_to edit_product_path(@product), class: 'btn btn-success btn-xs' do %>
+     <span class="fa fa-pencil-square-o""></span>
+  <% end %>
+ |
+ <%= link_to 'All HF products', products_path %> 
+  
   <br><br>
   <% if (plates = (related_plate(@product))).any?%>
    <h4>Plates containing this product: </h4>

@@ -1,0 +1,88 @@
+<br>
+
+<div class="masthead">
+<div class="container-fluid">
+<div class="row">
+<h2>Calculating PCA - Tutorial Page</h2>
+    
+    <div class="col-md-8 col-md-offset-2"> 
+  <table class="table table-bordered">
+  <tr>
+    <td></td><td>The following steps will guide you through calculating PCA for menu items.</td>
+      </tr>  
+      <tr>
+    <td>1</td><td><strong>CHECK EXISTING INGREDIENTS<br></strong>
+    First you need to ensure all your base ingredients are available in the system.<br>
+    Go to the <strong><%= link_to "Ingredients page", ingredients_path %></strong> to check this. <br>
+    If any are missing go to step 2, else step 3.</td>
+    </tr>  
+    <tr>
+    <td>2a</td>
+    <td><strong>ADD A NEW INGREDIENT<br></strong>
+    Adding a new <strong>Ingredient</strong> is pretty easy. Click on any <strong><%= link_to '+ add new ingredient', new_ingredient_path %></strong> link.<br>
+    <ul>
+    <li>You will need to enter the <strong>ingredient name</strong>, try to put the main ingredient first, then any specific type afterwards to make it easier to find, i.e. 'Salt - fine/cooking' or 'Salt - sea salt, flaked'.</li>
+    <li>Next you need to choose an <strong>ingredient category</strong> from the drop down list.</li>
+    <li>If the ingredient is a generic item such as 'a cabbage', rather than 'flour' which comes pre-weighed, enter the name of the <strong>unit item</strong>.</li>
+    <li>Finally, if the item is prone to <strong>shrinkage</strong>, enter the approximate % of weight LOST to shrinkage.</li>
+    <li>Save the record using the blue button.
+    <ul>
+    </td></tr> 
+    <tr>
+    <td>2b</td><td><strong>ADD A PRICE TO AN INGREDIENT<br></strong>
+    IMPORTANT: Every ingredient needs to have at least 1 <strong>purchase record</strong> that will define it's cost.<br>
+    <ul>
+    <li>First - think about where you bought this ingredient and check it is on the <%= link_to "Vendors page", vendors_path %>, if it is missing, add it now, using the <strong><%= link_to '+ add new vendor', new_vendor_path %></strong> link.'</li>
+    <li>Next - find your ingredient in the <strong><%= link_to "Ingredients page", ingredients_path %></strong> and click the green EDIT button to enter a <strong>purchase record</strong>.</li>
+     <li>Click the <strong>+ add purchase record link</strong></li>
+     <li>Enter <strong>purchase date</strong> of when the ingredient was bought and select the <strong>vendor</strong>.</li>
+     <li>Now enter the  <strong>unit count</strong>, typically 1 unless entering a multi-pack.</li>
+     <li>You must enter at least <strong>total weight in PENCE and total price in GRAMS</strong>. The other values will be calculated for you, or can be entered if known.</li>
+      <li>Click the blue UPDATE INGREDIENT button to save your record. On the next screen you will see a price per gram calculated.</li>
+       <li>Repeat for all other missing ingredients</li>
+     </td>
+    </tr>  
+    <tr>
+    <td>3a</td><td><strong>CREATE A PRODUCT<br></strong>
+    You are now ready to start building your menu items or products.<br>
+    <ul>
+    <li>First - check the <strong><%= link_to "Products page", products_path %></strong> to see if your product already exists and can be edited by clicking on the green edit button.</li>
+    <li>If a new product is needed, click on the <strong><%= link_to '+ add new product', new_product_path %></strong> link.
+    <li>Initially you need only enter a <strong>name</strong>, try to make it unqiue  to this specific product, a <strong>description</strong>, enter anything here to help you remember the specifics of this product, and pick a <strong>category</strong>. Then click the blue Create Product button</li>
+    <br>
+    <li>Now you are ready to add the components that make up the product, these might be <strong>raw ingredients</strong> OR <strong>already created products</strong>, such as Hang Fire Mustard Sauce.</li>
+     </tr> <tr>
+    <td>3b</td><td><strong>ADD INGREDIENTS TO YOUR PRODUCT<br></strong>
+    <ul>
+    <li>Start with the ingredients, all products should have at least one ingredient! Click <strong>+ add ingredient</strong> link.  </li>
+    <li>Then enter the info, select the <strong>ingredient</strong> from the list, specify either the <strong>weight</strong> in grams, or for items like 1 bread roll or 1 carrot, you can enter the <strong>unit count</strong>.
+    Typically leave the <strong>price selector</strong> as <i>latest</i> - this will give you the most up-to-date pricing, however you can select options of least, most or average for specific pricing scenarios.</li>
+    <li>Repeat until all your ingredients have been entered, then click the blue Update Product button to see your results.</li>
+     </tr> <tr>
+    <td>3c</td><td><strong>ADD SOME EXISTING PRODUCT TO YOUR PRODUCT<br></strong>
+    <ul>
+     <li>Click <strong>+ add product</strong> link.</li>
+     <li>Select the <strong>product</strong> required, note only products ferom the categories <strong>Kitchen Product</strong> and <strong>Smoker</strong> are available.</li>
+    <li>Enter the product volume used.</li>
+    <li>Repeat until all your products have been entered, then click the blue Update Product button to see your results.</li>
+    </tr>  
+    <tr>
+    <td>3d</td><td><strong>EDIT YOUR PRODUCT<br></strong>
+    <ul><li>From your product page, click the green edit button to make any changes.</li>
+    <li>You can remove any <strong>ingredients</strong> or <strong>existing products</strong> by clicking the tick box, then clicking the blue Update Product button</li>
+    <li>Add a new ingredient or product in the same was as above.</li>
+    <li>Edit any of the volume or unit count values, then click the blue Update Product button to see the impact of your changes.</li></ul>
+    </td>
+    </tr>  
+    <tr>
+    <td>4</td><td><strong>CREATE A PLATE<br></strong>
+    To calculate PCA for a full meal, simply combine your products into one <strong>plate</strong>, using the <strong><%= link_to '+ add new plate', new_plate_path %></strong> link. 
+    </td>
+    </tr>  
+   
+       </table>
+    
+    </div>    
+     </div> 
+      </div>
+  

@@ -1,4 +1,7 @@
-<%= form_for(@ingredient) do |f| %>
+<div class="row">
+  <div class="col-md-6 col-md-offset-2"> 
+
+<%= bootstrap_form_for(@ingredient) do |f| %>
   <% if @ingredient.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@ingredient.errors.count, "error") %> prohibited this ingredient from being saved:</h2>
@@ -11,35 +14,24 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %>
+
     <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :category_id %>
-    <%= f.collection_select :category_id, (Category.where(:reference => 'ingredient')), :id, :name, :prompt => true %><br>
-    <i>Category missing? </i><%= link_to '+ add new Category', new_category_path %>
-      </div>
-      
-  <div class="field">
-    <%= f.label :unit_item, "Unit description" %>
-    <%= f.text_field :unit_item %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :shrinkage, "Shrinkage %" %>
-    <%= f.text_field :shrinkage, :size => 6 %><br> 
-    Express as % of weight lost, i.e. 10kg > 7kg = 30% shrinkage
-  </div>
+    <%= f.collection_select :category_id, (Category.where(:reference => 'ingredient')), :id, :name, :prompt => true %>
+    <i>Category missing? </i><%= link_to '+ add new Category', new_category_path %><br><br>
+    <%= f.text_field :unit_item, help: "Definition of standard size item only, like 1 roll, 1 carrot, 1 cabbage, etc." %>
+    <%= f.text_field :shrinkage, :size => 6, help: "Express as % of weight lost, i.e. 10kg > 7kg = 30% shrinkage" %>
+    
  <br>
 
     <%= f.fields_for :baseproducts do |builder| %>
       <%= render 'baseproduct_fields', f: builder %>
     <% end %><br>
-    <%= link_to_add_fields "+ add purchase record", f, :baseproducts %>
+  <strong>  <%= link_to_add_fields "+ add purchase record", f, :baseproducts %></strong>
+  <br> <br>
   
 
   <div class="actions">
-    <%= f.submit %>
-  </div>
+    <%= f.submit class: "btn btn-primary" %>
+ 
 <% end %>
+  </div> </div> </div>

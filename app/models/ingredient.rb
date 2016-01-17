@@ -1,10 +1,11 @@
 class Ingredient < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
   
-  has_many :baseproducts
+  has_many :baseproducts, :dependent => :destroy
   accepts_nested_attributes_for :baseproducts, allow_destroy: true
     validates :name, presence: true, uniqueness: { case_sensitive: false }
     validates :category_id, presence: true
+    
     before_save :child_calc_prices
       
   def self.get_name(id)

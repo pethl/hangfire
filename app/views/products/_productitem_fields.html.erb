@@ -6,11 +6,14 @@
 
   <tbody>
   <tr>
-      <td><%= i_id = f.collection_select :ingredient_id, (Ingredient.all.sort_by { |h| h[:name] }), :id, :name,  :prompt => true %></td>
-      <td><%= f.text_field :volume, :placeholder => "Volume (g)", :style => "text-align: Right" %> grams</td> 
-      <td><%= f.text_field :unit_count, :placeholder => "Unit Count (g)", :style => "text-align: Center" %> units</td> 
-      <td><%= f.select(:price_selector, Productitem::PRICE_SELECTOR_TYPES, :selected => 'latest')%> </td>
-      <td><%= f.check_box :_destroy %><%= f.label :_destroy, "Remove ingredient" %></td>
+      <td style="width: 28%"><%= i_id = f.collection_select :ingredient_id, (Ingredient.all.sort_by { |h| h[:name] }), :id, :name,  :prompt => true %></td>
+      <td style="width: 20%"><center><%= f.text_field :volume, :label => "Weight", :placeholder => "Weight (g)", :style => "text-align: Center", :placeholder => "grams" %></td> 
+      <td style="width: 4%">OR</td>
+      <td style="width: 20%"><center><%= f.text_field :unit_count, :placeholder => "how many", :style => "text-align: Center" %></td> 
+      <td style="width: 28%"><%= f.select(:price_selector, Productitem::PRICE_SELECTOR_TYPES, :selected => 'latest')%> </td>
+  </tr>
+  <tr>
+      <td colspan="3" ><i><%= f.check_box :_destroy, :label => "Remove this ingredient" %></i></td>
   </tr>
   </tbody>
 </table>

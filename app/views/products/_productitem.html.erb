@@ -1,22 +1,22 @@
 
 <tr>
-        <td><%= link_to (Ingredient.get_name(productitem.ingredient_id)), ingredient_path(productitem.ingredient_id) %></td>
-        <td>
-            <%  if Productitem.food_category(productitem) %>
-            (<%= productitem.volume.to_i %>)
-            <% else %>
-            <%= productitem.volume %>g
-            <% end %>
-        </td>
-        <td><%= productitem.unit_count %><% if !Ingredient.get_unit_item(productitem.ingredient_id).blank? %> x <%=  Ingredient.get_unit_item(productitem.ingredient_id) %><% end %> </td>
-        <td><%= productitem.price_selector %></td>
-        <td><%= number_with_precision(Ingredient.get_price(productitem.ingredient_id,productitem.price_selector), :precision => 4) %></td>
-        <td>        
-            <%  if Productitem.food_category(productitem) %>
-             n/a
-             <% else %>
-             <%= number_with_precision((Productitem.weight_ratio(productitem,0))*100, :precision => 2) %>%
-             <% end %>
-        </td>
-        <td><%= number_with_precision(Productitem.total_price(productitem), :precision => 2) %>p</td>
+    <td><%= link_to (Ingredient.get_name(productitem.ingredient_id)), ingredient_path(productitem.ingredient_id) %></td>
+    <td style="text-align:right">
+        <%  if Productitem.food_category(productitem) %>
+        (<%= productitem.volume.to_i %>)
+        <% else %>
+        <%= productitem.volume %>g
+        <% end %>
+    </td>
+    <td style="text-align:center"><%= productitem.unit_count %><% if !Ingredient.get_unit_item(productitem.ingredient_id).blank? %> x <%=  Ingredient.get_unit_item(productitem.ingredient_id) %><% end %> </td>
+    <td style="text-align:center"><%= productitem.price_selector %></td>
+    <td style="text-align:right"><%= number_with_precision(Ingredient.get_price(productitem.ingredient_id,productitem.price_selector), :precision => 4) %></td>
+    <td style="text-align:right">        
+        <%  if Productitem.food_category(productitem) %>
+         n/a
+         <% else %>
+         <%= number_with_precision((Productitem.weight_ratio(productitem,0))*100, :precision => 2) %>%
+         <% end %>
+    </td>
+    <td style="text-align:right"><%= number_with_precision(Productitem.total_price(productitem), :precision => 2) %>p</td>
 </tr>

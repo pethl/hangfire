@@ -1,6 +1,9 @@
-<h2>New product</h2>
+<div class="row">
+  <div class="col-md-6 col-md-offset-2">
 
-<%= form_for(@product) do |f| %>
+  <h2>New product</h2>
+
+<%= bootstrap_form_for(@product) do |f| %>
   <% if @product.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
@@ -13,24 +16,15 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name, :size => 40  %>
-  </div>
- 
-  <div class="field">
-    <%= f.label :desc %><br>
-    <%= f.text_area :desc, :size => 40, :placeholder => "...enter product description here..." %>
-  </div>
   
-  <div class="field">
-    <%= f.label :category_id %>
+    <%= f.text_field :name, :size => 40  %>
+    <%= f.text_area :desc, :size => 40, :placeholder => "...enter product description here..." %>
     <%= f.collection_select :category_id, (Category.where(:reference => 'product')), :id, :name, :prompt => true %><br>
    
 <br>
   
    <div class="actions">
-      <%= f.submit %>
+      <%= f.submit class: "btn btn-primary" %>
     </div>
   <% end %>
 

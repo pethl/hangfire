@@ -44,7 +44,7 @@ end
     @product = Product.new(product_params)
 
     if @product.save
-      redirect_to @product, notice: 'Product was successfully created.'
+      redirect_to edit_product_path(@product), notice: 'Product was successfully created, now add ingredients.'
     else
       render :new
     end
