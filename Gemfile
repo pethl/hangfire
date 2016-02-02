@@ -12,6 +12,8 @@ gem 'stripe_event' # for stripe web hooks
 gem "figaro" # to help store and manage ENVs
 gem 'newrelic_rpm' #for new relic monitoring
 
+ gem 'quiet_assets'
+
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
