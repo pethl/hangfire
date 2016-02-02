@@ -8,6 +8,12 @@ class Ingredient < ActiveRecord::Base
     
     before_save :child_calc_prices
       
+    def self.search(search)
+        category_id = search.first.second   
+         where("category_id = ?", "#{category_id}") 
+        end  
+      
+      
   def self.get_name(id)
     name = Ingredient.where(:id => id)[0].name
     return name

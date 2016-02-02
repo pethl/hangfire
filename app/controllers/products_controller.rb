@@ -3,11 +3,30 @@ class ProductsController < ApplicationController
     before_action :signed_in_user, only: [:edit, :update, :destroy, :index, :show, :new]
   
 
-  # GET /products
-  def index
-    # @product_groups = @products.group_by { |t| t.meat }
-    @products_by_category = Product.all.group_by { |t| t.category_id }
-end
+    # GET /products
+        def index
+          # @product_groups = @products.group_by { |t| t.meat }
+          #@products_by_category = Product.all.group_by { |t| t.category_id }
+     
+          @products = []
+           #take params from search on Index view, or if no search, do nothing
+           #send to model to apply SEARCH function, which retrieves matching records 
+            if params[:product]
+             @products = Product.search(params[:product])
+                    if @products.any?
+                      Rails.logger.debug("xxxxxxxxxxxxx_product : #{@products.count}")  
+              
+                      @products_by_category = @products.group_by { |t| t.category_id }
+      
+                    else
+                      params[:product]= []
+                      @products = 0
+                    end
+            else
+              @products = 0
+             params[:product]= []
+            end
+      end
 
   # GET /products/1
   def show

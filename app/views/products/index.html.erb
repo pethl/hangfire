@@ -4,6 +4,22 @@
 <div class="row">
 <div class="col-md-10  col-md-offset-1">
 
+<!-- Instructions: The search form. -->  
+ 
+   <%= form_tag(products_path, :method => "get", id: "search-form") do %>
+       <%= collection_select(:product, :category_id, (Category.where(:reference => 'product')), :id, :name) %>
+       <%= submit_tag "Search" %>
+   <% end %>
+
+ 
+   <%  if @products == 0 %>
+     <br>
+     Please select a category for search
+     <br>
+ 
+ <% else %>
+
+
 <% @products_by_category.each do |category_id, products| %>
  
 <table class="table">
@@ -45,7 +61,8 @@
       <% end %>    
       <tr><td><%= link_to '+ add new product', new_product_path %></td></tr>
 </table>
- <% end %>
+ <% end %> <% end %>
+ <br>
 
 <button class="btn">	<a>Import productitems</a><%= form_tag import_productitems_path, multipart: true do %>
 	                      <%= file_field_tag :file %>

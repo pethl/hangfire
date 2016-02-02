@@ -9,6 +9,11 @@ class Product < ActiveRecord::Base
   validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :category_id, presence: true
 
+  def self.search(search)
+      category_id = search.first.second   
+       where("category_id = ?", "#{category_id}") 
+      end  
+
 
     def self.categories_to_ignore
       @categories_to_ignore = [7,8,9]

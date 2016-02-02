@@ -4,6 +4,21 @@
 <%= link_to '+ add new ingredient', new_ingredient_path %><br>
 <%= link_to '>> see all products', products_path %>
 
+<!-- Instructions: The search form. -->  
+ 
+   <%= form_tag(ingredients_path, :method => "get", id: "search-form") do %>
+       <%= collection_select(:ingredient, :category_id, (Category.where(:reference => 'ingredient')), :id, :name) %>
+       <%= submit_tag "Search" %>
+   <% end %>
+   </div>
+ 
+   <%  if @ingredients == 0 %>
+     <br>
+     Please select a category for search
+     <br>
+ 
+ <% else %>
+
 <% @ingredients_category.each do |category_id, ingredients| %>
 
 <table class="table  table-striped" >
@@ -70,7 +85,7 @@
     <% end %>
   </tbody>
 </table>
-    <% end %>
+    <% end %>    <% end %>
 <br>
 
 <button class="btn">	<%= form_tag import_ingredients_path, multipart: true do %>

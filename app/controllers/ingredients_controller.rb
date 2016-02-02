@@ -2,12 +2,26 @@ class IngredientsController < ApplicationController
   before_action :set_ingredient, only: [:show, :edit, :update, :destroy]
   before_action :signed_in_user, only: [:edit, :update, :destroy, :index, :show, :new]
 
-  
-  # GET /ingredients
   def index
-      @ingredients = Ingredient.all
-     @ingredients_category = @ingredients.group_by { |t| t.category_id }
-  end
+  @ingredients = []
+      #take params from search on Index view, or if no search, assume blank
+      #send to model to apply SEARCH function, which retrieves matching records 
+       if params[:ingredient]
+        @ingredients = Ingredient.search(params[:ingredient])
+               if @ingredients.any?
+                 Rails.logger.debug("xxxxxxxxxxxxx_inregdients : #{@ingredients.count}")  
+              
+                 @ingredients_category = @ingredients.group_by { |t| t.category_id }
+      
+               else
+                 params[:ingredient]= []
+                 @ingredients = 0
+               end
+       else
+         @ingredients = 0
+        params[:ingredient]= []
+       end
+     end
 
   # GET /ingredients/1
   def show
