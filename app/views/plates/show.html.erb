@@ -1,4 +1,5 @@
-<h3>PLATE : <%= Category.where(id: @plate.category_id).first.name %> / <strong><%= @plate.name %></strong></h3>
+<h3><strong><%= @plate.name %></strong> <%= number_to_currency(@plate.price/100) %> (net <%= number_to_currency(net_price(@plate.price/100)) %>)</h3>
+<small><%= Category.where(id: @plate.category_id).first.name %></small>
 
 <div class="row">
 <div class="col-xs-6 col-md-10  col-md-offset-1">
@@ -9,26 +10,24 @@
    <thead>
     <tr>
       <th>Item(s)</th>
-      <th>Cost</th>
-      <th>Price</th>
-      <th>Margin</th>
-      <th>Mg %</th>
+      <th style="text-align:right">Food Cost</th>
+      <th><center>Cost of Food<br>GROSS</th>
+      <th><center>Cost of Food<br>NET</th>
   </tr>
   <tbody>
     <% @productlinks.each do |productlink| %>
       <tr>
       <td><%= link_to (Product.get_name(productlink.product_id)), product_path(productlink.product_id)%>: </td>
-      <td><%= number_with_precision(get_items_cost(productlink.product_id), :precision => 2) %> p</td>
+      <td  style="text-align:right"><%= number_with_precision(get_items_cost(productlink.product_id), :precision => 1) %>p</td>
       <td colspan="3"></td>
      </tr>
       <% end %>
 </tbody>
     <tr>
       <td><strong>Cost Total: </strong></td>
-      <td><%= pl_tot = number_with_precision(get_plate_cost(@plate), :precision => 2) %> p</td>
-       <td><%= @plate.price %> p</td>
-      <td><%= marg = number_with_precision((@plate.price.to_f)-(pl_tot.to_f), :precision => 2) %> p</td>
-      <td><%= number_with_precision((marg.to_f)/(@plate.price.to_f)*100, :precision => 2) %>%</td>      
+      <td style="text-align:right"><b><%= number_to_currency(get_plate_cost(@plate)/100) %></b></td>
+       <td><center><%= number_to_percentage((get_plate_cost(@plate)/(@plate.price)*100), :precision => 1) %></td>
+       <td><center><%= number_to_percentage((get_plate_cost(@plate)/(net_price(@plate.price))*100), :precision => 1)  %></td>  
     </tr>
 </table>
 <% else %>
