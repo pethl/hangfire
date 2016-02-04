@@ -1,6 +1,7 @@
 class Category < ActiveRecord::Base
   
    has_many :products
+      has_many :ingredients
   validates :name, presence: true, uniqueness: true
     validates :reference, presence: true
     

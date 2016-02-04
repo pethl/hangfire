@@ -15,17 +15,33 @@
   <% end %>
   
   <h2>Edit Product</h2>
-  
-  <%= f.text_field :name, :size => 40 %>
-  <%= f.text_field :desc, :size => 40, :placeholder => "...enter product description here..." %>
-  <%= f.collection_select :category_id, (Category.where(:reference => 'product')), :id, :name, :prompt => true %>
-  <%= f.check_box :shauna, :label => "Checked by Sam/Shauna?" %>
-
-  <h3>Ingredients</h3>
+  <table class="table-condensed">
+  <tr>
+  <td><%= f.text_field :name%></td>
+  <td><%= f.collection_select :category_id, (Category.where(:reference => 'product')), :id, :name, :prompt => true %>
+  </td>
+  <td><%= f.check_box :shauna, :label => "Checked by Sam/Shauna?" %></td>
+  <tr><td colspan="3">
+  <%= f.text_field :desc, :size => 40, :placeholder => "...enter product description here..." %></td></tr>
+  <table>
+<br>
+  <b>Select ingredients</b>
+  <table class="table table-condensed" style="border: 0; background-color: #e6e6e6">
+  <tr>
+  <td style="text-align:left"><small><b><i>Ingredient</small></td>
+  <td style="text-align:right"><small><b><i>Weight</td>
+  <td style="text-align:center"><small><b><i>OR</td>
+  <td style="text-align:right"><small><b><i>Quantity</td>
+  <td style="text-align:center"><small><b><i>£ Selector</td>
+  <td style="text-align:center"><small><b><i>REMOVE </td>
+  </tr>
    <%= f.fields_for :productitems do |builder| %>
       <%= render 'productitem_fields', f: builder %>
     <% end %>
-    <%= link_to_add_fields "+ add ingredient", f, :productitems %>
+    <tr>
+    <td  colspan="5"><b><%= link_to_add_fields "+ add ingredient", f, :productitems %></b></td>
+    </tr>
+     </table>
     
     <h3>Use quantity of existing product</h3>  
      <%= f.fields_for :friendships do |builder| %>

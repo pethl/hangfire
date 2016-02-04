@@ -1,22 +1,13 @@
 
-
 <fieldset>
 
- <table>
+  <tr>                 
+      <td style="width: 40%"><%= i_id = f.grouped_collection_select :ingredient_id, Category.where(:reference => 'ingredient').order(:name), :ingredients, :name, :id, :name, include_blank: true, hide_label: true, :class=>"form-control input-sm" %></td>
+      <td style="width: 17%;text-align:right"><%= f.text_field :volume, :label => "Weight", :placeholder => "Weight (g)", :style => "text-align: Right", :placeholder => "grams", hide_label: true %></td> 
+      <td style="width: 3%"></td>
+      <td style="width: 17%"><%= f.text_field :unit_count, :placeholder => "quantity", :style => "text-align: Right", hide_label: true %></td> 
+      <td style="width: 22%"><%= f.select(:price_selector, Productitem::PRICE_SELECTOR_TYPES, :selected => 'latest', hide_label: true)%> </td>
+      <td><i><%= f.check_box :_destroy, :label => "Delete" %></i></td>
+  </tr>
 
-  <tbody>
-  <tr>
-      <td style="width: 28%"><%= i_id = f.collection_select :ingredient_id, (Ingredient.all.sort_by { |h| h[:name] }), :id, :name,  :prompt => true %></td>
-      <td style="width: 20%"><center><%= f.text_field :volume, :label => "Weight", :placeholder => "Weight (g)", :style => "text-align: Center", :placeholder => "grams" %></td> 
-      <td style="width: 4%">OR</td>
-      <td style="width: 20%"><center><%= f.text_field :unit_count, :placeholder => "how many", :style => "text-align: Center" %></td> 
-      <td style="width: 28%"><%= f.select(:price_selector, Productitem::PRICE_SELECTOR_TYPES, :selected => 'latest')%> </td>
-  </tr>
-  <tr>
-      <td colspan="3" ><i><%= f.check_box :_destroy, :label => "Remove this ingredient" %></i></td>
-  </tr>
-  </tbody>
-</table>
-<br>
-  
 </fieldset>

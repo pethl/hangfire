@@ -1,12 +1,13 @@
 class Ingredient < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
-  
+  belongs_to :category
   has_many :baseproducts, :dependent => :destroy
   accepts_nested_attributes_for :baseproducts, allow_destroy: true
-    validates :name, presence: true, uniqueness: { case_sensitive: false }
-    validates :category_id, presence: true
-    
-    before_save :child_calc_prices
+  validates :name, presence: true, uniqueness: { case_sensitive: false }
+  validates :category_id, presence: true
+  before_save :child_calc_prices
+  
+  default_scope { order('name ASC') }
       
     def self.search(search)
         category_id = search.first.second   

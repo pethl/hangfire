@@ -11,13 +11,14 @@
 <table class="table table-bordered table-striped">
   <thead>
     <tr>
-      <th style="width:25%" >Menu Plate</th>
-      <th style="width:25%" >Contents</th>      
-      <th style="width:10%; text-align:right">Menu Price</th>
-      <th style="width:10%; text-align:right">Cost</th>
-      <th style="width:10%; text-align:right">Margin</th>
-      <th style="width:10%; text-align:right">Margin %</th>
-      <th style="width:10%"></th>
+      <th style="width:25%" >Food Item Name</th>
+      <th style="width:20%" >Contents</th>      
+      <th style="width:7%; text-align:right">Menu Price</th>
+       <th style="width:7%; text-align:right">NET Profit</th>
+      <th style="width:7%; text-align:right">Cost of Food</th>
+      <th style="width:12%; text-align:right">NET Margin</th>
+      <th style="width:8%; text-align:right">Food Cost as % of NET Price</th>
+      <th style="width:8%"></th>
     </tr>
   </thead>
 
@@ -33,10 +34,14 @@
                 <% end %>
             </td>
         
-        <td style="text-align:right"><%= plate.price %> p</td>
-        <td style="text-align:right"><%= pl_tot = number_with_precision(get_plate_cost(plate), :precision => 2) %> p</td>
-        <td style="text-align:right"><%= marg = number_with_precision((plate.price.to_f)-(pl_tot.to_f), :precision => 2) %> p</td>
-        <td style="text-align:right"><%= number_with_precision((marg.to_f)/(plate.price.to_f)*100, :precision => 0) %>%</td>
+        <td style="text-align:right"><%= number_to_currency(plate.price/100) %></td>
+        <td style="text-align:right"><%= number_to_currency(net_price(plate.price)/100) %></td>
+        <td style="text-align:right"><%= number_to_currency(get_plate_cost(plate)/100) %> </td>
+        <td style="text-align:right"><%= number_to_currency(((plate.price*0.80)/100)-(get_plate_cost(plate)/100)) %> 
+       (<%= number_to_percentage((((plate.price*0.80))-(get_plate_cost(plate)))/((plate.price*0.80))*100, precision: 1) %>)</td>
+        
+        <td style="text-align:right"><%= number_to_percentage((get_plate_cost(plate)/(plate.price*0.80))*100, precision: 1) %> </td>
+        
         <td>
         <%= link_to edit_plate_path(plate), class: 'btn btn-success btn-xs' do %>
                    <span class="fa fa-pencil-square-o""></span>

@@ -21,6 +21,11 @@ module ApplicationHelper
     def formatted_price(amount)
       sprintf("£%0.2f", amount / 100.0)
     end
+    
+    def net_price(amount)
+      amount*0.80
+    end
+  
   
   
 end
