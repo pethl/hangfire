@@ -5,22 +5,13 @@
 <body><center><%= image_tag "HF-Logo-Lndscape.jpg", size: "800x200" %></center></body>
 
 <br>
-<br>
-<center><button type="button" class="btn btn-success"><%= link_to "Christmas Orders", static_pages_xmas_order_path %></button>
-<br>
  <p><a href="/signin"></span> . </a></p>
 </center>
 
 <br>
   <% if logged_in? %>
     <table class= "table">
-    <tr>
-     <td>-</td>
-      <td><center><a href="/saleproducts">Christmas Products</a></center></td>
-      <td><center><a href="/orders/paid_orders ">Christmas Orders</a></center></td>
-      <td><center><a href="/static_pages/xmas_order ">Place Christmas Order</a></center></td>
-      <td>-</td>
-    </tr> 
+   
     <tr>
      <td>-</td>
       <td><center><a href="/static_pages/dashboard">Dashboard</a></center></td>

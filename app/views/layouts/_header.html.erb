@@ -2,7 +2,7 @@
   <div class="container">
     <div class="navbar-header">
     <br>
-   <%= link_to image_tag("HF-Star.jpg", :border => 0, size: "40x30"), {:action => 'xmas_order', :controller => 'static_pages'} %>
+   <%= link_to image_tag("HF-Star.jpg", :border => 0, size: "40x30"), {:action => 'home', :controller => 'static_pages'} %>
      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -13,7 +13,7 @@
     <div class="navbar-collapse collapse" id="navbar-main">
       <ul class="nav navbar-nav">
         
-       
+    
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="download">Go<span class="caret"></span></a>
           <ul class="dropdown-menu" aria-labelledby="download">
@@ -30,14 +30,7 @@
               <li><a href="/categories">Categories</a></li>
               <li class="divider"></li>
              <li><a href="/dashboard">Dashboard</a></li>
-             <li class="divider"></li>
-            <li><a href="/orders/summary_orders">Christmas Orders: Summary Counts</a></li>
-            <li><a href="/orders/paid_orders">Christmas Orders: Summary by Collection Day</a></li>
-            <li><a href="/orders/fulldetail_orders">Christmas Orders: Order Details</a></li>
-            <li><a href="/orders/marketing_list">Christmas Orders: Marketing List</a></li>
-            <li class="divider"></li>
-             <li><a href="/saleproducts/summary_saleproducts">Christmas Products: Total Sold So Far</a></li>
-              <li><a href="/saleproducts">Christmas Products: Master List of Products</a></li>
+            
           </ul>
         </li>
       </ul>
