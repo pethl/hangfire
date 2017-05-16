@@ -12,11 +12,14 @@ module IngredientsHelper
     @products = @products.uniq
   end
   
-  def related_product_count(ingredient)
-    @products = Productitem.where(:ingredient_id => ingredient.id).map {|x| [x.product_id]}
-    if @products.any?
-      @products = @products.uniq
-      return @products.count
+  def ingredient_related_product_count(ingredient)
+     @related_products = Productitem.where(:ingredient_id => ingredient.id).map {|x| [x.product_id]}
+      
+    if @related_products.any?
+      @related_products = @related_products.uniq
+      return @related_products.count
+    else
+      return 0
     end
   end
   

@@ -9,7 +9,7 @@ class IngredientsController < ApplicationController
        if params[:ingredient]
         @ingredients = Ingredient.search(params[:ingredient])
                if @ingredients.any?
-                 Rails.logger.debug("xxxxxxxxxxxxx_inregdients : #{@ingredients.count}")  
+                # Rails.logger.debug("xxxxxxxxxxxxx_inregdients : #{@ingredients.count}")  
               
                  @ingredients_category = @ingredients.group_by { |t| t.category_id }
       

@@ -40,8 +40,8 @@
     <% ingredients.each do |ingredient| %>
       <tr>
         <td><%= link_to ingredient.name, ingredient %></td>
-        <% if ingredient.baseproducts.count > 0 %>
         
+        <% if ingredient.baseproducts.count > 0 %>
         <td><center><%= ingredient.baseproducts.count %>
         <% age = Ingredient.record_age(ingredient.id) %>
         <% if age == "green" %><font color="green"> = </font>
@@ -50,7 +50,7 @@
             <% end %><center>
         </td>
         
-        <td><center><%= related_product_count(ingredient) %><center></td>
+        <td><center><%= ingredient_related_product_count(ingredient) %><center></td>
        
         <td><%= number_with_precision(Ingredient.get_unit_weight(ingredient.id), :precision => 0) %>
         
