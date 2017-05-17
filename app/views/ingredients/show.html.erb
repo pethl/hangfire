@@ -67,7 +67,12 @@
       <span class="fa fa-pencil-square-o""></span>
    <% end %>
   |
- <%= link_to '>> see all ingredients', ingredients_path %> 
+ <%= link_to '>> see all ingredients', ingredients_path %> | 
+ <b>
+ <%= link_to @ingredient, method: :delete, data: { confirm: 'Mgmt Action: Only delete ingredients that are not used in any product. Are you sure you want to permanently delete this ingredient?' }, class: 'btn btn-danger btn-xs' do  %>
+  <span class="fa fa-trash""></span>
+   <% end %> 
+ </b>
   
 </div></div>
 <br><br>

@@ -1,20 +1,20 @@
 <h1>Ingredients</h1>
 
 
-<%= link_to '+ add new ingredient', new_ingredient_path %><br>
-<%= link_to '>> see all products', products_path %>
+<%= link_to '+ add new ingredient', new_ingredient_path %><br><br>
+<%= link_to '>> see all products', products_path %><br><br>
 
 <!-- Instructions: The search form. -->  
- 
+ <b> Please select an igredient category to view:</b>
    <%= form_tag(ingredients_path, :method => "get", id: "search-form") do %>
        <%= collection_select(:ingredient, :category_id, (Category.where(:reference => 'ingredient')), :id, :name) %>
-       <%= submit_tag "Search" %>
+       <%= submit_tag "See Category" %>
    <% end %>
    </div>
  
    <%  if @ingredients == 0 %>
      <br>
-     Please select a category for search
+    
      <br>
  
  <% else %>
@@ -86,7 +86,7 @@
   </tbody>
 </table>
     <% end %>    <% end %>
-<br>
+<br><br><br><br><br><hr>
 
 <button class="btn">	<%= form_tag import_ingredients_path, multipart: true do %>
 	                      <%= file_field_tag :file %>
