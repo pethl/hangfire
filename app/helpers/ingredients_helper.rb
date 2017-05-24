@@ -7,7 +7,7 @@ module IngredientsHelper
   end
   
   #returns the product names of all products that use a given ingredient
-  def related_product(ingredient)
+  def ingredient_related_product(ingredient)
     @products = Productitem.where(:ingredient_id => ingredient.id).map {|x| [x.product_id]}
     @products = @products.uniq
   end

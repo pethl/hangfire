@@ -1,0 +1,27 @@
+<h1>HF Products</h1>
+<%= link_to '+ add new product', new_product_path %>
+<hr>
+
+<div class="row">
+
+<table class="table">
+  <tr> 
+   <% @products_by_category.each do |category_id, products| %>
+   <td>
+     <b><%= Category.where(:id => category_id).first.name %></b>
+       <hr>
+     
+        <% products= products.sort_by { |h| h[:name]} %>
+       
+         <% products.each do |product| %>  
+        <small> <%= link_to product.name, product %><br>  </small>
+    
+     <% end %>
+     
+    </td>
+ 
+     <% end %>
+        </tr>
+</table> 
+</div>
+<br><br>

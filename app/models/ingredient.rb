@@ -3,6 +3,7 @@ class Ingredient < ActiveRecord::Base
   belongs_to :category
   has_many :baseproducts, :dependent => :destroy
   accepts_nested_attributes_for :baseproducts, allow_destroy: true
+  
   validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :category_id, presence: true
   before_save :child_calc_prices
@@ -51,6 +52,18 @@ class Ingredient < ActiveRecord::Base
     return category
   end  
   
+  def self.get_vendor_for_stated_price(id,selector)
+    #this is incomplete for anything but latest currently
+    if selector = "latest"
+    a = Baseproduct.where(:ingredient_id => id).sort_by { |h| h[:purchase_date]}.reverse
+    if a.any?
+     return Vendor.find(a.first.vendor_id).name
+     else
+       return  "n/a"
+      end
+   end
+  end  
+  
   
   def self.import(file)
       	 CSV.foreach(file.path, headers: true) do |row|
@@ -64,69 +77,69 @@ class Ingredient < ActiveRecord::Base
   	  a.first.unit_weight
 	  end
   	
-       def self.get_price(id,selector)
-         case selector
-             when "average"
-               self.average_price(id)
-             when "latest"
-                self.latest_price(id)
-             when "least"
-                self.least_price(id)
-             when "most"
-                self.most_price(id)
-             else
-               puts "No price selector given"
-             end
-          end
+   def self.get_price(id,selector)
+     case selector
+         when "average"
+           self.average_price(id)
+         when "latest"
+            self.latest_price(id)
+         when "least"
+            self.least_price(id)
+         when "most"
+            self.most_price(id)
+         else
+           puts "No price selector given"
+         end
+      end
 
-          def self.record_age(id)
-            a = Baseproduct.where(:ingredient_id => id).sort_by { |h| h[:purchase_date]}.reverse
-            if a.any?
-              if (Date.today - a.first.purchase_date).to_i < 32
-                "green"
-              elsif (Date.today - a.first.purchase_date).to_i < 63
-                "amber"
-              else
-                "red"
-              end
-             else
-                "-"
-              end
-          end
-          
-        def self.average_price(id)
-            a = Baseproduct.where(:ingredient_id => id)
-            if a.any?
-            a.average('price_per') 
+      def self.record_age(id)
+        a = Baseproduct.where(:ingredient_id => id).sort_by { |h| h[:purchase_date]}.reverse
+        if a.any?
+          if (Date.today - a.first.purchase_date).to_i < 32
+            "green"
+          elsif (Date.today - a.first.purchase_date).to_i < 63
+            "amber"
           else
-            "no data"
+            "red"
           end
-        end
+         else
+            "-"
+          end
+      end
+      
+    def self.average_price(id)
+        a = Baseproduct.where(:ingredient_id => id)
+        if a.any?
+        a.average('price_per') 
+      else
+        "no data"
+      end
+    end
 
-        def self.latest_price(id)
-          a = Baseproduct.where(:ingredient_id => id).sort_by { |h| h[:purchase_date]}.reverse
-          if a.any?
-          a.first.price_per
-           else
-              "no data"
-            end
-        end  
-        
-       def self.least_price(id)
-          a = Baseproduct.where(:ingredient_id => id).sort_by { |h| h[:price_per]}
-          if a.any?
-          a.first.price_per
-           else
-              "no data"
-            end
+    def self.latest_price(id)
+      a = Baseproduct.where(:ingredient_id => id).sort_by { |h| h[:purchase_date]}.reverse
+      if a.any?
+      a.first.price_per
+       else
+          "no data"
         end
-          
-       def self.most_price(id)
-          a = Baseproduct.where(:ingredient_id => id).sort_by { |h| h[:price_per]}.reverse
-          if a.any?
-          a.first.price_per
-           else
-              "no data"
-            end
+    end  
+    
+   def self.least_price(id)
+      a = Baseproduct.where(:ingredient_id => id).sort_by { |h| h[:price_per]}
+      if a.any?
+      a.first.price_per
+       else
+          "no data"
         end
+    end
+      
+   def self.most_price(id)
+      a = Baseproduct.where(:ingredient_id => id).sort_by { |h| h[:price_per]}.reverse
+      if a.any?
+      a.first.price_per
+       else
+          "no data"
+        end
+    end
 end

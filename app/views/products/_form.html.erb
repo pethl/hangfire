@@ -24,7 +24,9 @@
   <tr><td colspan="3">
   <%= f.text_field :desc, :size => 40, :placeholder => "...enter product description here..." %></td></tr>
   <table>
+  
 <br>
+
   <b>Select ingredients</b>
   <table class="table table-condensed" style="border: 0; background-color: #e6e6e6">
   <tr>
@@ -36,7 +38,9 @@
   <td style="text-align:center"><small><b><i>REMOVE </td>
   </tr>
    <%= f.fields_for :productitems do |builder| %>
+     <small>
       <%= render 'productitem_fields', f: builder %>
+      </small>
     <% end %>
     <tr>
     <td  colspan="5"><b><%= link_to_add_fields "+ add ingredient", f, :productitems %></b></td>

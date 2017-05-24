@@ -28,6 +28,11 @@ class ProductsController < ApplicationController
             end
       end
 
+      def products_all
+        @products = Product.all
+         @products_by_category = @products.group_by { |t| t.category_id }
+      end
+
   # GET /products/1
   def show
    @productitems = Productitem.where(:product_id => @product.id)

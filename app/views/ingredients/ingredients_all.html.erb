@@ -1,0 +1,30 @@
+<h1>Ingredients</h1>
+
+
+<%= link_to '+ add new ingredient', new_ingredient_path %><br><br>
+<%= link_to '>> see ingredients by category', ingredients_path %><br><br>
+
+
+<table class="table">
+  <tr> 
+   <% @ingredients_category.each do |category_id, ingredients| %>
+   <td>
+     <b><%= Category.where(:id => category_id).first.name %></b>
+       <hr>
+     
+        <% ingredients= ingredients.sort_by { |h| h[:name]} %>
+       
+         <% ingredients.each do |ingredient| %>  
+        <small> <%= link_to ingredient.name, ingredient %><br>  </small>
+    
+     <% end %>
+     
+    </td>
+ 
+     <% end %>
+        </tr>
+</table> 
+
+<br><br><br><br><br><hr>
+
+

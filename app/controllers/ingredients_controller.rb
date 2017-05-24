@@ -23,6 +23,11 @@ class IngredientsController < ApplicationController
        end
      end
 
+     def ingredients_all
+        @ingredients = Ingredient.all
+        @ingredients_category = @ingredients.group_by { |t| t.category_id }
+     end
+
   # GET /ingredients/1
   def show
     @baseproducts = Baseproduct.where(:ingredient_id => @ingredient.id)

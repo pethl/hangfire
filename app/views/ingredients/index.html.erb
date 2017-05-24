@@ -2,10 +2,11 @@
 
 
 <%= link_to '+ add new ingredient', new_ingredient_path %><br><br>
+<%= link_to '>> see all ingredients', ingredients_all_path %><br><br>
 <%= link_to '>> see all products', products_path %><br><br>
 
 <!-- Instructions: The search form. -->  
- <b> Please select an igredient category to view:</b>
+ <b> Please select an ingredient category to view:</b>
    <%= form_tag(ingredients_path, :method => "get", id: "search-form") do %>
        <%= collection_select(:ingredient, :category_id, (Category.where(:reference => 'ingredient')), :id, :name) %>
        <%= submit_tag "See Category" %>

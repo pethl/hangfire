@@ -1,6 +1,8 @@
 
 <fieldset>
-
+<small>
+<table class="table table-striped">
+    <tbody>
   <tr>                 
       <td style="width: 40%"><%= i_id = f.grouped_collection_select :ingredient_id, Category.where(:reference => 'ingredient').order(:name), :ingredients, :name, :id, :name, include_blank: true, hide_label: true, :class=>"form-control input-sm" %></td>
       <td style="width: 17%;text-align:right"><%= f.text_field :volume, :label => "Weight", :placeholder => "Weight (g)", :style => "text-align: Right", :placeholder => "grams", hide_label: true %></td> 
@@ -9,5 +11,7 @@
       <td style="width: 22%"><%= f.select(:price_selector, Productitem::PRICE_SELECTOR_TYPES, :selected => 'latest', hide_label: true)%> </td>
       <td><i><%= f.check_box :_destroy, :label => "Delete" %></i></td>
   </tr>
-
+  </tbody>
+  </table>
+</small>
 </fieldset>

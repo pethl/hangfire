@@ -11,15 +11,15 @@
 <h4>Shrinkage % - <%= @ingredient.shrinkage %></h4>
 <% end %>
 
-<% if (prods = (related_product(@ingredient))).any?%>
- <h4>Related product(s): </h4>
+<% if (prods = (ingredient_related_product(@ingredient))).any?%>
+ <h5>Product(s) that use this ingredient: </h5>
 <% prods.each do |product| %>
   <ul>
   <li><%= link_to Product.get_name(product), product_path(product) %></li>
   </ul>
   <% end %>
     <% end %>
-
+    <hr>
 <% if @ingredient.baseproducts.any? %>
 
   <table class="table  table-striped" style="text-align:right">
@@ -67,7 +67,9 @@
       <span class="fa fa-pencil-square-o""></span>
    <% end %>
   |
- <%= link_to '>> see all ingredients', ingredients_path %> | 
+ <%= link_to '>> see all ingredients', ingredients_all_path %> | 
+  <%= link_to '>> see ingredients by category', ingredients_path %> | 
+    <%= link_to '++ add new ingredient', new_ingredient_path %> | 
  <b>
  <%= link_to @ingredient, method: :delete, data: { confirm: 'Mgmt Action: Only delete ingredients that are not used in any product. Are you sure you want to permanently delete this ingredient?' }, class: 'btn btn-danger btn-xs' do  %>
   <span class="fa fa-trash""></span>

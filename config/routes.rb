@@ -92,6 +92,8 @@ Hangfire::Application.routes.draw do
      get    'login'   => 'sessions#new'
      post   'login'   => 'sessions#create'
      delete 'logout'  => 'sessions#destroy'
+     get '/ingredients_all', to: 'ingredients#ingredients_all'
+     get '/products_all', to: 'products#products_all'
      
      get "static_pages/home"
      get "static_pages/help"
