@@ -13,10 +13,10 @@
      
         <tr>
           <th style="width:40%"></th>
-          <th style="width:15%; text-align:center">Count</th>
-          <th style="width:15%; text-align:right">Volume</th>
+          <th style="width:15%; text-align:center">Ingredient Count</th>
+          <th style="width:15%; text-align:right">Total Volume</th>
           <th style="width:15%; text-align:right">Cost</th>
-          <th style="width:15%"><center>Price Per Gram</center></th>
+          <th style="width:15%; text-align:right"">Price Per Gram</th>
           </tr>
     
           <% if @product.productitems.any? %>
@@ -28,12 +28,12 @@
                 <td style="text-align:right"><% if (Product.get_total_price(@product.id)).to_s == "missing data" %>
                                 "missing data"
                                 <% else %>
-                                <%= @total_ingredient = number_with_precision(Product.get_total_price(@product.id), :precision => 1) %>p
+                                <%= @total_ingredient = number_with_precision(Product.get_total_price(@product.id), :precision => 2) %>p
                       <% end %>
                 </td>
                  <% unless @friendships.any? %>
                    <% unless pw == 0 %>
-                  <td style="text-align:center"><%=  number_with_precision(((@total_ingredient.to_f)/(pw.to_f)), :precision => 2) %>p</td>
+                  <td style="text-align:right"><%=  number_with_precision(((@total_ingredient.to_f)/(pw.to_f)), :precision => 2) %>p</td>
                     <% end %>
                   <% end %>
                 
@@ -57,12 +57,17 @@
               <td><strong>Total</strong></td>
                 <td style="text-align:center"><strong><%= get_items_count(@product) %></strong></td>
                 <td style="text-align:right"><strong><%= weigh = Product.get_total_weight(@product.id) %>g</strong></td>
-                <td style="text-align:right; color:blue">
+                <td style="text-align:right">
                   <% ans = get_items_cost(@product) %>
-                  <strong><%= number_to_currency((ans).to_f/100, :locale => :en) %></strong>
+                  <strong><%= ((ans).to_f) %>p</strong>
                 </td>
                 <td><i><center><%= number_with_precision((ans/weigh), :precision => 2) %>p<i></center></td>
-              </tr>     
+              </tr>  
+               <tr>
+               <td colspan="3"></td>
+               <td style="text-align:right; color:blue"> <strong><%= number_to_currency((ans).to_f/100, :locale => :en) %></strong></td>
+               <td></td>
+                </tr>   
             <% end %>
             </table>
         </div></div>       
@@ -97,7 +102,7 @@
          <tr>
             <td><strong>Total Volume</strong></td>
             <td style="text-align:right"><strong><%= Product.get_total_weight(@product.id) %>g<strong></td>
-            <td colspan="3"></td>
+            <td colspan="4"></td>
             <td style="text-align:right"><strong>Total Price</strong></td>
             <td style="text-align:right"><strong>
             <%= number_to_currency((get_items_cost(@product)).to_f/100, :locale => :en) %>

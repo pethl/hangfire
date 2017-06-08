@@ -31,6 +31,7 @@
       <th>Unit or<br>Weight (g)</th>
       <th style="text-align:center"> Shrinkage %</th>
       <th style="text-align:right">Purchase<br>Price p/g</th>
+       <th style="text-align:right">Purchase<br>Price £/kg</th>
       <th style="text-align:center">Price<br>Change</th>
       <th colspan="1"></th>
     </tr>
@@ -63,6 +64,11 @@
         <% average = number_with_precision(Ingredient.get_price(ingredient.id, 'average'), :precision => 3) %>
         <%= latest = number_with_precision(Ingredient.get_price(ingredient.id, 'latest'), :precision => 3) %>
        </td>
+       
+       <td style="text-align:right"> <font color="blue"><% if !ingredient.shrinkage.blank? %>adjusted<% end %></font>
+      
+       £<%= number_with_precision((Ingredient.get_price(ingredient.id, 'latest')*10), :precision => 2) %>
+      </td>
        
         <td style="text-align:center"><% if (latest.to_f-average.to_f).ceil.is_a? Numeric%>
           <% if (latest.to_f-average.to_f).ceil > 0 %>

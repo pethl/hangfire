@@ -4,7 +4,8 @@
    <td style="text-align:right"><%= friendship.prodvolume %>g</td>
    <td></td>
    <td style="text-align:center">n/a</td>
-   <td style="text-align:right"><%= p_price = get_product_price_per_gram(friendship.friend_id) %></td>
-   <td style="text-align:right"><%= number_with_precision((Productitem.weight_ratio(0,friendship))*100, :precision => 1) %>%</td>
+   <td style="text-align:left">n/a</td>
+   <td style="text-align:right"><%= p_price = number_with_precision(get_product_price_per_gram(friendship.friend_id), :precision => 2) %></td>
+   <td style="text-align:right"><%= number_with_precision((Productitem.weight_ratio(0,friendship))*100, :precision => 2) %>%</td>
    <td style="text-align:right"><%= number_with_precision((friendship.prodvolume.to_f)*(p_price.to_f), :precision => 2) %>p</td>
 </tr>           
