@@ -12,6 +12,7 @@
   <thead>
     <tr>
       <th style="width:25%" >Food Item Name</th>
+      <th style="width:5%" >Item Count</th>
       <th style="width:20%" >Contents</th>      
       <th style="width:7%; text-align:right">Menu Price</th>
        <th style="width:7%; text-align:right">NET Profit</th>
@@ -27,6 +28,7 @@
     <% plates.each do |plate| %>
       <tr>
         <td><%= link_to plate.name, plate %></td>
+          <td><%= plate.productlinks.count %></td>
         
             <% @productlinks = Productlink.where(:plate_id => plate.id)%>
             <td><% @productlinks.each do |productlink| %>
