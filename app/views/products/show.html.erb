@@ -59,7 +59,7 @@
                 <td style="text-align:right"><strong><%= weigh = Product.get_total_weight(@product.id) %>g</strong></td>
                 <td style="text-align:right">
                   <% ans = get_items_cost(@product) %>
-                  <strong><%= ((ans).to_f) %>p</strong>
+                  <strong><%= number_with_precision(((ans).to_f), :precision => 2)  %>p</strong>
                 </td>
                 <td><i><center><%= number_with_precision((ans/weigh), :precision => 2) %>p<i></center></td>
               </tr>  
