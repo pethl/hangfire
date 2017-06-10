@@ -5,9 +5,10 @@
   <tbody>
   <tr>
     <td> <%= f.grouped_collection_select :product_id, Category.where(id: categories_to_show).order(:name), :products, :name, :id, :name, :prompt => true  %>
+   
+    <%= f.check_box :_destroy, :label => "Remove this product" %>
     </td> </tr>
-    <tr> <td> <%= f.check_box :_destroy, :label => "Remove this product" %></td>
-  </tr>
+   
   </tbody>
 </table>
 <br>
